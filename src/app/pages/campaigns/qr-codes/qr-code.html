@@ -1,0 +1,35 @@
+
+  
+        <!-- Modal Header -->
+      <!--   <div class="position-relative">
+          <button type="button" class="btn-close position-absolute bottom-0 right-0" (click)="onNoClick()"></button>
+        </div>
+   -->
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="text-center my-auto my-auto">
+                <div id="canvas" class="pr-2 my-3"></div>
+              </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="border border-top-2 border-end-0 border-bottom-0 border-start-0  p-2">
+          <div class="row">
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 text-nowrap text-start">
+              <button type="button" class="btn btn-sm btn-outline-danger" (click)="onNoClick()">Close</button>
+            </div>
+            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10 text-end text-nowrap">
+              <div class="btn-group-sm">
+                  <button type="button" class="btn btn-outline-light text-dark">Download</button>
+                  <button type="button" class="btn btn-outline-primary" (click)="DownloadQRCode('png')">.PNG</button> &nbsp;
+                  <button type="button" class="btn btn-outline-primary" (click)="DownloadQRCode('svg')">.SVG</button> &nbsp;
+                  <button type="button" class="btn btn-outline-primary" (click)="DownloadQRCode('jpg')">.JPG</button>
+                </div>
+            </div>
+          </div>
+           
+        </div>
+  
+
+
+

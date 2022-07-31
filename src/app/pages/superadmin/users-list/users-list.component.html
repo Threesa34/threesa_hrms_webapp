@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="col-12">
+        <a class="btn btn-primary" [routerLink]="['/', 'superadmin', 'user_details',0]">Add New</a>&nbsp;
+        <a *ngIf="selectedRows && selectedRows.length == 1" class="btn btn-primary" [routerLink]="['/', 'superadmin', 'user_details',userid]">Edit User</a>&nbsp;
+        <a *ngIf="selectedRows && selectedRows.length >= 1" class="btn btn-primary" (click)="deleteCompanies()">Delete user(s)</a>
+    </div>
+    <div class="col-12 mt-2">
+        <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        class="ag-theme-alpine"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="rowSelection"
+        [enableRangeSelection]="true"
+        [pagination]="true"
+        [paginationPageSize]="paginationPageSize"
+        [rowData]="rowData"
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)"
+        >
+    </ag-grid-angular>
+    </div>
+</div>

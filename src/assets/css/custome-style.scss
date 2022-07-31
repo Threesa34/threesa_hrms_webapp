@@ -1,0 +1,1184 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+
+$th-primary: (
+  50: #f44336,
+  100: #f44336,
+  200: #f44336,
+  300: #f44336,
+  400: #f44336,
+  500: #f44336,
+  600: #f44336,
+  700: #f44336,
+  800: #f44336,
+  900: #f44336,
+  A100: #f44336,
+  A200: #f44336,
+  A400: #f44336,
+  A700: #f44336,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$th-accent: (
+  50: #03a9f4,
+  100: #03a9f4,
+  200: #03a9f4,
+  300: #03a9f4,
+  400: #03a9f4,
+  500: #03a9f4,
+  600: #03a9f4,
+  700: #03a9f4,
+  800: #03a9f4,
+  900: #03a9f4,
+  A100: #03a9f4,
+  A200: #03a9f4,
+  A400: #03a9f4,
+  A700: #03a9f4,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$th-warn: (
+  50: #ff9800,
+  100: #ff9800,
+  200: #ff9800,
+  300: #ff9800,
+  400: #ff9800,
+  500: #ff9800,
+  600: #ff9800,
+  700: #ff9800,
+  800: #ff9800,
+  900: #ff9800,
+  A100: #ff9800,
+  A200: #ff9800,
+  A400: #ff9800,
+  A700: #ff9800,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+
+
+// AMBER THEME-----------------------------------------
+$amber-primary: mat-palette($th-primary);
+$amber-accent:  mat-palette($th-accent, A200, A100, A400);
+$amber-warn: mat-palette($th-warn);
+$amber-theme: mat-light-theme($amber-primary, $amber-accent, $amber-warn);
+$amber-dark-theme: mat-dark-theme($amber-primary, $amber-accent, $amber-warn);
+$amber-background: map-get($amber-theme, background);
+$amber-foreground: map-get($amber-theme, foreground);
+// AMBER THEME-----------------------------------------
+$config: mat-typography-config();
+
+@include angular-material-theme($amber-theme);
+
+.darkMode {
+  @include angular-material-color($amber-dark-theme);
+}
+
+
+$bi-app-left 				    : left;
+$bi-app-right 				  	: right;
+$bi-app-direction 				: ltr;
+$bi-app-invert-direction		: rtl;
+$imp                    		: !important;
+
+@mixin bi-app-compact($property, $top, $right, $bottom, $left) {
+  @if $bi-app-direction == ltr {
+    #{$property}: $top $right $bottom $left;
+  } @else {
+    #{$property}: $top $left $bottom $right;
+  }
+}
+
+// padding
+// ------------------------------------------
+@mixin padding-left($distance) {
+  padding-#{$bi-app-left}: $distance;
+}
+
+@mixin padding-right($distance) {
+  padding-#{$bi-app-right}: $distance;
+}
+
+@mixin padding($top, $right, $bottom, $left) {
+  @include bi-app-compact(padding, $top, $right, $bottom, $left);
+}
+
+// margin
+// ------------------------------------------
+@mixin margin-left($distance) {
+  margin-#{$bi-app-left}: $distance;
+}
+
+@mixin margin-right($distance) {
+  margin-#{$bi-app-right}: $distance;
+}
+
+@mixin margin($top, $right, $bottom, $left) {
+  @include bi-app-compact(margin, $top, $right, $bottom, $left);
+}
+
+// float
+// ------------------------------------------
+@mixin bi-app-float-left($important: '') {
+  float: $bi-app-left unquote($important);
+}
+
+@mixin bi-app-float-right($important: '') {
+  float: $bi-app-right unquote($important);
+}
+
+@mixin float($direction, $important: '') {
+  @if $direction == left {
+    @include bi-app-float-left($important);
+  } @else if $direction == right {
+    @include bi-app-float-right($important);
+  } @else {
+    float: $direction;
+  }
+}
+
+// text align
+// ------------------------------------------
+@mixin bi-app-text-align-left {
+  text-align: $bi-app-left;
+}
+
+@mixin bi-app-text-align-right {
+  text-align: $bi-app-right;
+}
+
+@mixin text-align($direction) {
+  @if $direction == left {
+    @include bi-app-text-align-left;
+  } @else if $direction == right {
+    @include bi-app-text-align-right;
+  } @else {
+    text-align: $direction;
+  }
+}
+
+// clear
+// ------------------------------------------
+@mixin bi-app-clear-left {
+  clear: $bi-app-left;
+}
+
+@mixin bi-app-clear-right {
+  clear: $bi-app-right;
+}
+
+@mixin clear($direction) {
+  @if $direction == left {
+    @include bi-app-clear-left;
+  } @else if $direction == right {
+    @include bi-app-clear-right;
+  } @else {
+    clear: $direction;
+  }
+}
+
+// left / right
+// ------------------------------------------
+@mixin left($distance) {
+  @if $bi-app-direction == ltr {
+    left: $distance;
+  } @else if $bi-app-direction == rtl {
+    right: $distance;
+  }
+}
+
+@mixin right($distance) {
+  @if $bi-app-direction == ltr {
+    right: $distance;
+  } @else if $bi-app-direction == rtl {
+    left: $distance;
+  }
+}
+
+// border
+// ------------------------------------------
+
+// width
+@mixin border-left-width($width) {
+  border-#{$bi-app-left}-width: $width;
+}
+
+@mixin border-right-width($width) {
+  border-#{$bi-app-right}-width: $width;
+}
+
+@mixin border-width($top, $right, $bottom, $left) {
+  @include bi-app-compact(border-width, $top, $right, $bottom, $left);
+}
+
+// style
+@mixin border-left-style($style) {
+  border-#{$bi-app-left}-style: $style;
+}
+
+@mixin border-right-style($style) {
+  border-#{$bi-app-right}-style: $style;
+}
+
+@mixin border-style($top, $right, $bottom, $left) {
+  @include bi-app-compact(border-style, $top, $right, $bottom, $left);
+}
+
+// color
+@mixin border-left-color($color) {
+  border-#{$bi-app-left}-color: $color;
+}
+
+@mixin border-right-color($color) {
+  border-#{$bi-app-right}-color: $color;
+}
+
+@mixin border-color($top, $right, $bottom, $left) {
+  @include bi-app-compact(border-color, $top, $right, $bottom, $left);
+}
+
+// generic
+@mixin border-left($border-style) {
+  border-#{$bi-app-left}: $border-style;
+}
+
+@mixin border-right($border-style) {
+  border-#{$bi-app-right}: $border-style;
+}
+
+// radius
+@mixin border-top-left-radius($radius) {
+  -webkit-border-top-#{$bi-app-left}-radius: $radius;
+     -moz-border-top#{$bi-app-left}-radius: $radius;
+          border-top-#{$bi-app-left}-radius: $radius;
+}
+
+@mixin border-top-right-radius($radius) {
+  -webkit-border-top-#{$bi-app-right}-radius: $radius;
+     -moz-border-top#{$bi-app-right}-radius: $radius;
+          border-top-#{$bi-app-right}-radius: $radius;
+}
+
+@mixin border-bottom-left-radius($radius) {
+  -webkit-border-bottom-#{$bi-app-left}-radius: $radius;
+     -moz-border-bottom#{$bi-app-left}-radius: $radius;
+          border-bottom-#{$bi-app-left}-radius: $radius;
+}
+
+@mixin border-bottom-right-radius($radius) {
+  -webkit-border-bottom-#{$bi-app-right}-radius: $radius;
+     -moz-border-bottom#{$bi-app-right}-radius: $radius;
+          border-bottom-#{$bi-app-right}-radius: $radius;
+}
+
+@mixin border-right-radius($radius) {
+  @include border-top-right-radius($radius);
+  @include border-bottom-right-radius($radius);
+}
+
+@mixin border-left-radius($radius) {
+  @include border-top-left-radius($radius);
+  @include border-bottom-left-radius($radius);
+}
+
+@mixin border-top-radius($radius) {
+  @include border-top-left-radius($radius);
+  @include border-top-right-radius($radius);
+}
+
+@mixin border-bottom-radius($radius) {
+  @include border-bottom-left-radius($radius);
+  @include border-bottom-right-radius($radius);
+}
+
+@mixin border-radius($topLeft, $topRight: null, $bottomRight: null, $bottomLeft: null) {
+  @if $topRight != null {
+    @include border-top-left-radius($topLeft);
+    @include border-top-right-radius($topRight);
+    @include border-bottom-right-radius($bottomRight);
+    @include border-bottom-left-radius($bottomLeft);
+  } @else {
+    -webkit-border-radius: $topLeft;
+       -moz-border-radius: $topLeft;
+        -ms-border-radius: $topLeft;
+         -o-border-radius: $topLeft;
+            border-radius: $topLeft;
+  }
+}
+
+// Returns "en" or "ar", useful for image suffixes.
+// Usage: background-image: url(/img/header-#{lang()}.png);
+@function lang() {
+  @if $bi-app-direction == ltr {
+    @return 'en';
+  } @else {
+    @return 'ar';
+  }
+}
+
+// Support for "direction" declaration (renders ltr/rtl).
+// Useful for form elements as they swap the text-indent property and align the text accordingly.
+@mixin direction {
+  direction: $bi-app-direction;
+}
+
+// Inverts a percentage value. Example: 97% becames 3%.
+// Useful for background-position.
+@function bi-app-invert-percentage($percentage) {
+  @if $bi-app-direction == rtl {
+    @return 100% - $percentage;
+  } @else {
+    @return $percentage;
+  }
+}
+
+// ltr / rtl contents
+// ------------------------------------------
+@mixin ltr {
+  @if $bi-app-direction == ltr {
+    @content;
+  }
+}
+
+@mixin rtl {
+  @if $bi-app-direction == rtl {
+    @content;
+  }
+}
+
+
+//
+// General
+//
+$transition-duration: 300ms !default;
+$gutter: 1rem !default;
+
+//
+// Widths
+//
+$sidebar-width: 15rem !default;
+$compact-sidebar-width: 100px !default;
+$collapsed-sidebar-width: 80px !default;
+$sidebar-width-mobile: 18rem !default;
+
+//
+// Typography
+//
+$font-size-base: 0.875rem !default;
+$font-weight-base: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 600 !default;
+
+$font-size-h1: 2.5rem !default;
+$font-size-h2: 2rem !default;
+$font-size-h3: 1.75rem !default;
+$font-size-h4: 1.5rem !default;
+$font-size-h5: 1.25rem !default;
+$font-size-h6: 1rem !default;
+
+$headings-margin-bottom: (1rem / 2) !default;
+$headings-font-family:   inherit !default;
+$headings-font-weight:   400 !default;
+$headings-line-height:   1.1 !default;
+$headings-color:         inherit !default;
+
+//
+// Radius
+//
+$border-radius-base: 2px !default;
+$border-radius-large: 2px !default;
+$border-radius-small: 1px !default;
+
+//
+// Spacing
+//
+$spacer:   1rem !default;
+$spacer-x: $spacer !default;
+$spacer-y: $spacer !default;
+$spacers: (
+  0: (
+    x: 0,
+    y: 0
+  ),
+  xs: (
+    x: ($spacer-x / 1.8),
+    y: ($spacer-y / 1.8)
+  ),
+  1: (
+    x: $spacer-x,
+    y: $spacer-y
+  ),
+  2: (
+    x: ($spacer-x * 1.5),
+    y: ($spacer-y * 1.5)
+  ),
+  3: (
+    x: ($spacer-x * 3),
+    y: ($spacer-y * 3)
+  )
+) !default;
+$border-width: 1px !default;
+
+
+// Media queries breakpoints
+// --------------------------------------------------
+
+// Grid breakpoints
+//
+// Define the minimum and maximum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 600px,
+  // Medium screen / tablet
+  md: 960px,
+  // Large screen / desktop
+  lg: 1280px,
+  // Extra large screen / wide desktop
+  xl: 1920px
+) !default;
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+  sm: 576px,
+  md: 720px,
+  lg: 940px,
+  xl: 1140px
+) !default;
+
+
+// Breakpoint viewport sizes and media queries.
+//
+// Breakpoints are defined as a map of (name: minimum width), order from small to large:
+//
+//    (xs: 0, sm: 544px, md: 768px)
+//
+// The map defined in the `$grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
+
+// Name of the next breakpoint, or null for the last breakpoint.
+//
+//    >> breakpoint-next(sm)
+//    md
+//    >> breakpoint-next(sm, (xs: 0, sm: 544px, md: 768px))
+//    md
+//    >> breakpoint-next(sm, $breakpoint-names: (xs sm md))
+//    md
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 544px, md: 768px))
+//    544px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+// Maximum breakpoint width. Null for the largest (last) breakpoint.
+// The maximum value is calculated as the minimum of the next one less 0.1.
+//
+//    >> breakpoint-max(sm, (xs: 0, sm: 544px, md: 768px))
+//    767px
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - 1px, null);
+}
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media between the breakpoint's minimum and maximum widths.
+// No minimum for the smallest breakpoint, and no maximum for the largest one.
+// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  @include media-breakpoint-up($name, $breakpoints) {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  @include media-breakpoint-up($lower, $breakpoints) {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+
+// Typography
+
+@mixin text-emphasis-variant($parent, $color) {
+  #{$parent} {
+    color: $color !important;
+  }
+  a#{$parent} {
+    @include hover-focus {
+      color: darken($color, 10%);
+    }
+  }
+}
+
+@mixin clearfix() {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+%flexbox { @include flexbox; }
+
+//----------------------------------
+
+@mixin inline-flex {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+%inline-flex { @include inline-flex; }
+
+//----------------------------------------------------------------------
+
+// Flexbox Direction
+//
+// The 'flex-direction' property specifies how flex items are placed in
+// the flex container, by setting the direction of the flex container's
+// main axis. This determines the direction that flex items are laid out in. 
+//
+// Values: row | row-reverse | column | column-reverse
+// Default: row
+//
+// http://w3.org/tr/css3-flexbox/#flex-direction-property
+
+@mixin flex-direction($value: row) {
+  @if $value == row-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+  } @else if $value == column {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+  } @else if $value == column-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+  } @else {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+  }
+  -webkit-flex-direction: $value;
+  -moz-flex-direction: $value;
+  -ms-flex-direction: $value;
+  flex-direction: $value;
+}
+  // Shorter version:
+  @mixin flex-dir($args...) { @include flex-direction($args...); }
+
+//----------------------------------------------------------------------
+
+// Flexbox Wrap
+//
+// The 'flex-wrap' property controls whether the flex container is single-line
+// or multi-line, and the direction of the cross-axis, which determines
+// the direction new lines are stacked in. 
+//
+// Values: nowrap | wrap | wrap-reverse
+// Default: nowrap
+//
+// http://w3.org/tr/css3-flexbox/#flex-wrap-property
+
+@mixin flex-wrap($value: nowrap) {
+  // No Webkit Box fallback.
+  -webkit-flex-wrap: $value;
+  -moz-flex-wrap: $value;
+  @if $value == nowrap {
+    -ms-flex-wrap: none;
+  } @else { 
+    -ms-flex-wrap: $value; 
+  }
+  flex-wrap: $value;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Flow (shorthand)
+//
+// The 'flex-flow' property is a shorthand for setting the 'flex-direction'
+// and 'flex-wrap' properties, which together define the flex container's
+// main and cross axes.
+//
+// Values: <flex-direction> | <flex-wrap> 
+// Default: row nowrap
+//
+// http://w3.org/tr/css3-flexbox/#flex-flow-property
+
+@mixin flex-flow($values: (row nowrap)) {
+  // No Webkit Box fallback.
+  -webkit-flex-flow: $values;
+  -moz-flex-flow: $values;
+  -ms-flex-flow: $values;
+  flex-flow: $values;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Order
+//
+// The 'order' property controls the order in which flex items appear within
+// their flex container, by assigning them to ordinal groups.
+//
+// Default: 0
+//
+// http://w3.org/tr/css3-flexbox/#order-property
+
+@mixin order($int: 0) {
+  -webkit-box-ordinal-group: $int + 1;
+  -webkit-order: $int;
+  -moz-order: $int;
+  -ms-flex-order: $int;
+  order: $int;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Grow
+//
+// The 'flex-grow' property sets the flex grow factor. Negative numbers
+// are invalid.
+//
+// Default: 0
+//
+// http://w3.org/tr/css3-flexbox/#flex-grow-property
+
+@mixin flex-grow($int: 0) {
+  -webkit-box-flex: $int;
+  -webkit-flex-grow: $int;
+  -moz-flex-grow: $int;
+  -ms-flex-positive: $int;
+  flex-grow: $int;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Shrink
+//
+// The 'flex-shrink' property sets the flex shrink factor. Negative numbers
+// are invalid.
+//
+// Default: 1
+//
+// http://w3.org/tr/css3-flexbox/#flex-shrink-property
+
+@mixin flex-shrink($int: 1) {
+  -webkit-flex-shrink: $int;
+  -moz-flex-shrink: $int;
+  -ms-flex-negative: $int;
+  flex-shrink: $int;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Basis
+//
+// The 'flex-basis' property sets the flex basis. Negative lengths are invalid. 
+//
+// Values: Like "width" 
+// Default: auto
+//
+// http://www.w3.org/TR/css3-flexbox/#flex-basis-property
+
+@mixin flex-basis($value: auto) {
+  -webkit-flex-basis: $value;
+  -moz-flex-basis: $value;
+  -ms-flex-preferred-size: $value;
+  flex-basis: $value;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox "Flex" (shorthand)
+//
+// The 'flex' property specifies the components of a flexible length: the
+// flex grow factor and flex shrink factor, and the flex basis. When an
+// element is a flex item, 'flex' is consulted instead of the main size
+// property to determine the main size of the element. If an element is
+// not a flex item, 'flex' has no effect.
+//
+// Values: none | <flex-grow> <flex-shrink> || <flex-basis>
+// Default: See individual properties (1 1 0).
+//
+// http://w3.org/tr/css3-flexbox/#flex-property
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+    
+  // Set a variable to be used by box-flex properties
+  $fg-boxflex: $fg;
+
+  // Box-Flex only supports a flex-grow value so let's grab the
+  // first item in the list and just return that.
+  @if type-of($fg) == 'list' {
+    $fg-boxflex: nth($fg, 1);
+  }
+
+  -webkit-box-flex: $fg-boxflex;
+  -webkit-flex: $fg $fs $fb;
+  -moz-box-flex: $fg-boxflex;
+  -moz-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Justify Content
+//
+// The 'justify-content' property aligns flex items along the main axis
+// of the current line of the flex container. This is done after any flexible
+// lengths and any auto margins have been resolved. Typically it helps distribute
+// extra free space leftover when either all the flex items on a line are
+// inflexible, or are flexible but have reached their maximum size. It also
+// exerts some control over the alignment of items when they overflow the line.
+//
+// Note: 'space-*' values not supported in older syntaxes.
+//
+// Values: flex-start | flex-end | center | space-between | space-around
+// Default: flex-start
+//
+// http://w3.org/tr/css3-flexbox/#justify-content-property
+
+@mixin justify-content($value: flex-start) {
+  @if $value == flex-start {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+  } @else if $value == flex-end {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+  } @else if $value == space-between {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+  } @else if $value == space-around {
+    -ms-flex-pack: distribute;    
+  } @else {
+    -webkit-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+  -webkit-justify-content: $value;
+  -moz-justify-content: $value;
+  justify-content: $value;
+}
+  // Shorter version:
+  @mixin flex-just($args...) { @include justify-content($args...); }
+
+//----------------------------------------------------------------------
+
+// Flexbox Align Items
+//
+// Flex items can be aligned in the cross axis of the current line of the
+// flex container, similar to 'justify-content' but in the perpendicular
+// direction. 'align-items' sets the default alignment for all of the flex
+// container's items, including anonymous flex items. 'align-self' allows
+// this default alignment to be overridden for individual flex items. (For
+// anonymous flex items, 'align-self' always matches the value of 'align-items'
+// on their associated flex container.) 
+//
+// Values: flex-start | flex-end | center | baseline | stretch
+// Default: stretch
+//
+// http://w3.org/tr/css3-flexbox/#align-items-property
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+  } @else {
+    -webkit-box-align: $value;
+    -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+  -moz-align-items: $value;
+  align-items: $value;
+}
+
+//----------------------------------
+
+// Flexbox Align Self
+//
+// Values: auto | flex-start | flex-end | center | baseline | stretch
+// Default: auto
+
+@mixin align-self($value: auto) {
+  // No Webkit Box Fallback.
+  -webkit-align-self: $value;
+  -moz-align-self: $value;
+  @if $value == flex-start {
+    -ms-flex-item-align: start;
+  } @else if $value == flex-end {
+    -ms-flex-item-align: end;
+  } @else {
+    -ms-flex-item-align: $value;
+  }
+  align-self: $value;
+}
+
+//----------------------------------------------------------------------
+
+// Flexbox Align Content
+//
+// The 'align-content' property aligns a flex container's lines within the
+// flex container when there is extra space in the cross-axis, similar to
+// how 'justify-content' aligns individual items within the main-axis. Note,
+// this property has no effect when the flexbox has only a single line.
+//
+// Values: flex-start | flex-end | center | space-between | space-around | stretch
+// Default: stretch
+//
+// http://w3.org/tr/css3-flexbox/#align-content-property
+
+@mixin align-content($value: stretch) {
+  // No Webkit Box Fallback.
+  -webkit-align-content: $value;
+  -moz-align-content: $value;
+  @if $value == flex-start {
+    -ms-flex-line-pack: start;
+  } @else if $value == flex-end {
+    -ms-flex-line-pack: end;
+  } @else {
+    -ms-flex-line-pack: $value;
+  }
+  align-content: $value;
+}
+
+
+//
+
+@mixin vertical-align($parent-height, $element-height) {
+  margin-top: (($parent-height - $element-height) / 2);
+  margin-bottom: (($parent-height - $element-height) / 2);
+}
+
+@mixin vertical-align-padding($parent-height, $element-height) {
+  padding-top: (($parent-height - $element-height) / 2);
+  padding-bottom: (($parent-height - $element-height) / 2);
+}
+
+@mixin rounded($radius: 2px) {
+  border-radius: $radius;
+}
+
+@mixin box-shadow($arguments...) {
+  box-shadow: $arguments;
+}
+
+@mixin transform($arguments...) {
+  -webkit-transform: $arguments;
+  -moz-transform: $arguments;
+  -ms-transform: $arguments;
+  -o-transform: $arguments;
+  transform: $arguments;
+}
+
+@mixin rotate($deg: 5deg) {
+  @include transform(rotate($deg));
+}
+
+@mixin translate($x: 0, $y:0) {
+  @include transform(translate($x, $y));
+}
+
+@mixin translate3d($x: 0, $y:0, $z:0) {
+  @include transform(translate3d($x, $y, $z));
+}
+
+@mixin scale($x: 0, $y:0) {
+  @include transform(scale($x, $y));
+}
+
+@mixin scale3d($x: 0, $y:0, $z:0) {
+  @include transform(scale3d($x, $y, $z));
+}
+
+@mixin transition($value...) {
+  -webkit-transition: $value;
+  transition: $value;
+}
+
+@mixin animation-duration($duration) {
+  -webkit-animation-duration: $duration;
+  animation-duration: $duration;
+}
+
+@mixin animation-timing-function($timing) {
+  -webkit-animation-timing-function: $timing;
+  animation-timing-function: $timing;
+}
+
+@mixin animation-fill-mode($mode) {
+  -webkit-animation-fill-mode: $mode;
+  animation-fill-mode: $mode;
+}
+
+@mixin animation-name($name) {
+  -webkit-animation-name: $name;
+  animation-name: $name;
+}
+
+@mixin transition-delay($delay) {
+  -webkit-transition-delay: $delay;
+  transition-delay: $delay;
+}
+
+@mixin transition-duration($duration: .2s) {
+  -moz-transition-duration: $duration;
+  transition-duration: $duration;
+}
+
+@mixin transform-origin($origin) {
+  -webkit-transform-origin: $origin;
+  -moz-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  -o-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+@mixin user-select($argument: none) {
+  -webkit-user-select: $argument;
+  -moz-user-select: $argument;
+  -ms-user-select: $argument;
+  user-select: $argument;
+}
+
+@mixin opacity($opacity: .5) {
+  opacity: $opacity;
+}
+
+
+mat-sidenav.sidebar-panel {
+  overflow-x: hidden;
+  width: $sidebar-width;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)!important;
+  .mat-drawer-focus-trap>.cdk-focus-trap-content {
+    position: relative;
+  }
+  > nav {
+    min-width: $sidebar-width;
+  }
+  .mat-list-item .mat-list-item-content {
+    display: block;
+    height: auto;
+    max-height: 48px;
+    overflow: hidden;
+    padding: 0;
+    -webkit-transition: max-height .3s cubic-bezier(.35, 0, .25, 1);
+    -moz-transition: max-height .3s cubic-bezier(.35, 0, .25, 1);
+    transition: max-height .3s cubic-bezier(.35, 0, .25, 1);
+  }
+  .mat-list-item {
+    background-color: transparent;
+    -webkit-transition: background-color .3s cubic-bezier(.35, 0, .25, 1);
+    -moz-transition: background-color .3s cubic-bezier(.35, 0, .25, 1);
+    transition: background-color .3s cubic-bezier(.35, 0, .25, 1);
+  }
+  .mat-list-item.open > .mat-list-item-content {
+    max-height: 2000px;
+  }
+  .mat-nav-list a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 48px;
+    padding: 0 16px;
+  }
+  .sub-menu {
+    padding-top: 0;
+    overflow: hidden;
+    transition: .5s cubic-bezier(.35, 0, .25, 1);
+    transition-property: max-height;
+    max-height: 0;
+  }
+  .sub-menu a{
+    @include padding-left(32px);
+    background-color: rgba(0, 0, 0, 0.035);
+    min-width: 200px;
+  }
+
+  .sub-menu .sub-menu a{
+    @include padding-left(64px + 16px);
+  }
+
+  .sub-menu .sub-menu .sub-menu a{
+    @include padding-left(64px + 32px);
+  }
+
+  .sub-menu .sub-menu .sub-menu .sub-menu a{
+    @include padding-left(64px + 48px);
+  }
+
+  .navigation {
+    mat-icon:not(.menu-caret) {
+      @include margin-right(24px);
+    }
+    .menu-caret {
+      display: inline-block;
+      -webkit-transition: -webkit-transform $transition-duration cubic-bezier(.7, 0, .3, 1);
+      -moz-transition: -moz-transform $transition-duration cubic-bezier(.7, 0, .3, 1);
+      -o-transition: -o-transform $transition-duration cubic-bezier(.7, 0, .3, 1);
+      transition: transform $transition-duration cubic-bezier(.7, 0, .3, 1);
+      @include float(right);
+      @include margin-left(.3125rem);
+      text-align: center;
+    }
+    .open > .mat-list-item-content > [appAccordionToggle] > .menu-caret {
+      @include rotate(-180deg);
+    }
+    .menu-badge {
+      display: inline-block;
+      height: 16px;
+      min-width: 10px;
+      line-height: 18px;
+      text-align: center;
+      border-radius: 16px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 0 4px;
+    }
+    .open > .mat-list-item-content > .sub-menu {
+      max-height: 2000px;
+    }
+  }
+}
+
+
+/* $listgroup
+ ------------------------------------------*/
+ mat-list, mat-nav-list {
+  mat-list-item, a[mat-list-item] {
+    color: white;
+  }
+}
+mat-list-item, .mat-list-item {
+  mat-icon {
+    &[mat-list-avatar] {
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      display: flex;
+    }
+  }
+}
+
+mat-list mat-list-item [mat-list-avatar], mat-list a[mat-list-item] [mat-list-avatar], mat-nav-list mat-list-item [mat-list-avatar], mat-nav-list a[mat-list-item] [mat-list-avatar] {
+  min-width: 40px;
+}
+mat-list-item.active > .mat-list-item-content {
+  background: inherit;
+}
+mat-list mat-list-item .mat-list-item-content,
+mat-list a[mat-list-item] .mat-list-item-content,
+mat-nav-list mat-list-item .mat-list-item-content,
+mat-nav-list a[mat-list-item] .mat-list-item-content{
+  font-size: $font-size-base!important;
+}
+
+
+
+.app { height: 100vh; }

@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <button class="btn btn-sm mt-2 btn-primary" [routerLink]="['/', 'campaign', 'newsketters_details',0]"><i class="fas fa-plus"></i>&nbsp;Add Newsletter</button> &nbsp;<button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows && selectedRows.length == 1" [routerLink]="['/', 'campaign', 'newsketters_details',adv_id]"><i class="fas fa-edit"></i>&nbsp;Edit Newsletter</button> &nbsp;
+        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows && selectedRows.length >= 1" [routerLink]="['/', 'campaign', 'newsketters_campaign',adv_id]"><i class="fas fa-share-alt"></i>&nbsp;Share Newsletter</button> &nbsp;
+    </div>
+
+    <div class="row mt-3">
+        <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        class="ag-theme-alpine"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="rowSelection"
+        [enableRangeSelection]="true"
+        [pagination]="true"
+        [paginationPageSize]="paginationPageSize"
+        [rowData]="rowData"
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)"
+        >
+    </ag-grid-angular>
+    </div>
+</div>

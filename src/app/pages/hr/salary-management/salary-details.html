@@ -1,0 +1,100 @@
+
+<div class="modal-content">
+      
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h4 class="modal-title">Shift Details</h4>
+    </div>
+    
+    <!-- Modal body -->
+    <div class="modal-body" style="height:420px;overflow-y: scroll;">
+        <div class="container-fluid">
+            <mat-form-field class="col-12">
+                <mat-label>Employee</mat-label>
+                <mat-select  [(ngModel)]="salary_details.employee_id">
+                    <mat-option *ngFor="let _obj of EmployeeDetails" [value]="_obj.id">{{_obj.name}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        
+               <!--  <mat-form-field class="col-12">
+                <mat-label>Fixed Salary</mat-label>
+                <input type="number" matInput [(ngModel)]="salary_details.fixed">
+              </mat-form-field> -->
+        
+              <div class="col-12">
+              <div class="col-12 mb-1"><strong>Fixed</strong> &nbsp;<a class="btn btn-light btn-sm" (click)="AddFixedEntry()"><i class="fas fa-plus"></i>&nbsp;Add New</a>
+                </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr *ngFor="let _obj of fixed; let i = index">
+                                    <td><input type="text" class="form-control input-sm" [(ngModel)]="_obj.type"></td>
+                                    <td><input type="number" class="form-control input-sm" [(ngModel)]="_obj.amount" (blur)="CalculateNetSalary()"></td>
+                                    <td><button type="button" class="btn btn-link text-danger" (click)="SpliceEntry(fixed,i)"><i class="fas fa-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </div>
+              <div class="col-12">
+              <div class="col-12 mb-1"><strong>Earnings/Expences</strong> &nbsp;<a class="btn btn-light btn-sm" (click)="AddearningEntry()"><i class="fas fa-plus"></i>&nbsp;Add New</a>
+                </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr *ngFor="let _obj of earnings; let i = index">
+                                    <td><input type="text" class="form-control input-sm" [(ngModel)]="_obj.type"></td>
+                                    <td><input type="number" class="form-control input-sm" [(ngModel)]="_obj.amount" (blur)="CalculateNetSalary()"></td>
+                                    <td><button type="button" class="btn btn-link text-danger" (click)="SpliceEntry(earnings,i)"><i class="fas fa-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </div>
+        
+              <div class="col-12">
+              <div class="col-12 mb-1"><strong>Deductions</strong> &nbsp;<a class="btn btn-light btn-sm" (click)="AddDeductionEntry()"><i class="fas fa-plus"></i>&nbsp;Add New</a>
+                </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr *ngFor="let _obj of deductions; let i = index">
+                                    <td><input type="text" class="form-control input-sm" [(ngModel)]="_obj.type"></td>
+                                    <td><input type="number" class="form-control input-sm" [(ngModel)]="_obj.amount" (blur)="CalculateNetSalary()"></td>
+                                    <td><button type="button" class="btn btn-link text-danger" (click)="SpliceEntry(deductions,i)"><i class="fas fa-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </div>
+        
+              <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <mat-label>Net Salary</mat-label>
+                <input type="number" matInput disabled [(ngModel)]="salary_details.net_salary">
+              </mat-form-field>
+        
+              <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <mat-label>Date Of Apprisal</mat-label>
+                <input matInput [matDatepicker]="apprisal_date" (click)="apprisal_date.open()" [(ngModel)]="salary_details.apprisal_date">
+                <mat-datepicker-toggle matSuffix [for]="apprisal_date"></mat-datepicker-toggle>
+                <mat-datepicker #apprisal_date></mat-datepicker>
+          </mat-form-field>
+        
+              <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <mat-label>Status</mat-label>
+                <mat-select  [(ngModel)]="salary_details.status">
+                    <mat-option *ngFor="let _obj of statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+            </div>
+    </div>
+    
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <div class="col-12 mt-2 mb-2 text-center">
+            <button mat-raised-button color="primary" (click)="saveSalaryApprisalDetails()" mat-dialog-close>Save</button> &nbsp;
+            <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+        </div>
+    </div>
+    
+  </div>

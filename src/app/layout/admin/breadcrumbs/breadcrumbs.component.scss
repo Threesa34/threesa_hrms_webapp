@@ -1,0 +1,21 @@
+.example-spacer
+{
+    flex: 1 1 auto;
+}
+.breadcrumb
+{
+    display: flex;
+    flex-wrap: wrap;
+    padding: .75rem 0rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: transparent !important;
+    border-radius: .25rem;
+}
+
+.link
+{
+    color: grey;
+    text-decoration: none;
+    font-size: 16px;
+}

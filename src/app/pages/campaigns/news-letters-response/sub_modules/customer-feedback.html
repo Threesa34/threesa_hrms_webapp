@@ -1,0 +1,50 @@
+
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Customer Feedback</h4>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+      <div class="row">
+      <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12">
+      <div class="row">
+            <div class="col-12"><h2>{{data.title}}</h2></div>
+            <div class="col-12"><h2>Name: {{data.name}}</h2></div>
+            <div class="col-12"><p>Contacts: {{data.contacts}}</p></div>
+            <div class="col-12"><p>Emails: {{data.emails}}</p></div>
+            <div class="col-12"><p>Date: {{data.created_date}}</p></div>
+            <div class="col-12"><p>Address: {{data.message}}</p></div>
+        </div>
+        </div>
+      <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12">
+      <div class="row">
+        <mat-form-field class="col-12">
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="feedbackDetails.status">
+                <mat-option *ngFor="let _obj of feedbackStatus" [value]="_obj.status">{{_obj.title}}</mat-option>
+              </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+            <mat-label>Remark</mat-label>
+            <textarea matInput [(ngModel)]="feedbackDetails.remark"></textarea>
+        </mat-form-field>
+
+        </div>
+        </div>
+        </div>
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <div class="col-12 mt-2 mb-2 text-center">
+            <button mat-raised-button color="primary" (click)="saveCustomerFeedback()" mat-dialog-close>Save</button> &nbsp;
+            <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+        </div>
+      </div>
+      
+
+
+

@@ -1,0 +1,29 @@
+<!-- setDefaultPassword -->
+<div class="container-fluid">
+    <div class="row">
+        <button class="btn btn-sm mt-2 btn-primary" [routerLink]="['/', 'hr', 'employee_details',0]"><i class="fas fa-user-plus"></i>&nbsp;Add Employee</button> &nbsp;<button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows && selectedRows.length == 1" [routerLink]="['/', 'hr', 'employee_details',userid]"><i class="fas fa-user-edit"></i>&nbsp;Edit Employee</button> &nbsp;<button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows && selectedRows.length == 1" (click)="setDefaultPassword(selectedRows[0].id)"><i class="fas fa-refresh"></i>&nbsp;Reset Default Password</button> &nbsp;<button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows && selectedRows.length >= 1" (click)="disableEmployee()"><i class="fas fa-user-alt-slash"></i>&nbsp;Disable Employee</button> &nbsp;<button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows && selectedRows.length >= 1" (click)="deleteEmployee()"><i class="fas fa-user-alt-slash"></i>&nbsp;Delete Employee</button> &nbsp;<!-- <button class="btn btn-sm mt-2 btn-primary ml-auto"><i class="fas fa-file-upload"></i>&nbsp;Upload Employees Details</button> &nbsp;<button class="btn btn-sm mt-2 btn-primary"><i class="fas fa-file-upload"></i>&nbsp;Upload Employees Documents</button> &nbsp; -->
+    </div>
+    <div class="row mt-2">
+        <button class="btn btn-sm mt-2 btn-warning" *ngIf="selectedRows && selectedRows.length >= 1" (click)="openDialog()"><i class="fas fa-user-clock"></i>&nbsp;Assign Working Shift</button> &nbsp;
+        <button class="btn btn-sm mt-2 btn-warning" *ngIf="selectedRows && selectedRows.length >= 1" (click)="openAttendanceDialog()"><i class="fas fa-fingerprint"></i>&nbsp;Set Attendance</button> &nbsp;
+        <button class="btn btn-sm mt-2 btn-warning" *ngIf="selectedRows && selectedRows.length == 1" (click)="openAttendanceReport()"><i class="fas fa-user-check"></i>&nbsp;Attendance Report</button> &nbsp;<button class="btn btn-sm mt-2 btn-warning" (click)="openemployeeReview()" *ngIf="selectedRows && selectedRows.length == 1"><i class="fas fa-address-card"></i>&nbsp;Employee Review</button> &nbsp;<button class="btn btn-sm mt-2 btn-warning" *ngIf="selectedRows && selectedRows.length == 1" (click)="openApprisalHistory()"><i class="fas fa-copy"></i>&nbsp;Apprisal History</button> &nbsp;<button class="btn btn-sm mt-2 btn-warning" (click)="openLeavesHistory()" *ngIf="selectedRows && selectedRows.length == 1"><i class="fas fa-umbrella-beach"></i>&nbsp;Leaves History</button> &nbsp;<button class="btn btn-sm mt-2 btn-warning" (click)="openLoanHistory()" *ngIf="selectedRows && selectedRows.length == 1"><i class="fas fa-landmark"></i>&nbsp;Loan History</button> &nbsp;<button class="btn btn-sm mt-2 btn-warning" (click)="openSalarySlipsHistory()" *ngIf="selectedRows && selectedRows.length == 1"><i class="fas fa-file-invoice"></i>&nbsp;Salary History</button> &nbsp;
+    </div>
+
+    <div class="row mt-3">
+        <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        class="ag-theme-alpine"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="rowSelection"
+        [enableRangeSelection]="true"
+        [pagination]="true"
+        [paginationPageSize]="paginationPageSize"
+        [rowData]="rowData"
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)"
+        >
+    </ag-grid-angular>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Enquiry Detailsr</h2>
+<mat-dialog-content class="mat-typography">
+  
+    <div class="row">
+        <div class="col-12">
+            <h3>Client Name: {{enquiryDetails[0].customername}}</h3>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <h3>Source: {{enquiryDetails[0].source}}</h3>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-right">
+            <h3>Date: {{enquiryDetails[0].enq_date}}</h3>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <h3>Mobile No.: {{enquiryDetails[0].mobile1}}</h3>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-right">
+            <h3>Email: {{enquiryDetails[0].email}}</h3>
+        </div>
+        <div class="col-12">
+            <p>Address: {{enquiryDetails[0].address}}</p>
+        </div>
+        <div class="col-12">
+            <p>Comment: {{enquiryDetails[0].comment}}</p>
+        </div>
+        <div class="col-12">
+            <p>Message: {{enquiryDetails[0].custome_message}}</p>
+        </div>
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <hr>
+    <a mat-raised-button class="btn btn-success" href="https://web.whatsapp.com/send?text={{enquiryText}}" target="_blank"> <i class="fa fa-whatsapp"></i>&nbsp;Share On Whatsapp</a> &nbsp;  
+  <button mat-raised-button class="btn btn-light" mat-dialog-close>Close</button>
+</mat-dialog-actions>

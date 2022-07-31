@@ -1,0 +1,91 @@
+
+
+<div class="row">
+
+    <mat-form-field class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="searchContact">
+      </mat-form-field>
+    <mat-form-field class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1">
+        <mat-label>Page Size</mat-label>
+        <mat-select [(ngModel)]="pageLimit" (selectionChange)="getTotagePages()">
+          <mat-option *ngFor="let _pageSize of pageSize" [value]="_pageSize.value">{{_pageSize.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+        <mat-label>Columns</mat-label>
+        <mat-select multiple [(ngModel)]="tableColumns" (selectionChange)="toggleTableColumns()">
+          <mat-option *ngFor="let _tableHeaders of tableHeaders" [value]="_tableHeaders">{{_tableHeaders.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+     
+      
+      <div class="form-group col-12 col-md-3 col-sm-12 col-lg-5 col-xl-5 text-end text-nowrap float-end">
+    
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="jumpTuFirstPage()" [disabled]="selectedPage == 1">
+            <mat-icon>keyboard_double_arrow_left</mat-icon>
+          </button>
+
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="previousPage()" [disabled]="selectedPage == 1">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+          <strong role="button" triggers="manual" [ngbPopover]="popContent"  triggers="manual" [autoClose]="false" #pageJumper="ngbPopover" (click)="jumpedPage = undefined;pageJumper.open()">Page  {{selectedPage}} of {{NumOfPages}} </strong>
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="nextPage()" [disabled]="selectedPage >= NumOfPages">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="jumpToLastPage()" [disabled]="selectedPage >= NumOfPages">
+            <mat-icon>keyboard_double_arrow_right</mat-icon>
+          </button>
+      </div>
+
+      <ng-template #popContent>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+          <label class="form-label">Go to page no....</label>
+          <input type="number" class="form-control" min="1" max="{{NumOfPages}}" oninput="validity.valid||(value='');"[(ngModel)]="jumpedPage">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <button type="button" *ngIf="jumpedPage != undefined && jumpedPage != null && jumpedPage != ''" class="btn btn-sm btn-outline-dark col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" (click)="JumpedToPage(jumpedPage);pageJumper.close()">Jump</button>
+          <button type="button" *ngIf="jumpedPage == undefined || jumpedPage == null || jumpedPage == ''" class="btn btn-sm btn-outline-dark col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" (click)="pageJumper.close()">Close</button>
+        </div>
+      </ng-template>
+
+</div>
+<div class="row">
+  <!-- [style.height]="tableHeight" -->
+  <div class="table-responsive"  style="overflow: auto;">
+    <table class="table table-bordered table-striped">
+      <thead>
+          <th>
+            <mat-checkbox class="example-margin" [checked]="rowSeleted.length == 
+            tableData.length" [indeterminate]="rowSeleted.length > 0 && rowSeleted.length != 
+            tableData.length" (change)="selectAllItem($event)"></mat-checkbox>
+          </th>
+        <th class="pb-2 pt-2 text-center text-nowrap pointer disable-text-selection"
+          *ngFor="let _headers of _tableHeaders;let i = index" (click)="RecordOrderedBy(_headers, i)">{{_headers.title}}
+
+          <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="20.000000pt" height="20.000000pt" viewBox="0 0 24.000000 24.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
+ stroke="none">
+<path d="M72 197 c-23 -24 -39 -46 -36 -50 9 -9 159 -9 168 0 6 6 -72 93 -84
+93 -3 0 -25 -19 -48 -43z" [ngClass]="[((orderDesc && i == clickedIndex)) ? 'sort-desc' : 'sort']"/>
+<path d="M36 92 c-3 -5 15 -28 39 -52 l45 -44 45 44 c24 24 42 47 39 52 -7 11
+-161 11 -168 0z" [ngClass]="[(orderAsc && i == clickedIndex) ? 'sort-asc' : 'sort']"/>
+</g>
+</svg>
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let _data of _tableData | listfilter:searchContact | slice:startFrom:listLimit; let i=index">
+            <td><mat-checkbox class="example-margin" [checked]="checkRowExist(_data)" (change)="selectItem($event, _data)"></mat-checkbox></td>
+          <td *ngFor="let _cell of _tableHeaders">
+            {{_data[_cell['field']]}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

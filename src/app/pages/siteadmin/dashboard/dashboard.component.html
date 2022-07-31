@@ -1,0 +1,186 @@
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
+            <mat-card class="row mat-elevation-z6">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-4 col-sm-4 col-lg-4 col-md-6 col-xl-4 col-xxl-4">
+                            <img [src]="profilepic" class="img-fluid rounded-circle"/>
+                        </div>
+                        <div class="col-8 col-sm-8 col-lg-8 col-md-6 col-xl-8 col-xxl-8">
+                            <div class="text-left mt-3">
+                                <mat-card-title>{{userDetails.name}}</mat-card-title>
+                                <mat-card-subtitle>{{userDetails.designationname}}</mat-card-subtitle>
+                                <div class="mt-2">
+                                    <button mat-raised-button color="primary" (click)="SetAttendance()"> <mat-icon>fingerprint</mat-icon>&nbsp;Punch</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <hr>
+                            Work Shift: {{userDetails.sifht_details}}
+                        </div>
+                        <div class="col-12">
+                            <hr>
+                            <div class="row text-center">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <span class="h6">Salary</span><br>
+                                    <span class="h5">{{salary_month | uppercase}}</span>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <span class="h6">Present Days</span><br>
+                                    <span class="h5">{{dashboardRecord.prest_days_count || 0}}/{{total_days}}</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row text-center">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <span class="h6">In/Out</span><br>
+                                    <span class="h5">{{intime}}/{{outtime}}</span>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <span class="h6">last Punch</span><br>
+                                    <span class="h5 text-success">{{lastPunch}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+              </mat-card>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-8 col-xl-8 col-xxl-8">
+           <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mt-1 mb-1">
+                <mat-card class="mat-elevation-z6 p-4">
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-lg-3 col-sm-3 col-xl-3 col-xxl-3 text-center justify-content-center">
+                            <img src="./../../../../assets/imgs/salary.png" class="img-fluid">
+                        </div>
+                        <div class="col-9 col-md-9 col-lg-9 col-sm-9 col-xl-9 col-xxl-9 text-nowrap">
+                            <span class="h5">Last Salary Increament</span><br>
+                            <span class="h4">{{dashboardRecord.last_apprisal}}</span>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mt-1 mb-1">
+                <mat-card class="mat-elevation-z6 p-4">
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-lg-3 col-sm-3 col-xl-3 col-xxl-3 text-center justify-content-center">
+                            <img src="./../../../../assets/imgs/leaves.png" class="img-fluid">
+                        </div>
+                        <div class="col-9 col-md-9 col-lg-9 col-sm-9 col-xl-9 col-xxl-9 text-nowrap">
+                            <span class="h5">My Leaves</span><br>
+                            <span class="h4">{{dashboardRecord.total_leaves}}</span>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mt-1 mb-1">
+                <mat-card class="mat-elevation-z6 p-4">
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-lg-3 col-sm-3 col-xl-3 col-xxl-3 text-center justify-content-center">
+                            <img src="./../../../../assets/imgs/loan.png" class="img-fluid">
+                        </div>
+                        <div class="col-9 col-md-9 col-lg-9 col-sm-9 col-xl-9 col-xxl-9 text-nowrap">
+                            <span class="h5">My Loan</span><br>
+                            <span class="h4">{{dashboardRecord.total_emi_paid| currency:'INR'}}/{{dashboardRecord.total_loan_amt| currency:'INR'}}</span>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mt-1 mb-1">
+                <mat-card class="mat-elevation-z6 p-4">
+                    <div class="row">
+                        <div class="col-3 col-md-3 col-lg-3 col-sm-3 col-xl-3 col-xxl-3 text-center justify-content-center">
+                            <img src="./../../../../assets/imgs/review.png" class="img-fluid">
+                        </div>
+                        <div class="col-9 col-md-9 col-lg-9 col-sm-9 col-xl-9 col-xxl-9 text-nowrap">
+                            <span class="h5">My Reviews</span><br>
+                            <span class="h4">{{dashboardRecord.my_review}}</span>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+                
+            
+           </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- 
+<div class="container-fluid mb-4">
+   
+    <div class="col-12">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12  mt-3">
+            <div class="card">
+                <div class="col-12 mt-2 mb-2">
+                    <h2>TOTAL LOAN REQUEST v/s RECIEPT</h2>
+                    <hr>
+                </div>
+                <p-chart type="pie" [data]="pie_data"></p-chart>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12 mt-3">
+            <div class="card">
+                <div class="table-responsive" style="height:27.5em;" *ngIf="!showChatBox">
+                    <mat-list>
+                        <mat-list-item *ngFor="let _data of usersList">
+                        
+                          <div mat-card-avatar mat-list-icon  (click)="showImage(_data.profilepic)" [ngStyle]="{background: 'url(http://103.252.7.5:8895/uploads/employee/' + _data.profilepic + ')', 'background-size': 'cover'}"></div>
+                          <div mat-line  (click)="getChat(_data)">{{_data.name}}<sub> ({{_data.role_name}})</sub></div>
+                          <div mat-line (click)="getChat(_data)"> {{_data.dob | date}} </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                      </mat-list>
+                </div>
+
+                <div *ngIf="showChatBox" style="height:27.5em;position: relative;">
+                    <mat-toolbar color="primary">
+                        <a mat-icon-button class="example-icon" (click)="showChatBox = !showChatBox" aria-label="Example icon-button with menu icon">
+                          <mat-icon>arrow_back</mat-icon>
+                        </a>
+                        <mat-list>
+                            <mat-list-item class="chat-avatar">
+                              <div mat-card-avatar mat-list-icon  (click)="showImage(selectedUser.profilepic)" [ngStyle]="{background: 'url(http://103.252.7.5:8895/uploads/employee/' + selectedUser.profilepic + ')', 'background-size': 'cover'}"></div>
+                            </mat-list-item>
+                          </mat-list>
+                          <span mat-line>{{selectedUser.name}}</span>
+                        <span class="example-spacer"></span>
+                        <a mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </a>
+                          <mat-menu #menu="matMenu">
+                            <a mat-menu-item>
+                              <mat-icon>dialpad</mat-icon>
+                              <span>Redial</span>
+                            </a>
+                            <a mat-menu-item disabled>
+                              <mat-icon>voicemail</mat-icon>
+                              <span>Check voice mail</span>
+                            </a>
+                            <a mat-menu-item>
+                              <mat-icon>notifications_off</mat-icon>
+                              <span>Disable alerts</span>
+                            </a>
+                          </mat-menu>
+                      </mat-toolbar>
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+   
+</div> -->

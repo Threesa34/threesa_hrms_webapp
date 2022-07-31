@@ -1,0 +1,58 @@
+<div class="container-fluid">
+   
+
+    <div class="row">
+        <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-6">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="_attendnaceDate" (focus)="_attendnaceDate.open()" [(ngModel)]="attendnaceDate"  (dateChange)="getAttendanceList()">
+            <mat-datepicker-toggle matSuffix [for]="_attendnaceDate"></mat-datepicker-toggle>
+            <mat-datepicker #_attendnaceDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="col-sm-12 col-12 col-lg-3 col-md-4 col-xl-3 col-xxl-3">
+        <mat-label>Select page size</mat-label>
+        <mat-select [(ngModel)]="selectedPageSize" (selectionChange)="onPageSizeChanged(selectedPageSize)">
+          <mat-option *ngFor="let _size of _pageSizes" [value]="_size">{{_size}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row mt-3">
+
+        <mat-tab-group class="col-12" (selectedIndexChange)="GetTabData($event)">
+            <mat-tab label="Present Employees"> <ag-grid-angular
+                style="width: 100%; height: 100%;"
+                class="ag-theme-alpine"
+                [columnDefs]="columnDefs"
+                [defaultColDef]="defaultColDef"
+                [suppressRowClickSelection]="true"
+                [rowSelection]="rowSelection"
+                [enableRangeSelection]="true"
+                [pagination]="true"
+                [paginationPageSize]="paginationPageSize"
+                [rowData]="rowData"
+                (gridReady)="onGridReady($event)"
+                >
+            </ag-grid-angular></mat-tab>
+            <mat-tab label="Absent Employees"> 
+                <ag-grid-angular
+                style="width: 100%; height: 100%;"
+                class="ag-theme-alpine"
+                [columnDefs]="absColumnDefs"
+                [defaultColDef]="  abs_defaultColDef"
+                [suppressRowClickSelection]="true"
+                [rowSelection]="abs_rowSelection"
+                [enableRangeSelection]="true"
+                [pagination]="true"
+                [paginationPageSize]="abs_paginationPageSize"
+                [rowData]="AbsencerowData"
+                (gridReady)="onAbsGridReady($event)"
+                
+                >
+            </ag-grid-angular>
+            </mat-tab>
+          </mat-tab-group>
+        
+    </div>
+
+    </div>

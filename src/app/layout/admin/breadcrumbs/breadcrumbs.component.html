@@ -1,0 +1,21 @@
+
+
+<mat-toolbar class="mt-3" *ngFor="let breadcrumb of breadcrumbs; let last = last" [hidden]="!last">
+    <mat-toolbar-row *ngIf="breadcrumb.status && last">
+      
+      <!-- <span class="material-icons">{{ breadcrumb.icon }}</span> &nbsp; -->
+      <span >{{ breadcrumb.label }}</span>
+      <span class="example-spacer"></span>
+      <!-- <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a [routerLink]="'/'" class="link">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs;">
+
+          <a class="link" [ngClass]="breadcrumb.status === false ? 'not-active': ''" [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a>
+        </li>
+      </ul> -->
+      </mat-toolbar-row>
+  </mat-toolbar>

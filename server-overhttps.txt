@@ -1,0 +1,1 @@
+sudo ng serve --ssl=true --sslKey=../Threesa_website/starssl/private.key --sslCert=../Threesa_website/starssl/STAR.threesainfoway.net.crt --host=threesainfoway.net

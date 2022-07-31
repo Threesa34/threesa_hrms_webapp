@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="col-12 text-center mb-2 mt-2"><h1>Leave Details</h1></div>
+    <mat-form-field class="col-12">
+        <mat-label>Leave Type</mat-label>
+        <mat-select  [(ngModel)]="leaveDetails.leave_type">
+            <mat-option *ngFor="let _obj of leaveTypes" [value]="_obj">{{_obj}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+            <mat-label>Date From</mat-label>
+            <input matInput [matDatepicker]="date_from" (click)="date_from.open()" [(ngModel)]="leaveDetails.from_date">
+            <mat-datepicker-toggle matSuffix [for]="date_from"></mat-datepicker-toggle>
+            <mat-datepicker #date_from></mat-datepicker>
+      </mat-form-field>
+        <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+            <mat-label>To</mat-label>
+            <input matInput [matDatepicker]="to_date" (click)="to_date.open()" [(ngModel)]="leaveDetails.to_date">
+            <mat-datepicker-toggle matSuffix [for]="to_date"></mat-datepicker-toggle>
+            <mat-datepicker #to_date></mat-datepicker>
+      </mat-form-field>
+       
+        <mat-form-field class="col-12">
+        <mat-label>Reason</mat-label>
+        <input matInput [(ngModel)]="leaveDetails.reason">
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-label>Approval Status</mat-label>
+        <mat-select  [(ngModel)]="leaveDetails.approval_status" [disabled]="userRole != 'Siteadmin' && userRole != 'HR'">
+            <mat-option *ngFor="let _obj of approvalStatus" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+        <mat-form-field class="col-12">
+        <mat-label>Approval Note</mat-label>
+        <input matInput [(ngModel)]="leaveDetails.note" [disabled]="userRole != 'Siteadmin' && userRole != 'HR'">
+      </mat-form-field>
+    
+      <div class="col-12 mt-2 mb-2 text-center">
+          <button class="btn btn-primary" *ngIf="leaveDetails.approval_status == 0 || (userRole == 'Siteadmin' || userRole == 'HR')" (click)="saveLeaveDetails()" mat-dialog-close>Save</button> &nbsp;
+          <button class="btn btn-danger" *ngIf="leaveDetails.approval_status == 0" (click)="deleteLeaveDetails()" mat-dialog-close>Delete Leave</button> &nbsp;
+          <button class="btn btn-secondary" mat-dialog-close color="accent">Cancel</button>
+      </div>
+</div>

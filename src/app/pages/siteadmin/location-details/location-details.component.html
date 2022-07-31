@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="locationDetails.name" required>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Address</mat-label>
+        <textarea matInput [(ngModel)]="locationDetails.address" required></textarea>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Contact No.</mat-label>
+        <input matInput maxlength="10" [(ngModel)]="locationDetails.contact1" (blur)="VerifyDuplicateContact()" required>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Alt. Contact No.</mat-label>
+        <input matInput maxlength="10" [(ngModel)]="locationDetails.contact2" (blur)="VerifyDuplicateContact()">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="locationDetails.email">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Manager</mat-label>
+        <mat-select  [(ngModel)]="locationDetails.managerid">
+            <mat-option *ngFor="let _obj of managersList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Lattitude</mat-label>
+        <input matInput [(ngModel)]="locationDetails.lat">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Longitude</mat-label>
+        <input matInput  [(ngModel)]="locationDetails.lang">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Status</mat-label>
+        <mat-select  [(ngModel)]="locationDetails.status">
+            <mat-option *ngFor="let _obj of locationStatusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+
+    <div class="col-12 text-center mt-4">
+        <button mat-raised-button color="primary" [disabled]="VerifyForm()" (click)="saveLocationDetails()">Save</button>&nbsp;
+        <a mat-raised-button color="accent" (click)="_location.back()">Cancel</a>
+    </div>
+</div>

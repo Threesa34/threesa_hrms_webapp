@@ -1,0 +1,24 @@
+<!-- <perfect-scrollbar  [config]="config">
+<mat-nav-list>
+    <mat-list-item role="listitem" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}" [routerLinkActive]="['active']" (click)="toggleSubMenu(item)">
+        <mat-icon mat-list-icon>folder</mat-icon>
+      <div mat-line>{{item.name}}</div>
+      <span fxFlex *ngIf="item.children && item.children.length">
+        <span fxFlex></span>
+        <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+          expand_more
+        </mat-icon>
+      </span>
+    </mat-list-item>
+    <mat-nav-list *ngIf="expanded">
+         <mat-list-item *ngFor="let child of item.children" class="ml-4">
+          <div mat-line>{{child.name}}</div>
+          </mat-list-item> 
+
+          <app-navigation-list *ngFor="let child of item.children" [item]="child" group="{{child.state}}">
+
+        </app-navigation-list>
+
+      </mat-nav-list>
+  </mat-nav-list>
+</perfect-scrollbar> -->

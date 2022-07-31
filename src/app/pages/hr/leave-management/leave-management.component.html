@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <button class="btn btn-sm btn-primary mt-2" (click)="openDialog('new')">Add New</button>&nbsp;
+        <button class="btn btn-sm btn-primary mt-2" *ngIf="selectedRows && selectedRows.length == 1" (click)="openDialog('edit')">Edit Leave</button>&nbsp;
+    </div>
+
+
+    <div class="row mt-3">
+        <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        class="ag-theme-alpine"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="rowSelection"
+        [enableRangeSelection]="true"
+        [pagination]="true"
+        [paginationPageSize]="paginationPageSize"
+        [rowData]="rowData"
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)"
+        >
+    </ag-grid-angular>
+    </div>
+
+    </div>

@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <div class="col-12 text-center mb-2 mt-2"><h1>Catagory Details</h1></div>
+    <mat-form-field class="col-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="Catagory_details.name">
+      </mat-form-field>
+
+    <mat-form-field class="col-12">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="Catagory_details.description"></textarea>
+      </mat-form-field>
+
+      <div class="col-12 mt-2 mb-2 text-center">
+          <button mat-raised-button color="primary" (click)="saveCatagoryDetails()" mat-dialog-close>Save</button> &nbsp;
+          <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+      </div>
+</div>

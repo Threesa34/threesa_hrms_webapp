@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-12">
+                    <img [src]="profilepic" class="img-responsive img-thumbnail" id="profilepic" (click)="OpenFileSelector()"/>
+
+                    <input type="file" #fileInput ng2FileSelect [uploader]="uploader" class="d-none" accept="image/*"/>
+
+                </div>
+
+
+
+                <div class="col-12 text-center mt-2">
+                    <button mat-raised-button *ngIf="ShowReset" (click)="resetImage()">Reset</button>
+                </div>
+        </div>    
+
+        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+   <!-- <form > -->
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="userDetails.name">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Address</mat-label>
+        <textarea matInput [(ngModel)]="userDetails.address"></textarea>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Mobile No.</mat-label>
+        <input matInput maxlength="10" [(ngModel)]="userDetails.mobile1">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Alt. Mobile No.</mat-label>
+        <input matInput maxlength="10" [(ngModel)]="userDetails.mobile2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="userDetails.email">
+    </mat-form-field>
+   
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="dob" (click)="dob.open()" [(ngModel)]="userDetails.dob">
+        <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+        <mat-datepicker #dob></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Date of Join</mat-label>
+        <input matInput [matDatepicker]="doj" (click)="doj.open()" [(ngModel)]="userDetails.doj">
+        <mat-datepicker-toggle matSuffix [for]="doj"></mat-datepicker-toggle>
+        <mat-datepicker #doj></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Aadhar No.</mat-label>
+        <input matInput [(ngModel)]="userDetails.uid">
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>PAN No.</mat-label>
+        <input matInput [(ngModel)]="userDetails.pan">
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Location</mat-label>
+        <mat-select [(ngModel)]="userDetails.locationid">
+            <mat-option *ngFor="let _obj of locationList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Role</mat-label>
+        <mat-select [(ngModel)]="userDetails.role">
+            <mat-option value="siteadmin">Siteadmin</mat-option>
+            <mat-option value="manager">Manager</mat-option>
+            <mat-option value="staff">staff</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+<!-- </form> -->
+        </div>    
+
+
+        <div class="col-12 text-center">
+            <a mat-raised-button color="primary" (click)="saveUserDetails()">Save</a>&nbsp;
+            <a mat-raised-button color="accent" (click)="_location.back()">Cancel</a>
+        </div>
+
+
+
+
+    </div>
+ 
+</div>

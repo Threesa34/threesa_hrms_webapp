@@ -1,0 +1,43 @@
+<div class="container-fluid">
+
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="offerDetails.name">
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="offerDetails.description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-12 col-sm-12 col-lg-6 col-xl-6">
+        <mat-label>Catagories</mat-label>
+        <mat-select [(ngModel)]="offerDetails.catagoryids" multiple>
+          <mat-option *ngFor="let _obj of catagoryList" [value]="_obj.id">{{_obj.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-12 col-sm-12 col-lg-6 col-xl-6">
+        <mat-label>Products</mat-label>
+        <mat-select  [(ngModel)]="offerDetails.productids" multiple>
+          <mat-option *ngFor="let _obj of productsList" [value]="_obj.id">{{_obj.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="col-12 col-lg-4 col-md-12 col-sm-12">
+        <mat-label>Offer Percentage</mat-label>
+        <input matInput type="number" [(ngModel)]="offerDetails.offer_prcnt">
+    </mat-form-field>
+      <mat-form-field class="col-12 col-lg-4 col-md-12 col-sm-12">
+        <mat-label>Status</mat-label>
+           <mat-select [(ngModel)]="offerDetails.status">
+            <mat-option *ngFor="let _obj of _statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <div class="col-12 mt-4 mb-2 text-center">
+        <button mat-raised-button color="primary" (click)="saveOfferDetails()">Save</button>&nbsp;
+        <button mat-raised-button color="accent" (click)="_location.back()">Cancel</button>
+      </div>
+</div>

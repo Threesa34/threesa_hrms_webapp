@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  
+    <div class="row">
+      <div class="col-12">
+    <button class="btn btn-sm mt-2 btn-info" (click)="openSmsDialog()"> <i class="far fa-comment-dots"></i> SMS</button> &nbsp;
+    
+    <button class="btn btn-sm mt-2 btn-success" (click)="shareOnWhatsApp()" > <i class="fab fa-whatsapp"></i> Whats App</button> &nbsp;
+    <button class="btn btn-sm mt-2 btn-warning" (click)="openEmailDialog()" > <i class="far fa-paper-plane"></i> Email</button> 
+    &nbsp; <button class="btn btn-sm mt-2 btn-primary" (click)="_location.back()">Cancel</button>
+  </div>
+        <div class="col-12 mt-4">
+
+          <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+            <mat-label>Title</mat-label>
+            <input matInput [(ngModel)]="newsLetterDetails.title" disabled>
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+            <mat-label>Description / Text Message</mat-label>
+            <textarea matInput [(ngModel)]="newsLetterDetails.description" disabled></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+          <mat-label>Whatsapp Contact</mat-label>
+          <input matInput [(ngModel)]="newsLetterDetails.whatsapp_no" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Whatsapp Message</mat-label>
+        <input matInput [(ngModel)]="newsLetterDetails.whatsapp_msg" disabled>
+    </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+          <mat-label>URL</mat-label>
+          <input matInput [(ngModel)]="newsLetterDetails.shorten_url" disabled>
+      </mat-form-field>
+        </div>
+
+        <div class="col-12">
+            <mat-toolbar>
+                <span>News Letter</span>
+              </mat-toolbar>
+        </div>
+    </div>
+    <div class="row">
+        <email-editor (loaded)="editorLoaded($event)"></email-editor>
+       </div>
+</div>

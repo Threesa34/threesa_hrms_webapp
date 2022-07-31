@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="col-12 text-center mb-2 mt-2"><h1>Shift Details</h1></div>
+    <mat-form-field class="col-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="shift_details.name">
+      </mat-form-field>
+
+        <mat-form-field class="col-12">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="shift_details.description"></textarea>
+      </mat-form-field>
+
+        <mat-form-field class="col-6 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+        <mat-label>In Time</mat-label>
+        <input matInput type="time" [(ngModel)]="shift_details.intime">
+      </mat-form-field>
+        <mat-form-field class="col-6 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+        <mat-label>Out Time</mat-label>
+        <input matInput type="time" [(ngModel)]="shift_details.outtime">
+      </mat-form-field>
+        <mat-form-field class="col-6 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+        <mat-label>Latemark Interval</mat-label>
+        <input matInput type="text" [(ngModel)]="shift_details.latemark_interval">
+        <mat-hint>Enter value in hh:mm format (12:30)</mat-hint>
+      </mat-form-field>
+        <mat-form-field class="col-6 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+        <mat-label>Half-day Interval</mat-label>
+        <input matInput type="text" [(ngModel)]="shift_details.halfday_interval">
+        <mat-hint>Enter value in hh:mm format (12:30)</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="col-6 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+        <mat-label>Status</mat-label>
+        <mat-select  [(ngModel)]="shift_details.status">
+            <mat-option *ngFor="let _obj of statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+      <div class="col-12 mt-2 mb-2 text-center">
+          <button mat-raised-button color="primary" (click)="saveshiftDetails()" mat-dialog-close>Save</button> &nbsp;
+          <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+      </div>
+</div>

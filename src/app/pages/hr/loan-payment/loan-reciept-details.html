@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="col-12 text-center mb-2 mt-2"><h1>Loan Reciept Details</h1></div>
+
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Loan Application</mat-label>
+        <mat-select  [(ngModel)]="loanRecieptDetails.loan_id" (selectionChange)="getLoanApplicationDetails(loanRecieptDetails.loan_id)">
+            <mat-option *ngFor="let _obj of loanApplicationsList" [value]="_obj.id">{{_obj.loan_id}} - {{_obj.emp_name}} - {{_obj.emi}}</mat-option>
+          </mat-select>
+     </mat-form-field>
+     <mat-form-field class="col-12 col-md-3 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Approved Amount</mat-label>
+        <input matInput [(ngModel)]="loanDetails.approval_amt" disabled>
+      </mat-form-field>
+    
+         <mat-form-field class="col-12 col-md-3 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Tenure</mat-label>
+        <input matInput type="number" [(ngModel)]="loanDetails.tenure" disabled>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-3 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Interest Rate</mat-label>
+        <input matInput [(ngModel)]="loanDetails.interest_rate" disabled>
+      </mat-form-field>
+     
+
+      <mat-form-field class="col-12 col-md-3 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>EMI</mat-label>
+        <input matInput [(ngModel)]="loanDetails.emi" disabled>
+      </mat-form-field>
+    
+      <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Paid EMI</mat-label>
+        <input matInput type="number" [(ngModel)]="loanRecieptDetails.emi" [formControl]="emiFormControl" [errorStateMatcher]="matcher" (keydown)="getTotalPaidEmiAmount()">
+        <mat-error *ngIf="emiFormControl.hasError('required')">
+          <strong> EMI is required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Paid Date</mat-label>
+        <input matInput [matDatepicker]="paid_date" (focus)="paid_date.open()" [(ngModel)]="loanRecieptDetails.paid_date">
+        <mat-datepicker-toggle matSuffix [for]="paid_date"></mat-datepicker-toggle>
+        <mat-datepicker #paid_date></mat-datepicker>
+  </mat-form-field>
+   
+    
+      <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Status</mat-label>
+        <mat-select  [(ngModel)]="loanRecieptDetails.status" [disabled]="userRole != 'Siteadmin' && userRole != 'HR'">
+            <mat-option *ngFor="let _obj of statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+     </mat-form-field>
+
+    
+      <div class="col-12 mt-2 mb-2 text-center">
+          <button class="btn btn-primary" *ngIf="(userRole == 'Siteadmin' || userRole == 'HR')" (click)="saveLoanReciet()" [disabled]="emiFormControl.hasError('number') && !emiFormControl.hasError('required') || emiFormControl.hasError('required') || _errorInEmi" mat-dialog-close>Save</button> &nbsp;
+          <button class="btn btn-secondary" mat-dialog-close color="accent">Cancel</button>
+      </div>
+</div>

@@ -1,0 +1,67 @@
+
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Set Attendance</h4>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-s-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr *ngFor="let _data of employeesList; let i = index">
+                          
+                            <td><a class="btn btn-link" (click)="RemoveEmployeeFromList(i)"><span class="material-icons">
+                                delete
+                                </span></a> &nbsp; {{_data.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+            </div>
+            
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-s-12">
+
+          <section class="row">
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="attendanceDetails.type">
+            <mat-radio-button value="in">In Time</mat-radio-button> &nbsp;
+            <mat-radio-button value="out">Out Time</mat-radio-button>&nbsp;
+            <mat-radio-button value="both">Both</mat-radio-button>
+          </mat-radio-group>
+        </section>
+          <mat-form-field class="col-12">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="att_date" (click)="att_date.open()" [(ngModel)]="attendanceDetails.att_date">
+            <mat-datepicker-toggle matSuffix [for]="att_date"></mat-datepicker-toggle>
+            <mat-datepicker #att_date></mat-datepicker>
+        </mat-form-field>
+
+          <mat-form-field class="col-12" *ngIf="attendanceDetails.type == 'in' || attendanceDetails.type == 'both'">
+            <mat-label>In Time</mat-label>
+            <input matInput type="time" [(ngModel)]="attendanceDetails.intime">
+          </mat-form-field>    
+
+          <mat-form-field class="col-12" *ngIf="attendanceDetails.type == 'out' || attendanceDetails.type == 'both'">
+            <mat-label>Out Time</mat-label>
+            <input matInput type="time" [(ngModel)]="attendanceDetails.outtime">
+          </mat-form-field>    
+
+        </div>
+            </div>
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <div class="col-12 mt-2 mb-2 text-center">
+            <button mat-raised-button color="primary" (click)="saveAttendanceDetails()" mat-dialog-close>Save</button> &nbsp;
+            <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+        </div>
+      </div>
+      
+
+
+

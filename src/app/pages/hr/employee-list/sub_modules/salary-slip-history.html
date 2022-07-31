@@ -1,0 +1,45 @@
+<div class="modal-content">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+    <div class="row">
+       
+      <div class="col-12"><strong>Salary History</strong></div>
+      <div class="col-12 mt-1"><strong>{{formatFullName(data[0].name)}}&nbsp;<sub>({{data[0].role_name}})</sub></strong></div>
+     
+      </div>
+    </div>
+
+    <!-- Modal body -->
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <th>#</th>
+                <th class="text-center text-nowrap">Salary Month</th>
+                <th class="text-center text-nowrap">Salary</th>
+                <th class="text-center text-nowrap">Salary Date</th>
+                <th class="text-center text-nowrap"></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let _data of salarySlipList; let i = index">
+                    <td class="text-nowrap">{{i+1}}</td>
+                    <td class="text-center text-nowrap">{{_data.salary_month}}</td>
+                    <td class="text-right text-nowrap">{{_data.net_salary | number:'0.2'}}</td>
+                    <td class="text-center text-nowrap">{{_data.salary_date}}</td>
+                    <td class="text-center"><i class="fa fa-file-pdf-o text-danger pointer" (click)="openPdf(_data,data[0].name)" aria-hidden="true"></i></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+
+     
+
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+      
+    </div>
+
+  </div>

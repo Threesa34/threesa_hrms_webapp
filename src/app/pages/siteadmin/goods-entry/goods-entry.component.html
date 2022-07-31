@@ -1,0 +1,135 @@
+<div class="container-fluid">
+    <mat-form-field class="col-12 col-lg-6 col-md-12 col-sm-12">
+        <mat-label>Vendor</mat-label>
+            <mat-select [(ngModel)]="purchaseDetails.vendorid" disabled>
+                <mat-option *ngFor="let _obj of vendorsList" [value]="_obj.id">{{_obj.name}}</mat-option>
+            </mat-select>
+      </mat-form-field>  
+    <mat-form-field class="col-12 col-lg-3 col-md-12 col-sm-12">
+        <mat-label>Purchase Date</mat-label>
+            <input matInput [(ngModel)]="purchaseDetails.po_date" [matDatepicker]="picker" disabled>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>  
+
+    <mat-form-field class="col-12 col-lg-3 col-md-12 col-sm-12">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="purchaseDetails.status" disabled>
+            <mat-option *ngFor="let _obj of purchaseStatus" [value]="_obj.id">{{_obj.title}}</mat-option>
+        </mat-select>
+      </mat-form-field> 
+      
+      <div class="row">
+      <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+        <div class="row">
+      <mat-form-field class="col-12 col-lg-6 col-md-12 col-sm-12">
+        <mat-label>Goods Entry Date</mat-label>
+            <input matInput [(ngModel)]="purchaseDetails.gr_date" (focus)="picker1.open()" [matDatepicker]="picker1">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>  
+
+      <mat-form-field class="col-12 col-lg-6 col-md-12 col-sm-12">
+        <mat-label>Gross Amount</mat-label>
+            <input matInput [(ngModel)]="purchaseDetails.gross_amount" readonly>
+      </mat-form-field>  
+      </div>
+      </div>
+      <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+            <div class="row">
+                <mat-form-field class="col-12 col-lg-4 col-md-12 col-sm-12">
+                    <mat-label>CGST</mat-label>
+                        <input matInput type="number" [(ngModel)]="purchaseDetails.cgst" (change)="calculatenetAmount()">
+                        <mat-hint align="end">{{purchaseDetails.cgstAmount | currency:"₹"}}</mat-hint>
+                  </mat-form-field>  
+                <mat-form-field class="col-12 col-lg-4 col-md-12 col-sm-12">
+                    <mat-label>SGST</mat-label>
+                        <input matInput type="number" [(ngModel)]="purchaseDetails.sgst" (change)="calculatenetAmount()">
+                        <mat-hint align="end">{{purchaseDetails.sgstAmount | currency:"₹"}}</mat-hint>
+                  </mat-form-field>  
+                <mat-form-field class="col-12 col-lg-4 col-md-12 col-sm-12">
+                    <mat-label>IGST</mat-label>
+                        <input matInput type="number" [(ngModel)]="purchaseDetails.igst" (change)="calculatenetAmount()">
+                        <mat-hint align="end">{{purchaseDetails.igstAmount | currency:"₹"}}</mat-hint>
+                  </mat-form-field>  
+            </div>
+      </div>
+      </div>
+      <div class="row">
+            <div class="col-12 col-lg-4 col-md-12 col-sm-12 ml-auto">
+                <mat-form-field class="col-12 col-lg-12 col-md-12 col-sm-12">
+                    <mat-label>Net Amount</mat-label>
+                        <input matInput [(ngModel)]="purchaseDetails.net_amount" readonly>
+                  </mat-form-field> 
+            </div>
+      </div>
+      <div class="col-12">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <th>#</th>
+                            <th>Product</th>
+                            <th>Product Unit</th>
+                            <th>Purchase Qty.</th>
+                            <th>Goods Qty.</th>
+                            <th>Unit</th>
+                            <th>Net Price</th>
+                            <th>Unit Price</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let _data of purchaseDetails.PurchaseItems;let i = index">
+                                <td><div class="mt-3 ml-4">{{i+1}}</div></td>
+                                <td>
+                                    <mat-form-field class="col-12">
+                                            <mat-select [(ngModel)]="_data.product_id" disabled>
+                                                <mat-option *ngFor="let _obj of productsList" [value]="_obj.id">{{_obj.name}}</mat-option>
+                                            </mat-select>
+                                      </mat-form-field>  
+                                </td>
+                                <td>
+                                    <mat-form-field class="col-12">
+                                            <mat-select [(ngModel)]="_data.unit_id" disabled>
+                                                <mat-option *ngFor="let obj of _data.productUnitsList" [value]="obj.id">{{obj.product_unit}}</mat-option>
+                                            </mat-select>
+                                      </mat-form-field>  
+                                </td>
+                                <td>
+                                    <mat-form-field class="col-12">
+                                            <input type="number" matInput [(ngModel)]="_data.qty" disabled>
+                                      </mat-form-field>  
+                                </td>
+                                <td>
+                                    <mat-form-field class="col-12">
+                                            <input type="number" matInput [(ngModel)]="_data.gr_qty" (change)="calculateUnitPrice(_data)">
+                                      </mat-form-field>  
+                                </td>
+                                <td>
+                                    <mat-form-field class="col-12">
+                                            <mat-select [(ngModel)]="_data.unit" disabled>
+                                                <mat-option *ngFor="let obj of Product_units" [value]="obj">{{obj}}</mat-option>
+                                            </mat-select>
+                                      </mat-form-field>  
+                                </td>
+                                <td>
+                                    <mat-form-field class="col-12">
+                                            <input type="number" matInput [(ngModel)]="_data.net_price" (change)="calculateUnitPrice(_data)">
+                                      </mat-form-field>  
+                                </td>
+                                <td>
+                                    <mat-form-field class="col-12">
+                                            <input type="number" matInput [(ngModel)]="_data.price" disabled>
+                                      </mat-form-field>  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+      </div>
+
+      <div class="col-12 mt-4 mb-2 text-center">
+        <button mat-raised-button color="primary" (click)="saveGoodsRecieptsDetails()">Save</button>&nbsp;
+        <button mat-raised-button color="accent" (click)="_location.back()">Cancel</button>
+      </div>
+</div>

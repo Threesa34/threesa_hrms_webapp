@@ -1,0 +1,117 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-12">
+                    <img [src]="logo" class="img-responsive img-thumbnail" id="logo" (click)="OpenFileSelector()"/>
+
+                    <input type="file" #fileInput ng2FileSelect [uploader]="uploader" class="d-none" accept="image/*"/>
+
+                </div>
+
+
+
+                <div class="col-12 text-center mt-2">
+                    <button mat-raised-button *ngIf="ShowReset" (click)="resetImage()">Reset</button>
+                </div>
+        </div>    
+
+        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+   <!-- <form > -->
+    <mat-form-field class="col-12 col-md-12 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="companyDetails.name">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Owner</mat-label>
+        <input matInput [(ngModel)]="companyDetails.owner">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Slogan</mat-label>
+        <input matInput [(ngModel)]="companyDetails.slogan">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Company Description</mat-label>
+        <textarea matInput [(ngModel)]="companyDetails.description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Mobile No.</mat-label>
+        <input matInput maxlength="12" [(ngModel)]="companyDetails.mobile1">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Alt. Mobile No.</mat-label>
+        <input matInput maxlength="12" [(ngModel)]="companyDetails.mobile2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Landline No.</mat-label>
+        <input matInput maxlength="12" [(ngModel)]="companyDetails.landline1">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Landline No.(2)</mat-label>
+        <input matInput maxlength="12" [(ngModel)]="companyDetails.landline2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="companyDetails.email1">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Email(2)</mat-label>
+        <input matInput type="email" [(ngModel)]="companyDetails.email2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Website</mat-label>
+        <input matInput [(ngModel)]="companyDetails.Website">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12">
+        <mat-label>Address Line 1</mat-label>
+        <input matInput [(ngModel)]="companyDetails.address_line1">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12">
+        <mat-label>Address Line 2</mat-label>
+        <input matInput [(ngModel)]="companyDetails.address_line2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Country</mat-label>
+        <mat-select [(ngModel)]="companyDetails.country" (selectionChange)="getStatesOnCountry(companyDetails.country)" >
+            <mat-option *ngFor="let _obj of countriesList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>State</mat-label>
+        <mat-select [(ngModel)]="companyDetails.state" (selectionChange)="getCityListOnState(companyDetails.state)" >
+            <mat-option *ngFor="let _obj of statesList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>City</mat-label>
+        <mat-select [(ngModel)]="companyDetails.city">
+            <mat-option *ngFor="let _obj of citiesList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Pincode</mat-label>
+        <input matInput [(ngModel)]="companyDetails.zip">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>GSTIN</mat-label>
+        <input matInput [(ngModel)]="companyDetails.gstin">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-lg-4 col-md-12 col-sm-12">
+        <mat-label>Status</mat-label>
+           <mat-select [(ngModel)]="companyDetails.status">
+            <mat-option *ngFor="let _obj of _statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+<!-- </form> -->
+        </div>    
+
+
+        <div class="col-12 text-center">
+            <a class="btn btn-primary" (click)="SaveCompanyDetails()">Save</a>
+        </div>
+
+
+
+
+    </div>
+ 
+</div>

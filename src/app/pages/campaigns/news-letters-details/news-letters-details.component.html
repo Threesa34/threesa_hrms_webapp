@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+         <button class="btn btn-sm mt-2 btn-primary" (click)="saveNewsLetter()">Save Design</button> 
+         &nbsp; <button class="btn btn-sm mt-2 btn-primary" (click)="_location.back()">Cancel</button>
+    </div>
+    <div class="row">
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+            <mat-label>Title</mat-label>
+            <input matInput [(ngModel)]="newsLetterDetails.title">
+        </mat-form-field>
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+            <mat-label>Description / Text Message</mat-label>
+            <textarea matInput [(ngModel)]="newsLetterDetails.description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+            <mat-label>Whataspp Contact</mat-label>
+            <input matInput [(ngModel)]="newsLetterDetails.whatsapp_no">
+            <mat-hint>Type 12 digit mobile number (ex.:917777777777)</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+            <mat-label>Whataspp Message</mat-label>
+            <textarea matInput [(ngModel)]="newsLetterDetails.whatsapp_msg"></textarea>
+        </mat-form-field>
+
+        
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Enquiry Form Required</mat-label>
+        <mat-select [(ngModel)]="newsLetterDetails.enquiry_form">
+            <mat-option [value]="1">Yes</mat-option>
+            <mat-option [value]="0">No</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="newsLetterDetails.status">
+            <mat-option *ngFor="let _obj of statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    </div>
+    <div class="row">
+    <email-editor (loaded)="editorLoaded($event)"></email-editor>
+    </div>
+</div>

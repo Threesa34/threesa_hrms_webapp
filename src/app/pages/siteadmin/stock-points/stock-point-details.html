@@ -1,0 +1,33 @@
+<div class="container-fluid mb-4">
+    <div class="col-12 text-center mb-2 mt-2"><h1>Stock Point Details</h1></div>
+     <mat-form-field class="col-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="stockPointDetails.name">
+      </mat-form-field>
+     <mat-form-field class="col-12">
+        <mat-label>Address</mat-label>
+        <textarea matInput [(ngModel)]="stockPointDetails.address"></textarea>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-lg-4 col-md-6 col-sm-12">
+        <mat-label>Contact No.</mat-label>
+        <input matInput maxlength="10" [(ngModel)]="stockPointDetails.contact1" (blur)="VerifyDuplicateContact()">
+      </mat-form-field>
+      <mat-form-field class="col-12 col-lg-4 col-md-6 col-sm-12">
+        <mat-label>Alt. Contact No.</mat-label>
+        <input matInput maxlength="10" [(ngModel)]="stockPointDetails.contact2" (blur)="VerifyDuplicateContact()">
+      </mat-form-field>
+      <mat-form-field class="col-12 col-lg-4 col-md-6 col-sm-12">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="stockPointDetails.email">
+      </mat-form-field>
+      <mat-form-field class="col-12 col-lg-4 col-md-6 col-sm-12">
+        <mat-label>Status</mat-label>
+           <mat-select [(ngModel)]="stockPointDetails.status">
+            <mat-option *ngFor="let _obj of StatusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="col-12 mt-2 mb-2 text-center">
+          <button mat-raised-button color="primary" [disabled]="VerifyForm()" (click)="saveStockPointDetails()" mat-dialog-close>Save</button> &nbsp;
+          <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+      </div>
+</div>

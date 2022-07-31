@@ -1,0 +1,165 @@
+<div class="container-fluid mb-4">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                <div class="col-12">
+                    <img [src]="profilepic" class="img-responsive img-thumbnail" id="profilepic" (click)="OpenFileSelector()"/>
+
+                    <input type="file" #fileInput ng2FileSelect [uploader]="uploader" class="d-none" accept="image/*"/>
+
+                </div>
+
+
+
+                <div class="col-12 text-center mt-2">
+                    <button mat-raised-button *ngIf="ShowReset" (click)="resetImage()">Reset</button>
+                </div>
+        </div>    
+
+        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+   <!-- <form > -->
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="userDetails.name" required>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Address</mat-label>
+        <textarea matInput [(ngModel)]="userDetails.address"></textarea>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Mobile No.</mat-label>
+        <input matInput maxlength="10" [(ngModel)]="userDetails.mobile1" required>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Alt. Mobile No.</mat-label>
+        <input matInput maxlength="10" [(ngModel)]="userDetails.mobile2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="userDetails.email">
+    </mat-form-field>
+   
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="dob" (click)="dob.open()" [(ngModel)]="userDetails.dob">
+        <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+        <mat-datepicker #dob></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Gender</mat-label>
+        <mat-select [(ngModel)]="userDetails.gender">
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Other">Other</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Date of Join</mat-label>
+        <input matInput [matDatepicker]="doj" (click)="doj.open()" [(ngModel)]="userDetails.doj">
+        <mat-datepicker-toggle matSuffix [for]="doj"></mat-datepicker-toggle>
+        <mat-datepicker #doj></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Employee Code</mat-label>
+        <input matInput [(ngModel)]="userDetails.emp_code">
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Aadhar No.</mat-label>
+        <input matInput [(ngModel)]="userDetails.uid">
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>PAN No.</mat-label>
+        <input matInput [(ngModel)]="userDetails.pan">
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Working Shift</mat-label>
+        <mat-select [(ngModel)]="userDetails.shiftid">
+            <mat-option *ngFor="let _obj of workingShiftList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Designantion</mat-label>
+        <mat-select [(ngModel)]="userDetails.designation">
+            <mat-option *ngFor="let _obj of designationList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Role</mat-label>
+        <mat-select [(ngModel)]="userDetails.role">
+            <mat-option *ngFor="let _obj of userRoles" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Manager</mat-label>
+        <mat-select [(ngModel)]="userDetails.manager_id">
+            <mat-option *ngFor="let _obj of ManagersList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="userDetails.status">
+            <mat-option *ngFor="let _obj of statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Allow Location</mat-label>
+        <mat-select [(ngModel)]="userDetails.allow_bg_location">
+          <mat-option *ngFor="let _x of _location_permission" [value]="_x.status">{{_x.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+<!-- </form> -->
+        </div>    
+
+        <div class="col-12">
+            <h1>Documents Upload</h1>
+            <span class="text-danger">Upload pdf file for adhaar card(front and back view) and resume</span>
+            <mat-divider></mat-divider>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 mb-2">
+            <h1>Adhaar Card</h1>
+            <mat-divider></mat-divider>
+            <div class="col-12 mt-2">
+                <input type="file" #documents_upload_uid ng2FileSelect [uploader]="uploader" (click)="previewUploadedAdhaarFile()"/>
+            </div>
+            <div class="col-12 mt-2">
+                <pdf-viewer [src]="adhaar_pic" 
+              [render-text]="true"
+              style="display: block;height: 300px;"
+  ></pdf-viewer>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xl-6 mb-2">
+            <h1>Resume</h1>
+            <mat-divider></mat-divider>
+            <div class="col-12 mt-2">
+                <input type="file" #documents_upload_resume ng2FileSelect [uploader]="uploader" (click)="previewUploadedResumeFile()"/>
+            </div>
+            <div class="col-12 mt-2">
+                <pdf-viewer [src]="resume" 
+              [render-text]="true"
+              style="display: block;height: 300px;"
+  ></pdf-viewer>
+            </div>
+        </div>
+
+        <div class="col-12 text-center mt-2">
+            <a mat-raised-button color="primary" (click)="saveUserDetails()">Save</a>&nbsp;
+            <a mat-raised-button color="accent" (click)="_location.back()">Cancel</a>
+        </div>
+
+
+
+
+    </div>
+ 
+</div>

@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="col-12 text-center mb-2 mt-2"><h1>Loan Request Details</h1></div>
+    <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+      <mat-label>Employee</mat-label>
+      <mat-select  [(ngModel)]="loanRequestDetails.employee_id">
+          <mat-option *ngFor="let _obj of EmployeeDetails"  [value]="_obj.id">{{_obj.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+     <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Loan Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="loanRequestDetails.loan_amt">
+      </mat-form-field>
+         <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Tenure</mat-label>
+        <input matInput type="number" [(ngModel)]="loanRequestDetails.tenure" (blur)="calculateEmi()">
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Interest Rate</mat-label>
+        <input matInput [(ngModel)]="loanRequestDetails.interest_rate" (blur)="calculateEmi()" [disabled]="userRole != 'Siteadmin' && userRole != 'HR'">
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Approved Amount</mat-label>
+        <input matInput [(ngModel)]="loanRequestDetails.approval_amt" (blur)="calculateEmi()" [disabled]="userRole != 'Siteadmin' && userRole != 'HR'">
+      </mat-form-field>
+
+      <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>EMI</mat-label>
+        <input matInput [(ngModel)]="loanRequestDetails.emi" disabled>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Approval Status</mat-label>
+        <mat-select  [(ngModel)]="loanRequestDetails.approval_status" [disabled]="userRole != 'Siteadmin' && userRole != 'HR'">
+            <mat-option *ngFor="let _obj of approvalStatus" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+     </mat-form-field>
+
+        <mat-form-field class="col-12">
+        <mat-label>Approval Note</mat-label>
+        <input matInput [(ngModel)]="loanRequestDetails.note" [disabled]="userRole != 'Siteadmin' && userRole != 'HR'">
+      </mat-form-field>
+    
+      <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Status</mat-label>
+        <mat-select  [(ngModel)]="loanRequestDetails.status" [disabled]="userRole != 'Siteadmin' && userRole != 'HR'">
+            <mat-option *ngFor="let _obj of statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+     </mat-form-field>
+      <div class="col-12 mt-2 mb-2 text-center">
+        <button class="btn btn-primary" *ngIf="(userRole == 'Staff')" (click)="saveLoanRequest()" mat-dialog-close>Save</button> &nbsp;
+          <button class="btn btn-primary" *ngIf="loanRequestDetails.approval_status == 0 || (userRole == 'Siteadmin' || userRole == 'HR')" (click)="saveLoanRequest()" mat-dialog-close>Save</button> &nbsp;
+          <button class="btn btn-danger" *ngIf="loanRequestDetails.approval_status == 0" (click)="deleteLoanRequest()" mat-dialog-close>Delete Loan Request</button> &nbsp;
+          <button class="btn btn-secondary" mat-dialog-close color="accent">Cancel</button>
+      </div>
+</div>

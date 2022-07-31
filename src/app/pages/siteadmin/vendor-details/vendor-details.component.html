@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row">
+
+
+        <div>
+   <!-- <form > -->
+    <mat-form-field class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="vendorDetails.name">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+        <mat-label>Owner</mat-label>
+        <input matInput [(ngModel)]="vendorDetails.owner">
+    </mat-form-field>
+ 
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Mobile No.</mat-label>
+        <input matInput maxlength="12" [(ngModel)]="vendorDetails.mobile1">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Alt. Mobile No.</mat-label>
+        <input matInput maxlength="12" [(ngModel)]="vendorDetails.mobile2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Landline No.</mat-label>
+        <input matInput maxlength="12" [(ngModel)]="vendorDetails.landline1">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-3 col-xl-3 col-sm-12">
+        <mat-label>Landline No.(2)</mat-label>
+        <input matInput maxlength="12" [(ngModel)]="vendorDetails.landline2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="vendorDetails.email1">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>Email(2)</mat-label>
+        <input matInput type="email" [(ngModel)]="vendorDetails.email2">
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-4 col-sm-12">
+        <mat-label>GSTIN</mat-label>
+        <input matInput [(ngModel)]="vendorDetails.gstin">
+    </mat-form-field>
+    
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Address</mat-label>
+        <textarea matInput [(ngModel)]="vendorDetails.address"></textarea>
+    </mat-form-field>
+   
+<!-- </form> -->
+        </div>    
+
+
+        <div class="col-12 text-center">
+            <button mat-raised-button color="primary" (click)="SavevendorDetails()">Save</button> &nbsp;
+            <a mat-raised-button color="accent" (click)="_location.back()">Cancel</a>
+        </div>
+
+
+
+
+    </div>
+ 
+</div>

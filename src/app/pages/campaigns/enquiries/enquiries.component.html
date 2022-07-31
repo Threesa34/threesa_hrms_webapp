@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="ShowEnquiryDetails()"><i class="fas fa-eye"></i>&nbsp;View Enquiry</button> 
+    </div>
+
+    <div class="row mt-2">
+        <mat-form-field class="col-sm-12 col-12 col-lg-3 col-md-4 col-xl-3 col-xxl-3">
+            <mat-label>Select page size</mat-label>
+            <mat-select [(ngModel)]="selectedPageSize" (selectionChange)="onPageSizeChanged(selectedPageSize)">
+              <mat-option *ngFor="let _size of _pageSizes" [value]="_size">{{_size}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+    <div class="row mt-1">
+        <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        class="ag-theme-alpine"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [suppressRowClickSelection]="true"
+        [rowSelection]="rowSelection"
+        [enableRangeSelection]="true"
+        [pagination]="true"
+        [paginationPageSize]="paginationPageSize"
+        [rowData]="rowData"
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)"
+        >
+    </ag-grid-angular>
+    </div>
+</div>

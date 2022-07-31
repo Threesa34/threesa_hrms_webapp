@@ -1,0 +1,81 @@
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome-scss/css/font-awesome.min.scss';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import '~animate.css/animate.min.css';
+@import './assets/css/custome-style.scss';
+
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+
+@import "./assets/fontawesome/css/all.css";
+
+.ag-theme-alpine {
+    @include ag-theme-alpine();
+}
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+// @import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+// @include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+// $grocary-client-primary: mat-palette($mat-indigo);
+// $grocary-client-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+// $grocary-client-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+/* $grocary-client-theme: mat-light-theme((
+  color: (
+    primary: $grocary-client-primary,
+    accent: $grocary-client-accent,
+    warn: $grocary-client-warn,
+  )
+)); */
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+// @include angular-material-theme($grocary-client-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-drawer-inner-container
+  {
+    width: 250px !important;
+  }
+
+  .pointer
+  {
+      cursor: pointer;
+  }
+
+.clear_sky
+  {
+    background: #005C97;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #363795, #005C97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+
+.green_beach
+  {
+    background: #02AAB0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #00CDAC, #02AAB0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #00CDAC, #02AAB0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+
+ 

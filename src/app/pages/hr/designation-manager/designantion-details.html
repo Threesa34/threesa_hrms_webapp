@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="col-12 text-center mb-2 mt-2"><h1>Shift Details</h1></div>
+    <mat-form-field class="col-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="designation_details.name">
+      </mat-form-field>
+
+        <mat-form-field class="col-12">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="designation_details.description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="col-6 col-md-6 col-lg-6 col-xl-6 col-sm-6">
+        <mat-label>Status</mat-label>
+        <mat-select  [(ngModel)]="designation_details.status">
+            <mat-option *ngFor="let _obj of statusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+    </mat-form-field>
+
+      <div class="col-12 mt-2 mb-2 text-center">
+          <button mat-raised-button color="primary" (click)="saveDesignationDetails()" mat-dialog-close>Save</button> &nbsp;
+          <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+      </div>
+</div>

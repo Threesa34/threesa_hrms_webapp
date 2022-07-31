@@ -1,0 +1,58 @@
+<div style="position: relative;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#ED213A;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#93291E;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+      <path fill="url(#grad1)" fill-opacity="1" d="M0,288L48,266.7C96,245,192,203,288,197.3C384,192,480,224,576,245.3C672,267,768,277,864,250.7C960,224,1056,160,1152,154.7C1248,149,1344,203,1392,229.3L1440,256L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+  <div class="container-fluid" style="position: absolute; top:0">
+      <div class="row mt-4">
+  
+          <div class="col-md-12 col-lg-12 col-sm-12 col-12 col-xl-12 ml-auto mr-auto mt-4 text-center p-4">
+            <h1 class="brand-header ml-auto mr-auto">Threesa infoway pvt ltd</h1>
+          </div>
+          <div class="col-md-6 col-lg-4 col-sm-12 col-12 col-xl-4 my-auto mx-auto my-4 mt-4">
+              <div class="card mat-elevation-z6 mt-4">
+                      <div class="card-headre"></div>
+                      <div class="card-body p-4">
+                          <form class="md-float-material mt-3" #authForm="ngForm" [formGroup]="loginDetails" (ngSubmit)="AuthenticateUser()">
+  
+                              <div class="text-center"> 
+                                <!-- <img src="assets/images/auth/logo-dark.png" alt="logo.png"> -->
+                              </div>
+                              
+                              <mat-form-field class="col-12 mb-2">
+                                <mat-label>Email Address or Mobile Number</mat-label>
+                                <input matInput formControlName="mobile" [(ngModel)]="authDetails.mobile" name="mobile" required>
+                              </mat-form-field>
+                      
+                              <mat-form-field class="col-12">
+                                <mat-label>Password</mat-label>
+                                <input matInput type="{{input_type}}" formControlName="password" [(ngModel)]="authDetails.password" name="password" required>
+                                <a *ngIf="authDetails.password && authDetails.password.length > 0" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="showHidePassword()">
+                                  <mat-icon>{{visibiity_icon}}</mat-icon>
+                                </a>
+                              </mat-form-field>
+                      
+                              <div class="col-12 text-danger mb-2 mt-2 text-center" *ngIf="signinRes && signinRes.success == false">{{signinRes.message}}</div>
+                      
+                              
+                                <div class="col-md-12 mb-4 mt-3 text-center">
+                                  <button type="submit" class="col-12" mat-raised-button color="primary">Sign in</button>
+                                </div>
+                              
+  
+                              <div class="row mb-4">
+                                <div class="col-md-12 text-right">
+                                    <a class="link" [routerLink]="['/', 'authentication' ,'forgot_password']">Forgot Password?</a>
+                                </div>
+                              </div>
+                            </form>
+                      </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>

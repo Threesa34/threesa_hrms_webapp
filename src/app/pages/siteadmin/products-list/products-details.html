@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="col-12 text-center mb-2 mt-2"><h1>Product Details</h1></div>
+    <mat-form-field class="col-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="Product_details.name">
+      </mat-form-field>
+
+    <mat-form-field class="col-12">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="Product_details.description"></textarea>
+      </mat-form-field>
+
+    <mat-form-field class="col-12">
+        <mat-label>Catagory</mat-label>
+         <mat-select  [(ngModel)]="Product_details.catagoryid">
+            <mat-option *ngFor="let _obj of catagoryiesList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+      </mat-form-field>
+
+    <mat-form-field class="col-12">
+        <mat-label>Manufacturel</mat-label>
+         <mat-select  [(ngModel)]="Product_details.manufacturerid">
+            <mat-option *ngFor="let _obj of manufacturelsList" [value]="_obj.id">{{_obj.name}}</mat-option>
+          </mat-select>
+      </mat-form-field>
+
+    <mat-form-field class="col-12">
+        <mat-label>Status</mat-label>
+         <mat-select  [(ngModel)]="Product_details.status">
+            <mat-option *ngFor="let _obj of StatusOptions" [value]="_obj.id">{{_obj.title}}</mat-option>
+          </mat-select>
+      </mat-form-field>
+
+      <div class="col-12 mt-2 mb-2 text-center">
+          <button mat-raised-button color="primary" (click)="saveProductDetails()" mat-dialog-close>Save</button> &nbsp;
+          <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+      </div>
+</div>

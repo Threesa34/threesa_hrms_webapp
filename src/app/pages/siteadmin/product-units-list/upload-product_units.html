@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <input type="file" ng2FileSelect [uploader]="uploader"  (change)="onFileChange($event)" >
+        </div>
+
+        <div class="col-12">
+            <h3 class="text-danger">
+                Create excel (.xlsx/.xls) file
+                <br>
+                Headings for excel data: ["Product Name", "Quantity", "Unit", "MRP", "Selling Price"]
+                <br>
+                Product name is similer with Product name in products record.
+                <br>
+                Unit: (gm, kg, ml, l)
+                <br>
+                Quantity, MRP, Selling Price: In numbers
+                <br>
+                For product images do not set any header in excel sheet
+            </h3>
+        </div>
+        <div class="col-12">
+            Example:
+        </div>
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>MRP</th>
+                    <th>Selling Price</th>
+                    <th>Image 1</th>
+                    <th>Image 2</th>
+                    <th>...</th>
+                    <th>Image N</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mango</td>
+                        <td>1</td>
+                        <td>kg</td>
+                        <td>60</td>
+                        <td>55</td>
+                        <td>image_file_1</td>
+                        <td>image_file_2</td>
+                        <td>...</td>
+                        <td>image_file_N</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 mt-4">
+            <mat-form-field class="col-12">
+                <mat-label>Select Sheet</mat-label>
+                <mat-select [(ngModel)]="uploadData.seletedSheet">
+                  <mat-option *ngFor="let _obj of sheets" [value]="_obj">{{_obj}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-12 mt-4 text-center">
+            <button mat-raised-button color="primary" (click)="UploadExcelData()" mat-dialog-close>Upload</button>&nbsp;
+            <button mat-raised-button mat-dialog-close color="accent">Cancle</button>
+        </div>
+    </div>
+</div>
