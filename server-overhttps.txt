@@ -1,1 +1,7 @@
-sudo ng serve --ssl=true --sslKey=../Threesa_website/starssl/private.key --sslCert=../Threesa_website/starssl/STAR.threesainfoway.net.crt --host=threesainfoway.net
+sudo ng serve --ssl=true --sslKey=../Threesa_website/threesainfoway.net-1/private.key --sslCert=../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.crt --host=threesainfoway.net
+
+
+
+const ca = fs.readFileSync(path.resolve('../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.ca-bundle'));
+  const cert = fs.readFileSync(path.resolve('../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.crt'));
+   const key = fs.readFileSync(path.resolve('../Threesa_website/threesainfoway.net-1/private.key'));

@@ -43,6 +43,7 @@ build/Release
 e2e
 node_modules/
 jspm_packages/
+package.json
 
 package.json
 package-lock.json
