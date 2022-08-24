@@ -4,15 +4,17 @@ import { MastersService } from '../../../services/masters.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
-import { DetailsComponent, ConfirmConnectionComponent } from './sub_modules/details/details.component';
+import { PersonDetailsComponent } from './person-details/person-details.component';
+import { QrCodeComponent } from './qr-code/qr-code.component';
 
 @Component({
-  selector: 'app-enquiries',
-  templateUrl: './enquiries.component.html',
-  styleUrls: ['./enquiries.component.scss']
+  selector: 'app-advertising-partners',
+  templateUrl: './advertising-partners.component.html',
+  styleUrls: ['./advertising-partners.component.scss']
 })
-export class EnquiriesComponent implements OnInit {
+export class AdvertisingPartnersComponent implements OnInit {
 
+  
   gridApi;
   gridColumnApi;
   paginationPageSize = 10;
@@ -32,7 +34,11 @@ export class EnquiriesComponent implements OnInit {
  ngOnInit(): void {
    this.initializeParameters();
 
-  
+   if (this._MastersService.subsPartnersList==undefined) {    
+    this._MastersService.subsPartnersList = this._MastersService.invokePartnersList.subscribe((name:string) => {    
+      this.getAdvertisingPartnersList();    
+    });    
+  } 
 
  }
 
@@ -41,8 +47,8 @@ export class EnquiriesComponent implements OnInit {
    this.columnDefs = [
      
      {
-       headerName: "Source", 
-       field: 'source',
+       headerName: "Name", 
+       field: 'name',
        checkboxSelection: true,
        filterParams: {
          resetButton: true,
@@ -53,53 +59,30 @@ export class EnquiriesComponent implements OnInit {
      },
      
      {
-       headerName: "Client Name", 
-       field: 'customername',
+       headerName: "Mobile No.", 
+       field: 'mobile1',
        filterParams: {
          resetButton: true,
          suppressAndOrCondition: true,
        },
      },
-     {
-      headerName: "Client Mail", 
-      field: 'email',
+    {
+      headerName: "Alt. Mobile No.", 
+      field: 'mobile2',
       filterParams: {
         resetButton: true,
         suppressAndOrCondition: true,
       },
     },
     {
-      headerName: "Client Mobile", 
-      field: 'mobile1',
+      headerName: "Unique Number For referance", 
+      field: 'unique_number',
       filterParams: {
         resetButton: true,
         suppressAndOrCondition: true,
       },
-    },
-     {
-       headerName: "Date", 
-       field: 'enq_date',
-       filterParams: {
-         resetButton: true,
-         suppressAndOrCondition: true,
-       },
-     },
-     {
-       headerName: "Connection Status", 
-       field: 'connection_status',
-       filterParams: {
-         resetButton: true,
-         suppressAndOrCondition: true,
-       },
-     },
-     /*{
-       headerName: "Status", 
-       field: 'approved',
-       filterParams: {
-         resetButton: true,
-         suppressAndOrCondition: true,
-       },
-     },*/
+    }
+    
      
    ];
    this.defaultColDef = {
@@ -135,13 +118,13 @@ export class EnquiriesComponent implements OnInit {
    this.gridApi = params.api;
    this.gridColumnApi = params.columnApi;
  
- this.getWebsiteEnquies();
+ this.getAdvertisingPartnersList();
    
  }
 
- getWebsiteEnquies()
+ getAdvertisingPartnersList()
  {
-   this._MastersService.getWebsiteEnquies().subscribe((res:any)=>{
+   this._MastersService.getAdvertisingPartnersList().subscribe((res:any)=>{
      if(!res.status)
    {
      this.rowData = res;
@@ -179,19 +162,24 @@ export class EnquiriesComponent implements OnInit {
    
  }
 
- ShowEnquiryDetails()
+ getPartnerDetails()
  {
-  var dialogRef = this.dialog.open(DetailsComponent,{width: '50%',data:this.selectedRows});
+  var dialogRef = this.dialog.open(PersonDetailsComponent,{width: '50%',data:this.selectedRows});
   dialogRef.afterClosed().subscribe(result => {
   });
  }
 
- ConfirmConnectionDone()
+ addPartnerDetails()
  {
-  var dialogRef = this.dialog.open(ConfirmConnectionComponent,{width: '50%',data:this.selectedRows});
+  var dialogRef = this.dialog.open(PersonDetailsComponent,{width: '50%'});
   dialogRef.afterClosed().subscribe(result => {
-    this.selectedRows = [];
-    this.getWebsiteEnquies(); 
+  });
+ }
+
+ generateQRCode()
+ {
+  var dialogRef = this.dialog.open(QrCodeComponent,{width: '50%', data:this.selectedRows});
+  dialogRef.afterClosed().subscribe(result => {
   });
  }
 

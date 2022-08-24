@@ -44,7 +44,7 @@ export class qrCodeResultComponent implements OnInit {
     } */
 
     this.qrCode.append(canvas); 
-    console.log(this.qrCode)
+    
     
 
   }

@@ -1,0 +1,45 @@
+<mat-dialog-content class="mat-typography">
+  
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h1 class="modal-title">Advertising Partner Details</h1>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+          <div class="row">
+            <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="personDetails.name" required>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+                <mat-label>Address</mat-label>
+                <textarea matInput [(ngModel)]="personDetails.Address"></textarea>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <mat-label>Mobile No.</mat-label>
+                <input matInput maxlength="10" [(ngModel)]="personDetails.mobile1" required>
+            </mat-form-field>
+            <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                <mat-label>Alt. Mobile No.</mat-label>
+                <input matInput maxlength="10" [(ngModel)]="personDetails.mobile2">
+            </mat-form-field>
+          </div>
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <a mat-raised-button class="btn btn-success" (click)="savePartnerDetails()" mat-dialog-close>Save</a> &nbsp;  
+            <button mat-raised-button class="btn btn-light" mat-dialog-close>Close</button>
+          </div>
+    
+        </div>
+      </div>
+    
+
+</mat-dialog-content>
+

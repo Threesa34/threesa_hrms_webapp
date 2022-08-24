@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="row">
-        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="ShowEnquiryDetails()"><i class="fas fa-eye"></i>&nbsp;View Enquiry</button> &nbsp;
-        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="ConfirmConnectionDone()"><i class="fa fa-check-circle-o"></i>&nbsp;Confirm as connection done</button> 
+        <button class="btn btn-sm mt-2 btn-primary" (click)="addPartnerDetails()">Add Partner</button> &nbsp;
+        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="getPartnerDetails()">Edit Partner</button> &nbsp;
+        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="generateQRCode()">Generate QR Code</button> 
     </div>
 
     <div class="row mt-2">

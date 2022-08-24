@@ -1,0 +1,53 @@
+<div class="container-fluid">
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <span class="h5">Website Enquiries</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mt-2">
+            <div class="row">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <th class="text-center">Total Enquiries</th>
+                                <th class="text-center">Total Connection</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center"><b>{{enquiryList.length}}</b></td>
+                                    <td class="text-center"><b>{{getConnectionCount()}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+        <div class="col-12 mt-2">
+            <div class="table-responsive">
+                <table class="table table-stripped">
+                   
+                    <thead>
+                        <th>#</th>
+                        <th>Customer</th>
+                        <th>Enquiry Date</th>
+                        <th>Connection Status</th>
+                        <th>Connection Date</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let _data of enquiryList; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{_data.customername}}</td>
+                            <td>{{_data.enqdate | date: 'dd MMM, yyyy'}}</td>
+                            <td>{{_data.connection_status}}</td>
+                            <td>{{_data.connectiondate | date: 'dd MM, yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,249 @@
+<mat-dialog-content class="mat-typography">
+  
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h1 class="modal-title">Generate QR Code</h1>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+          
+            <div class="col-12">
+                <form class="container">
+                    <mat-form-field class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8">
+                      <mat-label>URL</mat-label>
+                      <input matInput [(ngModel)]="url" name="url">
+                    </mat-form-field>
+                    <mat-form-field class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                      <mat-label>Source</mat-label>
+                      <input matInput [(ngModel)]="personDetails.unique_number" name="value" disabled>
+                    </mat-form-field>
+                  </form>
+            </div>
+
+            <div class="col-12">
+                <div class="text-center my-auto my-auto">
+                    <div id="canvas" class="pr-2 my-3"></div>
+                  </div>
+            </div>
+
+            <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <button type="button" class="btn btn-outline-primary" (click)="GenerateQRCode()">Generate / Update QR CODE</button>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+               <div class="btn-group-sm">
+                  <button type="button" class="btn btn-outline-light text-dark">Download</button>
+                  <button type="button" class="btn btn-outline-primary" (click)="DownloadQRCode('png')">.PNG</button> &nbsp;
+                  <button type="button" class="btn btn-outline-primary" (click)="DownloadQRCode('svg')">.SVG</button> &nbsp;
+                  <button type="button" class="btn btn-outline-primary" (click)="DownloadQRCode('jpg')">.JPG</button>
+                </div>
+            </div>
+        </div>
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+           
+
+              <mat-divider class="mt-3 mb-3"></mat-divider>
+    
+            <fieldset class="container">
+              <legend>Setting:</legend>
+    
+              <div class="mt-2 col-12 col-sm-12">
+    
+                <mat-accordion>
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Main Options
+                      </mat-panel-title>
+    
+                    </mat-expansion-panel-header>
+                    <div class="container">
+                    <div class="row">
+    
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Width</mat-label>
+                        <input matInput type="number" [(ngModel)]="data.width">
+                      </mat-form-field>
+    
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Height</mat-label>
+                        <input matInput type="number" [(ngModel)]="data.height">
+                      </mat-form-field>
+    
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Margin</mat-label>
+                        <input matInput type="number" [(ngModel)]="data.margin">
+                      </mat-form-field>
+    
+                      <div class="col-sm-6">
+                        <mat-label>Logo</mat-label> &nbsp;
+                        <button class="btn btn-sm btn-warning" onclick="document.getElementById('logo-file').click()">Select Logo image</button>
+                        <input #file type="file" class="d-none" id="logo-file" accept='image/*' (change)="preview(file.files)">
+    
+                        &nbsp;&nbsp;&nbsp;<img *ngIf="imgURL != undefined && imgURL != null && imgURL != ''" [src]="imgURL" class="img-fluid p-2" style="height: 0.8in !important;"/>
+                      </div>
+    
+                    </div>
+    
+                    </div>
+                  </mat-expansion-panel>
+    
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Dots Options
+                      </mat-panel-title>
+    
+                    </mat-expansion-panel-header>
+                    <div class="container">
+                    <div class="row">
+    
+    
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Dots Style</mat-label>
+                        <mat-select matNativeControl [(ngModel)]="data.dotsOptions.type">
+                          <mat-option value="square">Square</mat-option>
+                          <mat-option value="dots">Dots</mat-option>
+                          <mat-option value="rounded">Rounded</mat-option>
+                          <mat-option value="extra-rounded">Extra rounded</mat-option>
+                          <mat-option value="classy">Classy</mat-option>
+                          <mat-option value="classy-rounded">Classy rounded</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+    
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Color</mat-label>
+                        <input matInput type="color" [(ngModel)]="data.dotsOptions.color">
+                      </mat-form-field>
+    
+    
+    
+      
+                    </div>
+                    </div>
+                  </mat-expansion-panel>
+    
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Corners Square Options
+                      </mat-panel-title>
+    
+                    </mat-expansion-panel-header>
+                    <div class="container">
+                    <div class="row">
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Corners Square Style</mat-label>
+                        <mat-select matNativeControl [(ngModel)]="data.cornersSquareOptions.type">
+                          <mat-option value>None</mat-option>
+                          <mat-option value="square">Square</mat-option>
+                          <mat-option value="dot">Dot</mat-option>
+                          <mat-option value="extra-rounded">Extra rounded</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+    
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Color</mat-label>
+                        <input matInput type="color" [(ngModel)]="data.cornersSquareOptions.color">
+                      </mat-form-field>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+    
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Corners Dot Options
+                      </mat-panel-title>
+    
+                    </mat-expansion-panel-header>
+                    <div class="container">
+                    <div class="row">
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Corners Dot Style</mat-label>
+                        <mat-select matNativeControl [(ngModel)]="data.cornersDotOptions.type">
+                          <mat-option value>None</mat-option>
+                          <mat-option value="square">Square</mat-option>
+                          <mat-option value="dot">Dot</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+    
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Color</mat-label>
+                        <input matInput type="color" [(ngModel)]="data.cornersDotOptions.color">
+                      </mat-form-field>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+    
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Background Options
+                      </mat-panel-title>
+    
+                    </mat-expansion-panel-header>
+                    <div class="container">
+                    <div class="row">
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>Color</mat-label>
+                        <input matInput type="color" [(ngModel)]="data.backgroundOptions.color">
+                      </mat-form-field>
+                    </div>
+                    </div>
+                  </mat-expansion-panel>
+    
+                  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Image/Logo Options
+                      </mat-panel-title>
+    
+                    </mat-expansion-panel-header>
+                    <div class="container">
+                    <div class="row">
+                      <section class="col-sm-12">
+                        <mat-checkbox class="example-margin" [(ngModel)]="data.imageOptions.hideBackgroundDots">Hide
+                          Background Dots</mat-checkbox>
+                      </section>
+                      <section class="col-sm-12 mt-2">
+                        <mat-label>Logo Size</mat-label><br>
+                        <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" step="0.1" min="0" max="1"
+                          aria-label="units" [(ngModel)]="data.imageOptions.imageSize"></mat-slider>
+    
+                      </section>
+                      <section class="col-sm-12 mt-2">
+                        <mat-label>Margin</mat-label><br>
+                        <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" step="1" min="0" max="100"
+                          aria-label="units" [(ngModel)]="data.imageOptions.margin"></mat-slider>
+    
+                      </section>
+                    </div>
+                    </div>
+                  </mat-expansion-panel>
+    
+               
+    
+                </mat-accordion>
+    
+    
+              </div>
+    
+            </fieldset>
+
+          </div>
+    
+        </div>
+      </div>
+    
+
+</mat-dialog-content>
+

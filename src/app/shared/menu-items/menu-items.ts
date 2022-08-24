@@ -127,6 +127,10 @@ const MENUITEMS_siteadmin = [
       icon: 'campaign',
       children: [
         {
+          state: 'advertising_partners',
+          name: 'Advertising Partners',
+        },
+        {
           state: 'news_letters',
           name: 'Advertisements',
         },

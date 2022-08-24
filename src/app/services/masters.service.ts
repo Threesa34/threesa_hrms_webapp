@@ -607,6 +607,13 @@ public getMessages = () => {
       return data;
   }));
   }
+
+  getAgentEnquiries(unique_id):Observable<any>
+  {
+    return this.httpClient.get(environment.endpoint_url+'/api/getAgentEnquiries/'+unique_id).pipe(map(data => {
+      return data;
+  }));
+  }
   
 
   getnewsLetterDetails(id):Observable<any>
@@ -636,6 +643,13 @@ public getMessages = () => {
       return data;
   }));
   }
+
+  getStaffUsersList():Observable<any>
+  {
+    return this.httpClient.get(environment.endpoint_url+'/api/getStaffUsersList/').pipe(map(data => {
+      return data;
+  }));
+  }
  
   
   invokefeedbackList = new EventEmitter();    
@@ -645,6 +659,27 @@ public getMessages = () => {
     this.invokefeedbackList.emit();
   }
   
+  invokeEnquiryList = new EventEmitter();    
+  subsEnquiryList: Subscription;  
+
+  EmitEnquiryList(){
+    this.invokeEnquiryList.emit();
+  }
+  
+  AuthenticateAgent(agentAuthDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/AuthenticateAgent/',agentAuthDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+  
+  SaveConnectionStatus(connectionDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/SaveConnectionStatus/',connectionDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
   saveCustomerFeedback(feedbackDetails):Observable<any>
   {
     return this.httpClient.post(environment.endpoint_url+'/api/saveCustomerFeedback/',feedbackDetails).pipe(map(data => {
@@ -674,6 +709,22 @@ public getMessages = () => {
   }));
   }
 
+  savePartnerDetails(partnerDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/savePartnerDetails/',partnerDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+   
+  invokePartnersList = new EventEmitter();    
+  subsPartnersList: Subscription;  
+
+  EmitPartnersList(){
+    this.invokePartnersList.emit();
+  }
+  
+
   
 
   // CAMPAIGN
@@ -682,6 +733,13 @@ public getMessages = () => {
   getUserProfile(userid):Observable<any>
   {
     return this.httpClient.get<any>(environment.endpoint_url+'/api/getUserProfile/'+userid).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getAdvertisingPartnersList():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getAdvertisingPartnersList/').pipe(map(data => {
       return data;
     }));
   }

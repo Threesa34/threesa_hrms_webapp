@@ -18,8 +18,9 @@ import { AccordionDirective } from './shared/accordion/accordion.directive';
 import { AccordionAnchorDirective } from './shared/accordion/accordionanchor.directive';
 import { NavigationListComponent } from './layout/admin/navigation-list/navigation-list.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
+import { AdvertisingPartnersComponent, AgentAuthentication } from './layout/advertising-partners/advertising-partners.component';
 
 // const config: SocketIoConfig = { url: environment.endpoint_url, options: {} };
 
@@ -31,6 +32,8 @@ import { environment } from '../environments/environment';
     TitleComponent,
     BreadcrumbsComponent,
     NavigationListComponent,
+    AdvertisingPartnersComponent,
+    AgentAuthentication
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,8 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     AgGridModule.withComponents([]),
     HttpClientJsonpModule,
+    FormsModule,
+    ReactiveFormsModule,
     // SocketIoModule.forRoot(config)
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterpritorService, multi: true },CookieService, AccordionLinkDirective, AccordionDirective, AccordionAnchorDirective],

@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row mb-3 mt-3">
+        <div class="col-12 text-center">
+            <span class="h4">Advertising Partners Authentication</span>
+        </div>
+    </div>
+    <div class="row">
+        <mat-form-field class="col-12">
+            <mat-label>Mobile Number</mat-label>
+            <input type="text" matInput [(ngModel)]="mobile_no">
+            <mat-hint>Enter your registred mobile number</mat-hint>
+          </mat-form-field>
+
+          <div class="col-12 text-center p-3">
+            <button class="btn btn-info" (click)="AuthenticateAgent()">Login</button>
+          </div>
+    </div>
+</div>

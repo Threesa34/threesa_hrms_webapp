@@ -1,0 +1,74 @@
+<h2 mat-dialog-title>Confirm enquiry as connection done</h2>
+<mat-dialog-content class="mat-typography">
+  
+    <div class="row">
+        <div class="col-12">
+            <h3>Client Name: {{enquiryDetails[0].customername}}</h3>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <h3>Source: {{enquiryDetails[0].source}}</h3>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-right">
+            <h3>Date: {{enquiryDetails[0].enq_date}}</h3>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <h3>Mobile No.: {{enquiryDetails[0].mobile1}}</h3>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-right">
+            <h3>Email: {{enquiryDetails[0].email}}</h3>
+        </div>
+        <div class="col-12">
+            <p>Address: {{enquiryDetails[0].address}}</p>
+        </div>
+        <div class="col-12">
+            <p>Comment: {{enquiryDetails[0].comment}}</p>
+        </div>
+        <div class="col-12">
+            <p>Message: {{enquiryDetails[0].custome_message}}</p>
+        </div>
+    </div>
+    <div class="col-12 border boder-top">
+
+        <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+            <mat-label>Connection Status</mat-label>
+            <mat-select [(ngModel)]="connectionDetails.conectionstats">
+                <mat-option *ngFor="let _obj of _connectionStatus" [value]="_obj.value">{{_obj.title}}</mat-option>
+              </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+            <mat-label>Connection Done By</mat-label>
+            <mat-select [(ngModel)]="connectionDetails.userid">
+                <mat-option *ngFor="let _obj of usersList" [value]="_obj.id">{{_obj.name}}</mat-option>
+              </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+            <mat-label>Date of Connection</mat-label>
+            <input matInput [matDatepicker]="dob" (click)="dob.open()" [(ngModel)]="connectionDetails.connectiondate">
+            <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+            <mat-datepicker #dob></mat-datepicker>
+        </mat-form-field>
+
+        <!-- <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+            <mat-label>Subscription Plane</mat-label>
+            <input matInput  [(ngModel)]="connectionDetails.plan">
+        </mat-form-field> -->
+
+        <mat-form-field class="col-12 col-sm-12">
+            <mat-label>Note</mat-label>
+            <textarea matInput  [(ngModel)]="connectionDetails.connremark"></textarea>
+        </mat-form-field>
+
+       
+
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <hr>
+    <button mat-raised-button class="btn btn-primary" (click)="SaveConnectionStatus()" mat-dialog-close>Save</button>
+   &nbsp;  
+  <button mat-raised-button class="btn btn-light" mat-dialog-close>Close</button>
+</mat-dialog-actions>

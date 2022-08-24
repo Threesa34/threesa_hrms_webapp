@@ -39,13 +39,8 @@ build/Release
 
 # Dependency directories
 .angular
-.vscode
-e2e
 node_modules/
 jspm_packages/
-
-package.json
-package-lock.json
 
 # TypeScript v1 declaration files
 typings/

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './layout/admin/admin.component';
 import { AuthComponent } from './layout/auth/auth.component';
+import { AdvertisingPartnersComponent } from './layout/advertising-partners/advertising-partners.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/campaigns/campaigns.module').then(m => m.CampaignsModule)
       },
     ]
+  },
+  {
+    path: 'agents',
+    component: AdvertisingPartnersComponent,
   },
 ];
 
