@@ -151,7 +151,7 @@ existing_salary_id:number;
       });
 
 
-      var perDaySalary =  Number(total)/Number(this.attendancedetails.no_days);
+      var perDaySalary =  Number(total)/(Number(this.attendancedetails.no_days));
 
       if(this.existing_salary_id != undefined && this.existing_salary_id > 0)
       {
@@ -164,7 +164,7 @@ existing_salary_id:number;
 
       //this.totalEarnedComponent = (perDaySalary * Number(this.attendancedetails.prest_days_count + this.attendancedetails.latemarks_count)) + (perDaySalary * Number(this.attendancedetails.half_days_count/2));
 
-      this.totalEarnedComponent = (perDaySalary * Number(this.attendancedetails.total_present_days_count)) + (perDaySalary * Number(this.attendancedetails.half_days_count/2));
+      this.totalEarnedComponent = (perDaySalary * (Number(this.attendancedetails.total_present_days_count) + Number(this.attendancedetails.monthly_holidays))) + (perDaySalary * Number(this.attendancedetails.half_days_count/2));
 
       this.totalEarnedComponent = Math.round(this.totalEarnedComponent);
       }
@@ -355,7 +355,7 @@ existing_salary_id:number;
     var html = '<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"><style>table.borderless tr,table.borderless td,table.borderless th{border: none;}thead, tbody, tr, th, td{padding:5px !important;font-size:10px!important}.company-heading{font-size: 20px;font-weight: bold;}</style></head><body>'+divContents+'</body></html>'
   
 
-    var working_days = this.attendancedetails.total_present_days_count;
+    var working_days = Number(this.attendancedetails.total_present_days_count);
     
     var working_half_days = this.attendancedetails.half_days_count;
 
