@@ -188,18 +188,20 @@ existing_salary_id:number;
     var loadout = {employee_id: employee_id, date: selectedmonth};
     this._MastersService.getloanRecieptdDetails(loadout).subscribe((res: any) => {
       this.loanReciepts = res;
+      
       if(this.loanReciepts.length > 0)
       {
         for(var i = 0 ; i < this.loanReciepts.length;i++)
         {
           var value = this.loanReciepts[i];
 
-          if(this.deductions.length > 0)
+          if(this.deductions.length >= 0)
           {
              var existingloanid =  this.deductions.filter(function(val)
              {
                 return val.loan_id && val.loan_id == value.loan_id
              });
+             
              if(existingloanid == undefined || existingloanid.length <= 0)
              {
               var html = '<div class="row"><div class="col-12"><b>Loan A/C: '+value.loan_id+'</b></div><div class="col-12"><b>Amount: '+value.emi+'</b></div></div>'

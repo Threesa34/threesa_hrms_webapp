@@ -151,6 +151,8 @@ export class salaryDetails implements OnInit{
     
   }
 
+
+
   saveSalaryApprisalDetails()
   {
     if(this.salary_details.status == undefined || this.salary_details.status == null)
@@ -168,7 +170,7 @@ export class salaryDetails implements OnInit{
       }
        Swal.fire(resAlert).then((result) => {
         if (res.status === 1) {
-           this._MastersService.EmitShiftsList();
+           this._MastersService.EmitSalaryApprisal();
         } else {
         }
       }); 
@@ -206,8 +208,8 @@ export class SalaryManagementComponent implements OnInit {
   ngOnInit(): void {
     this.initializeParameters();
 
-    if (this._MastersService.subsShiftsList==undefined) {    
-      this._MastersService.subsShiftsList = this._MastersService.invokeShiftsList.subscribe((name:string) => {    
+    if (this._MastersService.subsSalaryApprisal==undefined) {    
+      this._MastersService.subsSalaryApprisal = this._MastersService.invokeSalaryApprisal.subscribe((name:string) => {    
         this.getSalaryApprisalList();    
       });    
     } 
@@ -289,6 +291,51 @@ getSalaryApprisalList()
     this.selectedRows = [];
     this.gridApi.setDomLayout("autoHeight");
   }
+  });
+}
+
+
+
+deleteSalaryRecord()
+{
+  var confirmAction = {
+    title: 'Are you sure?',
+    text: 'Want to dlete selected record(s)',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, proceed!',
+    cancelButtonText: 'No, keep it'
+  }
+
+  Swal.fire(confirmAction).then((result) => {
+    if (result.value) 
+       {
+         var ids = '';
+         for(var i = 0 ; i < this.selectedRows.length;i++)
+         {
+            ids = ids + this.selectedRows[i].id+ ',';
+         }
+         if(ids != '')
+         {
+          ids = ids.substring(0, ids.lastIndexOf(','));
+          ids = '('+ids+')';
+
+          this._MastersService.deleteSalaryRecord({ids: ids}).subscribe((res: any) => {
+            var resAlert ={
+              title: res.title,
+              text: res.message,
+              type: res.type,
+            }
+             Swal.fire(resAlert).then((result) => {
+              if (res.status === 1) {
+                 this._MastersService.EmitSalaryApprisal();
+              } else {
+              }
+            }); 
+          });
+
+         }
+       }
   });
 }
 
