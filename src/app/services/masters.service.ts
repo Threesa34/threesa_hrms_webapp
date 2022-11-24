@@ -244,6 +244,7 @@ export class MastersService {
 
   getPosition(): Promise<any>
   {
+    
      return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resp => {		
 
@@ -251,7 +252,7 @@ export class MastersService {
         },
         err => {
           reject(err);
-        }, {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
+        }, {maximumAge:0, timeout:5000, enableHighAccuracy: true});
     }); 
 
   }
@@ -327,6 +328,14 @@ export class MastersService {
       return data;
     }));
   }
+
+  resetEmployeeDeviceId(id):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/resetEmployeeDeviceId/'+id).pipe(map(data => {
+      return data;
+    }));
+  }
+  
   
 
   getLoanHistory(id):Observable<any>
@@ -367,6 +376,22 @@ export class MastersService {
   saveSalaryApprisalDetails(SalaryApprisalDetails):Observable<any>
   {
     return this.httpClient.post(environment.endpoint_url+'/api/saveSalaryApprisalDetails/',SalaryApprisalDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  deleteSalaryRecord(SalaryApprisalDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/deleteSalaryRecord/',SalaryApprisalDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  
+
+  getAttendanceReportOfEmployees(employeeDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/getAttendanceReportOfEmployees/',employeeDetails).pipe(map(data => {
       return data;
   }));
   }

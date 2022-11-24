@@ -1,76 +1,114 @@
 <div class="modal-content">
 
-    <!-- Modal Header -->
-    <div class="modal-header">
-    <div class="row">
-       
-        <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
-            <mat-label>Month</mat-label>
-            <mat-select [(ngModel)]="_month" (selectionChange)="getReportOnMonth(_month, _year)">
-                <mat-option *ngFor="let _obj of monthNames" [value]="_obj">{{_obj}}</mat-option>
-              </mat-select>
-        </mat-form-field>
-        <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
-            <mat-label>Year</mat-label>
-            <mat-select [(ngModel)]="_year" (selectionChange)="getReportOnMonth(_month, _year)">
-                <mat-option *ngFor="let _obj of yearsRange" [value]="_obj">{{_obj}}</mat-option>
-              </mat-select>
-        </mat-form-field>
-       
-      <div class="col-12"><strong>{{formatFullName(attendancedetails.name)}}&nbsp;<sub>({{attendancedetails.rolename}})</sub></strong></div>
-      <div class="col-12">
-        Working Shift: {{formatFullName(attendancedetails.working_shift)}}
-      </div>
-      <div class="col-12 mt-1">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                        <thead>
-                           <th>Present Days</th>
-                           <th>Half Days &nbsp;<i class="fas fa-circle text-danger"></i></th>
-                           <th>Latemarks &nbsp;<i class="fas fa-circle text-warning"></i></th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>&nbsp;{{attendancedetails.prest_days_count + attendancedetails.latemarks_count}}</td>
-                                <td>&nbsp;{{attendancedetails.half_days_count}}</td>
-                                <td>&nbsp;{{attendancedetails.latemarks_count}}</td>
-                            </tr>
-                        </tbody>
-            </table>
-        </div>
-      </div>
-      </div>
+  <!-- Modal Header -->
+  <div class="modal-header">
+  <div class="row">
+     
+      <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+          <mat-label>Month</mat-label>
+          <mat-select [(ngModel)]="_month" (selectionChange)="getReportOnMonth(_month, _year)">
+              <mat-option *ngFor="let _obj of monthNames" [value]="_obj">{{_obj}}</mat-option>
+            </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+          <mat-label>Year</mat-label>
+          <mat-select [(ngModel)]="_year" (selectionChange)="getReportOnMonth(_month, _year)">
+              <mat-option *ngFor="let _obj of yearsRange" [value]="_obj">{{_obj}}</mat-option>
+            </mat-select>
+      </mat-form-field>
+     
+    <div class="col-12"><strong>{{formatFullName(attendancedetails.name)}}&nbsp;<sub>({{attendancedetails.rolename}})</sub></strong></div>
+    <div class="col-12">
+      Working Shift: {{formatFullName(attendancedetails.working_shift)}}
     </div>
-
-    <!-- Modal body -->
-    <div class="modal-body" style="height: 300px;overflow: auto;">
+    <div class="col-12 mt-1">
       <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <thead>
-                <th>#</th>
-                <th class="text-center text-nowrap">Date</th>
-                <th class="text-center text-nowrap">In Time</th>
-                <th class="text-center text-nowrap">Address</th>
-                <th class="text-center text-nowrap">Out Time</th>
-                <th class="text-center text-nowrap">Address</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let _data of attendanceList; let i = index">
-                    <td class="text-nowrap">{{i+1}} &nbsp;<i *ngIf="_data.latemark_status == 1 || _data.half_day_status == 1" class="fas fa-circle" [ngClass]="{'text-warning' : _data.latemark_status == 1, 'text-danger':_data.half_day_status == 1 }"></i></td>
-                    <td class="text-center text-nowrap">{{_data.att_date}}</td>
-                    <td class="text-center text-nowrap">{{_data.in_time}}</td>
-                    <td>{{_data.in_address}}</td>
-                    <td class="text-center text-nowrap">{{_data.out_time}}</td>
-                    <td>{{_data.out_address}}</td>
-                </tr>
-            </tbody>
-        </table>
+          <table class="table table-bordered">
+                      <thead>
+                        <th>Total Days In Month</th>
+                         <th>Present Days</th>
+                         <th>Half Days &nbsp;<i class="fas fa-circle text-danger"></i></th>
+                         <th>Latemarks &nbsp;<i class="fas fa-circle text-warning"></i></th>
+                      </thead>
+                      <tbody>
+                          <tr>
+                            <td>&nbsp;{{no_days}}</td>
+                              <td (click)="FilterAttendanceDays('all')">&nbsp;{{attendancedetails.prest_days_count + attendancedetails.latemarks_count}}</td>
+                              <td (click)="FilterAttendanceDays('halfdays')">&nbsp;{{attendancedetails.half_days_count}}</td>
+                              <td (click)="FilterAttendanceDays('latemarks')">&nbsp;{{attendancedetails.latemarks_count}}</td>
+                          </tr>
+                      </tbody>
+          </table>
       </div>
     </div>
-
-    <!-- Modal footer -->
-    <div class="modal-footer">
-      
     </div>
-
   </div>
+
+  <!-- Modal body -->
+  <div class="modal-body" style="height: 300px;overflow: auto;">
+
+    <mat-tab-group>
+      <mat-tab label="Present Days">
+
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+              <thead>
+                  <th>#</th>
+                  <th class="text-center text-nowrap">Date</th>
+                  <th class="text-center text-nowrap">In Time</th>
+                  <th class="text-center text-nowrap">Address</th>
+                  <th class="text-center text-nowrap">Device ID (IN)</th>
+                  <th class="text-center text-nowrap">Out Time</th>
+                  <th class="text-center text-nowrap">Address</th>
+                  <th class="text-center text-nowrap">Device ID (OUT)</th>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let _data of attendanceList; let i = index">
+                      <td class="text-nowrap">{{i+1}} &nbsp;<i *ngIf="_data.latemark_status == 1 || _data.half_day_status == 1" class="fas fa-circle" [ngClass]="{'text-warning' : _data.latemark_status == 1, 'text-danger':_data.half_day_status == 1 }"></i></td>
+                      <td class="text-center text-nowrap">{{_data.att_date}}</td>
+                      <td class="text-center text-nowrap">{{_data.in_time}}</td>
+                      <td>{{_data.in_address}}</td>
+                      <td>{{_data.uuid}}</td>
+                      <td class="text-center text-nowrap">{{_data.out_time}}</td>
+                      <td>{{_data.out_address}}</td>
+                      <td>{{_data.out_uuid}}</td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Absent Days"> 
+
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+              <thead>
+                  <th>#</th>
+                  <th class="text-center text-nowrap">Date</th>
+                  <th class="text-center text-nowrap">Status</th>
+                 
+              </thead>
+              <tbody>
+                  <tr *ngFor="let _data of AbsentList; let i = index">
+                      <td class="text-nowrap">{{i+1}}</td>
+                      <td class="text-center text-nowrap">{{_data.att_date}}</td>
+                      <td class="text-center text-nowrap">Attendance Not Registered</td>
+                    
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+
+      </mat-tab>
+      
+    </mat-tab-group>
+
+   
+  </div>
+
+  <!-- Modal footer -->
+  <div class="modal-footer">
+    
+  </div>
+
+</div>

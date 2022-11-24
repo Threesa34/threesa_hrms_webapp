@@ -1,1 +1,29 @@
-<p>attendance-report works!</p>
+<div class="container-fluid mt-2 mb-2">
+    <div class="row">
+        <mat-form-field class="col-11 col-md-5 col-lg-5 col-xl-5 col-sm-11">
+            <mat-label>Month</mat-label>
+            <mat-select [(ngModel)]="_month">
+                <mat-option *ngFor="let _obj of monthNames" [value]="_obj">{{_obj}}</mat-option>
+              </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-11 col-md-5 col-lg-5 col-xl-5 col-sm-11">
+            <mat-label>Year</mat-label>
+            <mat-select [(ngModel)]="_year">
+                <mat-option *ngFor="let _obj of yearsRange" [value]="_obj">{{_obj}}</mat-option>
+              </mat-select>
+        </mat-form-field>
+        <div class="col-1 col-md-1 col-lg-1 col-xl-1 col-sm-1">
+            <a class="btn btn-primary btn-sm" (click)="getReportOnMonth(_month, _year)">Submit</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <th>Employee Name</th>
+                    <th *ngFor="let _days of monthDays; let i = index">{{_days.day < 10 ?'0'+_days.day:_days.day}}</th>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

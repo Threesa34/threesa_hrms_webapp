@@ -43,6 +43,8 @@ attendancedetails:any = {};
 yearsRange:any;
 _month:String;
 _year:any;
+no_days:any;
+
 monthNames:object = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   ngOnInit(): void {
     const d = new Date();
@@ -58,6 +60,11 @@ monthNames:object = ['January', 'February', 'March', 'April', 'May', 'June', 'Ju
     this.getAttendanceList(this.selectedMonth);
   }
 
+  daysInMonth(anyDateInMonth) {
+    return new Date(anyDateInMonth.getFullYear(), 
+                    anyDateInMonth.getMonth()+1, 
+                    0).getDate();}
+
   getYearsRange() {
     const currentYear = (new Date()).getFullYear();
 const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
@@ -66,9 +73,10 @@ this.yearsRange = range(currentYear, currentYear - 10, -1);
    getAttendanceReport(selectedMonth)
   {
     var loadout = {employee_id: this.data[0].id, date: selectedMonth};
+    
     this._MastersService.getAttendanceReport(loadout).subscribe((res: any) => {
       this.attendancedetails = res[0];
-      
+     
       
     });
   } 
@@ -77,13 +85,55 @@ this.yearsRange = range(currentYear, currentYear - 10, -1);
     var loadout = {employee_id: this.data[0].id, date: selectedMonth};
     this._MastersService.getEmployeesAttendanceList(loadout).subscribe((res: any) => {
       this.attendanceList = res;
+      this.no_days = this.daysInMonth(new Date("02 "+selectedMonth+""))
+      this.getAttendanceAbsenceList();
     });
   } 
 
+  FilterAttendanceDays(filters)
+  {
+    // if(filters == 'halfdays')
+    // {
+    //   this.getAttendanceList(this.selectedMonth);
+    //     this.attendanceList = this.attendanceList.filter((_val)=>{return _val.half_day_status == 1});
+    // }
+    // else if(filters == 'latemarks')
+    // {
+    //   this.getAttendanceList(this.selectedMonth);
+    //   this.attendanceList = this.attendanceList.filter((_val)=>{return _val.latemark_status == 1});
+    // }
+    // else{
+    //   this.getAttendanceList(this.selectedMonth);
+    // }
+  }
 
+  AbsentList:any = [];
+  getAttendanceAbsenceList()
+  {
+    this.AbsentList = [];
+     for(var i = 1 ; i < this.no_days+1;i++)
+     {
+       if( i < 10)
+        var date = "0"+i;
+        else
+        var date = String(i);
+
+        var existingDate = [];
+        existingDate = this.attendanceList.filter((_val)=>{
+            return _val.att_date.substring(0, 2) ==  date;
+        });
+        if(existingDate.length == 0)
+        {
+          this.AbsentList.push({att_date: date+this.attendanceList[0].att_date.substring(2, this.attendanceList[0].att_date.length)});
+        }
+     }
+      
+  } 
+ 
   getReportOnMonth(_month, _year)
   {
     this.selectedMonth = _month+'-'+_year;
+   
     this.getAttendanceReport(this.selectedMonth);
     this.getAttendanceList(this.selectedMonth);
   }
@@ -604,6 +654,23 @@ export class EmployeeListComponent implements OnInit {
      this.rowData = res;
      this.gridApi.setDomLayout("autoHeight");
    }
+   });
+ }
+
+ resetEmployeeDeviceId(id)
+ {
+  this._MastersService.resetEmployeeDeviceId(id).subscribe((res:any)=>{
+    var resAlert ={
+      title: res.title,
+      text: res.message,
+      type: res.type,
+    }
+     Swal.fire(resAlert).then((result) => {
+      if (res.status === 1) {
+        
+      } else {
+      }
+    }); 
    });
  }
 

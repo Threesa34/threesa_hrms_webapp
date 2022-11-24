@@ -59,31 +59,56 @@ export class DashboardComponent implements OnInit {
     
   }
   
-
-
   SetAttendance()
   {
+	
+	var _this = this;
+     // this._MastersService.getPosition().then(pos=>
+      // {
 
-     this._MastersService.getPosition().then(pos=>
-      {
 
-        var time = new Date();
-        pos['time'] = time;
+			const options = {
+			  enableHighAccuracy: true,
+			  timeout: 5000,
+			  maximumAge: 0
+			};
+
+			function success(pos) {
+			  var crd = pos.coords;
+			/* 
+			  console.log('Your current position is:');
+			  console.log(`Latitude : ${crd.latitude}`);
+			  console.log(`Longitude: ${crd.longitude}`);
+			  console.log(`More or less ${crd.accuracy} meters.`);
+			   */
+			  
+		var time = new Date();
+		var payload = {
+
+      time: time,
+      latitude: crd.latitude,
+      longitude: crd.longitude,
+
+    };
         var attendanceDetails = {date: new Date()};
 
         //  = item.address.label;
 
-        for(var i = 0; i < Object.keys(pos).length;i++)
+        /* for(var i = 0; i < Object.keys(crd).length;i++)
         {
-          attendanceDetails[Object.keys(pos)[i]] = pos[Object.keys(pos)[i]];
-        }
+          attendanceDetails[Object.keys(crd)[i]] = crd[Object.keys(crd)[i]];
+        } */
+		
+		attendanceDetails['latitude'] = payload.latitude;
+        attendanceDetails['longitude'] = payload.longitude;
+        attendanceDetails['time'] = payload.time;
   
-        this._MastersService.getAddress(pos).subscribe((res:any)=>{
+        _this._MastersService.getAddress(payload).subscribe((res:any)=>{
          attendanceDetails['address'] = res.Label+', '+res.PostalCode;
          attendanceDetails['time'] = res.attendnace_time;
          var resAlert ={
           title: 'Address: '+attendanceDetails['address'],
-          html: '<div class="col-12"><p><b>Time: '+attendanceDetails['time']+'</b></p></div>',
+          html: '<div class="col-12"><p><b>Time: '+new Date(attendanceDetails['time']).toLocaleTimeString('en-GB')+'</b></p></div>',
           type: "warning",
           showConfirmButton: true,
           showCancelButton: true,
@@ -92,7 +117,7 @@ export class DashboardComponent implements OnInit {
         }
          Swal.fire(resAlert).then((result) => {
           if (result.isConfirmed) {
-            this.submitAttendance(attendanceDetails);        // submitting the form when user press yes
+            _this.submitAttendance(attendanceDetails);        // submitting the form when user press yes
           } 
           else {
 
@@ -107,7 +132,7 @@ export class DashboardComponent implements OnInit {
             }
              Swal.fire(resAlert).then((result) => {
               if (result.isConfirmed) {
-                this.SetAttendance();      // submitting the form when user press yes
+                _this.SetAttendance();      // submitting the form when user press yes
               } else {
                
               }
@@ -119,13 +144,21 @@ export class DashboardComponent implements OnInit {
           // <div class="col-12"><button type="button" class="btn btn-primary" (click)="submitAttendance('+attendanceDetails+')">Submit</button>&nbsp;<button type="button" class="btn btn-primary">Refresh</button></div>
           }); 
         });
+			  
+			}
 
+			function error(err) {
+			  console.warn(`ERROR(${err.code}): ${err.message}`);
+			}
 
-       
+		navigator.geolocation.getCurrentPosition(success, error, options);
+
 
         // console.log(attendanceDetails)
-      }); 
+      // }); 
   }
+
+
 
   submitAttendance(attendanceDetails)
   {
