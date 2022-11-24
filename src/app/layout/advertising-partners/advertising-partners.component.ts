@@ -63,7 +63,7 @@ export class AdvertisingPartnersComponent implements OnInit {
       else
       {
         var user = JSON.parse(userAgent);
-
+        if(user && user.length > 0)
         this.getAgentEnquiries(user[0].unique_number);
       }
   }

@@ -40,7 +40,8 @@
                     <strong>Working Days: {{attendancedetails.no_days}}</strong>
                 </div>
                 <div class="col-6 col-md-4 col-lg-4 col-xl-4 col-sm-6 border border-dark">
-                    <strong>Present Days: <input type="number" class="form-control-sm" [(ngModel)]="attendancedetails.total_present_days_count" (blur)="getTotal(fixed_earning);claculateGrossAmount(totalEarnedComponent)"/></strong>
+                    <strong>Present Days: <input type="number" class="form-control-sm" [(ngModel)]="attendancedetails.total_present_days_count" (blur)="getTotal(fixed_earning);claculateGrossAmount(totalEarnedComponent)"/>  </strong>
+                    <sub>(Monthly Holidays: {{attendancedetails.monthly_holidays}})</sub>
                 </div>
                 <div class="col-6 col-md-4 col-lg-4 col-xl-4 col-sm-6 border border-dark">
                     <strong>Half Days: <input type="number" class="form-control-sm" [(ngModel)]="attendancedetails.half_days_count" (blur)="getTotal(fixed_earning);claculateGrossAmount(totalEarnedComponent)"/></strong>
@@ -57,12 +58,12 @@
                             <tr *ngFor="let _data of fixed_earning">
                                 <td>{{_data.type | uppercase}}</td>
                                 <td class="text-right">{{_data.amount | number:'0.2' }}</td>
-                                <td class="text-right">{{getRoundedAmount((_data.amount/attendancedetails.no_days) * (attendancedetails.total_present_days_count + attendancedetails.half_days_count/2))}}</td>
+                                <td class="text-right">{{getRoundedAmount((_data.amount/attendancedetails.no_days) * (attendancedetails.monthly_holidays + attendancedetails.total_present_days_count + attendancedetails.half_days_count/2))}}</td>
                             </tr>
                             <tr>
                                 <td><b>TOTAL</b></td>
                                 <td class="text-right"><b>{{totalFixedComponent | number:'0.2' }}</b></td>
-                                <td class="text-right"><input type="number" (change)="checkTotalMatch()" [(ngModel)]="totalEarnedComponent" (blur)="claculateGrossAmount(totalEarnedComponent)"/></td>
+                                <td class="text-right"><input type="number" [(ngModel)]="totalEarnedComponent" (blur)="claculateGrossAmount(totalEarnedComponent)"/></td>
                             </tr>
                             <tr *ngFor="let _data of expances_earning">
                                 <td>{{_data.type | uppercase}}</td>
@@ -138,7 +139,7 @@
                 </tr>
                 <tr>
                     <td><b>Working Days: {{attendancedetails.no_days}}</b></td>
-                    <td><b>Present Days: {{attendancedetails.total_present_days_count}}</b></td>
+                    <td><b>Present Days: {{attendancedetails.total_present_days_count + attendancedetails.monthly_holidays}}</b></td>
                     <td><b>Half Days: {{attendancedetails.half_days_count}}</b></td>
                     <td><b>Latemarks: {{attendancedetails.latemarks_count}}</b></td>
                 </tr>
@@ -154,7 +155,7 @@
                             <tr  style="border:0 !important;" *ngFor="let _data of fixed_earning">
                                 <td  style="border:0 !important;">{{_data.type | uppercase}}</td>
                                 <td  style="border:0 !important;" class="text-right">{{_data.amount | number:'0.2' }}</td>
-                                <td  style="border:0 !important;" class="text-right">{{getRoundedAmount((_data.amount/attendancedetails.no_days) * (attendancedetails.total_present_days_count + attendancedetails.half_days_count/2))}}</td>
+                                <td  style="border:0 !important;" class="text-right">{{getRoundedAmount((_data.amount/attendancedetails.no_days) * (attendancedetails.monthly_holidays + attendancedetails.total_present_days_count + attendancedetails.half_days_count/2))}}</td>
                             </tr>
                             <tr  style="border:0 !important;">
                                 <td  style="border:0 !important;"><b>TOTAL</b></td>
