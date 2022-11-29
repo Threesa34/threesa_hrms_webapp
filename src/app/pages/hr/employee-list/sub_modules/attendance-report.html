@@ -61,6 +61,7 @@
                     <th class="text-center text-nowrap">Out Time</th>
                     <th class="text-center text-nowrap">Address</th>
                     <th class="text-center text-nowrap">Device ID (OUT)</th>
+                    <th class="text-center text-nowrap">Action</th>
                 </thead>
                 <tbody>
                     <tr *ngFor="let _data of attendanceList; let i = index">
@@ -72,6 +73,7 @@
                         <td class="text-center text-nowrap">{{_data.out_time}}</td>
                         <td>{{_data.out_address}}</td>
                         <td>{{_data.out_uuid}}</td>
+                        <td class="text-center text-nowrap"><button class="btn btn-danger btn-sm" (click)="deleteAttendanceRecord(_data.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

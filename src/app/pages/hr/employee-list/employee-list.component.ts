@@ -15,7 +15,7 @@ const disableConfirm = {
 
 const deleteConfirm = {
   title: 'Are you sure?',
-  text: 'Want to permanently delete selected User(s)',
+  text: 'Want to permanently delete selected Record(s)',
   type: 'warning',
   showCancelButton: true,
   confirmButtonText: 'Yes, proceed!',
@@ -89,6 +89,37 @@ this.yearsRange = range(currentYear, currentYear - 10, -1);
       this.getAttendanceAbsenceList();
     });
   } 
+
+  deleteAttendanceRecord(id)
+  {
+    
+    Swal.fire(deleteConfirm).then((result) => {
+      if (result.value) {
+        this._MastersService.deleteAttendanceRecord(id).subscribe((res: any) => {
+   
+          var resAlert ={
+            title: res.title,
+            text: res.message,
+            type: res.type,
+          }
+           Swal.fire(resAlert).then((result) => {
+            this.getAttendanceReport(this.selectedMonth);
+            this.getAttendanceList(this.selectedMonth);
+          }); 
+          
+        });
+  } else if (result.dismiss === Swal.DismissReason.cancel) {
+    Swal.fire(
+      'Cancelled',
+      'Your record is safe :)',
+      'error'
+    )
+  }
+  });
+
+    
+  } 
+  
 
   FilterAttendanceDays(filters)
   {

@@ -114,10 +114,10 @@ const MENUITEMS_siteadmin = [
           state: 'salary_process',
           name: 'Salary Process'
         },
-        /* {
+         {
           state: 'attendance_report',
           name: 'Employee Attendance Report'
-        }, */
+        }, 
       ]
     },
     {
@@ -243,13 +243,13 @@ const MENUITEMS_hr = [
         type: 'link',
         icon: 'account_balance_wallet',
 	  },
-	 /*  {
+	   {
         main_state: 'hr',
         state: 'attendance_report',
         name: 'Employee Attendance Report',
         type: 'link',
         icon: 'description',
-	  }, */
+	  }, 
     ],
   },
 
