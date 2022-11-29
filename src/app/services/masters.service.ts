@@ -183,6 +183,13 @@ export class MastersService {
     }));
   }
 
+  deleteAttendanceRecord(id):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/deleteAttendanceRecord/'+id).pipe(map(data => {
+      return data;
+    }));
+  }
+
 
   invokeShiftsList = new EventEmitter();    
   subsShiftsList: Subscription;  
@@ -573,6 +580,15 @@ export class MastersService {
       return data;
   }));
   }
+
+  getEmployeesAttendanceMonthlyReport(emplyeeDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/getEmployeesAttendanceMonthlyReport/',emplyeeDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
+  
 
   getAbsenceList(attendanceDate):Observable<any>
   {

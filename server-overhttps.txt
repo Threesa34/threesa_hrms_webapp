@@ -6,11 +6,4 @@ const ca = fs.readFileSync(path.resolve('../Threesa_website/STAR.threesainfoway.
   const cert = fs.readFileSync(path.resolve('../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.crt'));
    const key = fs.readFileSync(path.resolve('../Threesa_website/threesainfoway.net-1/private.key'));
 
-   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
-
-   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
-
-
-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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
-
-   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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
+github New token: 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
