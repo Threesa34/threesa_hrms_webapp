@@ -104,6 +104,43 @@ export class MastersService {
     }));
   }
 
+  deleteOfficeLocations(locationIds): Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/deleteOfficeLocations/',locationIds).pipe(map(data => {
+							return data;
+					}));
+  }
+
+  saveOfficeLocationDetails(officeLocationDetails): Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/saveOfficeLocationDetails/',officeLocationDetails).pipe(map(data => {
+							return data;
+					}));
+  }
+
+  getGeoCodesFromAddress(officeLocationDetails): Observable<any>
+  {
+    
+    return this.httpClient.post('https://www.latlong.net/_spm4.php',officeLocationDetails).pipe(map(data => {
+							return data;
+					}));
+  }
+
+  invokeOfficeLocationList = new EventEmitter();    
+  subsOfficeLocationList: Subscription;  
+
+  EmitOfficeLocationList(){
+    this.invokeOfficeLocationList.emit();
+  }
+
+
+  getOfficeLocationsList():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getOfficeLocationsList/').pipe(map(data => {
+      return data;
+    }));
+  }
+
   getRestUsersList():Observable<any>
   {
     return this.httpClient.get<any>(environment.endpoint_url+'/api/getRestUsersList/').pipe(map(data => {
@@ -198,6 +235,7 @@ export class MastersService {
     this.invokeShiftsList.emit();
   }
 
+ 
   saveShiftDetails(shiftDetails):Observable<any>
   {
     return this.httpClient.post(environment.endpoint_url+'/api/saveShiftDetails/',shiftDetails).pipe(map(data => {

@@ -12,6 +12,7 @@ import { LoanPaymentComponent } from './loan-payment/loan-payment.component';
 import { LeaveManagementComponent } from './leave-management/leave-management.component';
 import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
 import { DesignationManagerComponent } from './designation-manager/designation-manager.component';
+import { OfficeLocationsComponent } from './office-locations/office-locations.component';
 
 function getSalaryMonth()
 {
@@ -71,6 +72,15 @@ const routes: Routes = [
           breadcrumb: 'Employee Details',
           status: true,
           icon:'supervisor_account'
+        },
+      }, 
+      {
+        path: 'office_location',
+        component: OfficeLocationsComponent,
+        data: {
+          breadcrumb: 'Office Loctions',
+          status: true,
+          icon:'where_to_vote'
         },
       }, 
       {

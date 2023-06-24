@@ -91,6 +91,10 @@ const MENUITEMS_siteadmin = [
           name: 'Shift Management'
         },
     {
+          state: 'office_location',
+          name: 'Office Loctions'
+        },
+    {
           state: 'attendance',
           name: 'Employee Attendance'
         },
@@ -194,6 +198,13 @@ const MENUITEMS_hr = [
         type: 'link',
         icon: 'workspace_premium',
 	  },
+    {
+      main_state: 'hr',
+      state: 'office_location',
+      name: 'Office Loctions',
+      type: 'link',
+      icon: 'where_to_vote',
+    },
 	  {
         main_state: 'hr',
         state: 'attendance',
@@ -275,7 +286,6 @@ const MENUITEMS_manager = [
         type: 'link',
         icon: 'people_alt',
 	  },
-	  
 	  {
         main_state: 'manager',
         state: 'attendance',
@@ -364,15 +374,7 @@ const MENUITEMS_staff = [
         type: 'link',
         icon: 'account_balance',
 	  },
-	  
-	 
-	   {
-        main_state: 'hr',
-        state: 'attendance_report',
-        name: 'Employee Attendance Report',
-        type: 'link',
-        icon: 'description',
-	  }, 
+	
     ],
   },
 

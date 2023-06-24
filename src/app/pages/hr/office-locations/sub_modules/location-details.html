@@ -1,0 +1,38 @@
+ <!-- Modal Header -->
+ <div class="modal-header">
+    <h4 class="modal-title">Office Location</h4>
+  </div>
+  
+  <!-- Modal body -->
+  <div class="modal-body">
+<div class="row">
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="locationDetails.name" required>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-12 col-xl-12 col-sm-12">
+        <mat-label>Address</mat-label>
+        <textarea matInput [(ngModel)]="locationDetails.address"></textarea>
+        <mat-hint align="end"><a href="https://www.latlong.net/convert-address-to-lat-long.html" target="_blank">Get Coordinates</a></mat-hint>
+        
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12">
+        <mat-label>Lattitude</mat-label>
+        <input type="text" matInput [(ngModel)]="locationDetails.lat">
+        <mat-hint align="end">EX.: 19.218330</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-md-12 col-lg-6 col-xl-6 col-sm-12">
+        <mat-label>Longitude</mat-label>
+        <input type="text" matInput [(ngModel)]="locationDetails.lang">
+        <mat-hint align="end">EX.: 72.978088</mat-hint>
+    </mat-form-field>
+   
+</div>
+</div>
+ <!-- Modal footer -->
+ <div class="modal-footer">
+    <div class="col-12 mt-2 mb-2 text-center">
+        <button mat-raised-button color="primary" (click)="saveOfficeLocationDetails()" mat-dialog-close>Save</button> &nbsp;
+        <button mat-raised-button mat-dialog-close color="accent">Cancel</button>
+    </div>
+  </div>

@@ -43,15 +43,22 @@ getEmployeesAttendanceMonthlyReport(selectedMonth)
     
     this._MastersService.getEmployeesAttendanceMonthlyReport(loadout).subscribe((res: any) => {
       this.attendanceReport = res;
-      for(var i = 0 ; i < this.attendanceReport.length; i++)
-      {
-        this.attendanceReport[i].att_dates = this.attendanceReport[i].attendance_dates.split(',');
-        this.attendanceReport[i].att_intimes = this.attendanceReport[i].attendance_intimes.split(',');
-        this.attendanceReport[i].att_outtimes = this.attendanceReport[i].attendance_outtimes.split(',');
-      }
+      // for(var i = 0 ; i < this.attendanceReport.length; i++)
+      // {
+      //   this.attendanceReport[i].att_dates = this.attendanceReport[i].attendance_dates.split(',');
+      //   this.attendanceReport[i].att_intimes = this.attendanceReport[i].attendance_intimes.split(',');
+      //   this.attendanceReport[i].att_outtimes = this.attendanceReport[i].attendance_outtimes.split(',');
+      // }
      
     });
   } 
+
+
+  getStringToArray(str)
+  {
+    if(str != undefined && str != null)
+    return str.split(',');
+  }
 
   getReportOnMonth(_month, _year)
   {
