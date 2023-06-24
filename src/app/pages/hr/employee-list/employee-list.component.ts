@@ -632,6 +632,14 @@ export class EmployeeListComponent implements OnInit {
        },
      },
      {
+      headerName: "Deice ID", 
+      field: 'uuid',
+      filterParams: {
+        resetButton: true,
+        suppressAndOrCondition: true,
+      },
+    },
+     {
        headerName: "Status", 
        field: '_status',
        filterParams: {

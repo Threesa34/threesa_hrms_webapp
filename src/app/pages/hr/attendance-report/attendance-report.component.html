@@ -33,13 +33,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="border: 1px solid black;"><small>DATE</small></td> <td *ngFor="let _dates of _data.att_dates" style="border: 1px solid black;">{{_dates}}</td>
+                        <td style="border: 1px solid black;"><small>DATE</small></td> <td *ngFor="let _dates of getStringToArray(_data.attendance_dates)" style="border: 1px solid black;">{{_dates}}</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid black;"><small>IN</small></td> <td *ngFor="let _intimes of _data.att_intimes" style="border: 1px solid black;">{{_intimes}}</td>
+                        <td style="border: 1px solid black;"><small>IN</small></td> <td *ngFor="let _intimes of getStringToArray(_data.attendance_intimes)" style="border: 1px solid black;">{{_intimes}}</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid black;"><small>OUT</small></td> <td *ngFor="let _outtimes of _data.att_outtimes" style="border: 1px solid black;">{{_outtimes}}</td>
+                        <td style="border: 1px solid black;"><small>OUT</small></td> <td *ngFor="let _outtimes of getStringToArray(_data.attendance_outtimes)" style="border: 1px solid black;">{{_outtimes}}</td>
                     </tr>
                 </tbody>
             </table>

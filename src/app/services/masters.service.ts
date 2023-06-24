@@ -560,6 +560,46 @@ export class MastersService {
   }));
   }
 
+
+  
+  deleteOfficeLocations(locationIds): Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/deleteOfficeLocations/',locationIds).pipe(map(data => {
+							return data;
+					}));
+  }
+
+  saveOfficeLocationDetails(officeLocationDetails): Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/saveOfficeLocationDetails/',officeLocationDetails).pipe(map(data => {
+							return data;
+					}));
+  }
+
+  getGeoCodesFromAddress(officeLocationDetails): Observable<any>
+  {
+    
+    return this.httpClient.post('https://www.latlong.net/_spm4.php',officeLocationDetails).pipe(map(data => {
+							return data;
+					}));
+  }
+
+  invokeOfficeLocationList = new EventEmitter();    
+  subsOfficeLocationList: Subscription;  
+
+  EmitOfficeLocationList(){
+    this.invokeOfficeLocationList.emit();
+  }
+
+
+  getOfficeLocationsList():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getOfficeLocationsList/').pipe(map(data => {
+      return data;
+    }));
+  }
+
+
   getAttendanceList(attendanceDate):Observable<any>
   {
     return this.httpClient.post(environment.endpoint_url+'/api/getAttendanceList/',attendanceDate).pipe(map(data => {
@@ -641,6 +681,16 @@ public getMessages = () => {
       return data;
   }));
   }
+
+  getWebsiteVisitors():Observable<any>
+  {
+    return this.httpClient.get(environment.endpoint_url+'/api/getWebsiteVisitors/').pipe(map(data => {
+      return data;
+  }));
+  }
+
+
+  
 
   getAgentEnquiries(unique_id):Observable<any>
   {

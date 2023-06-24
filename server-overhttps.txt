@@ -1,4 +1,4 @@
-sudo ng serve --ssl=true --sslKey=../Threesa_website/threesainfoway.net-1/private.key --sslCert=../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.crt --host=threesainfoway.net
+sudo ng serve --ssl=true --sslKey=../Threesa_website/threesainfoway.net-1/private.key --sslCert=../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.crt --port=4200 --host=threesainfoway.net --disable-host-check
 
 
 

@@ -33,6 +33,14 @@
             <mat-option *ngFor="let _obj of approvalStatus" [value]="_obj.id">{{_obj.title}}</mat-option>
           </mat-select>
      </mat-form-field>
+     
+     <mat-form-field class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12">
+      <mat-label>Loan Amount Paid Date</mat-label>
+      <input matInput [matDatepicker]="loan_amt_paid_date" (focus)="loan_amt_paid_date.open()" [(ngModel)]="loanRequestDetails.loan_amt_paid_date">
+      <mat-datepicker-toggle matSuffix [for]="loan_amt_paid_date"></mat-datepicker-toggle>
+      <mat-datepicker #loan_amt_paid_date></mat-datepicker>
+</mat-form-field>
+
 
         <mat-form-field class="col-12">
         <mat-label>Approval Note</mat-label>

@@ -7,6 +7,7 @@ import { NewsLettersCampaignComponent } from './news-letters-campaign/news-lette
 import { EnquiriesComponent } from './enquiries/enquiries.component';
 import { QrCodesComponent } from './qr-codes/qr-codes.component';
 import { AdvertisingPartnersComponent } from './advertising-partners/advertising-partners.component';
+import { WebsiteVisitorsComponent } from './website-visitors/website-visitors.component';
 const routes: Routes = [
   {
     path: '',
@@ -71,6 +72,15 @@ const routes: Routes = [
         component: EnquiriesComponent                                                                                                                                                                           ,
         data: {
           breadcrumb: 'Website Enquiries',
+          status: true,
+          icon:'feedback'
+        },
+      }, 
+      {
+        path: 'advertisement_visitors',
+        component: WebsiteVisitorsComponent                                                                                                                                                                           ,
+        data: {
+          breadcrumb: 'Advertisement Visitors',
           status: true,
           icon:'feedback'
         },
