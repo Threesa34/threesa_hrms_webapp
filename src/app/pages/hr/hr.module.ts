@@ -23,7 +23,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {NgxPrintModule} from 'ngx-print';
 import { DesignationManagerComponent, designantionDetails } from './designation-manager/designation-manager.component';
 import { OfficeLocationsComponent, locationDetais } from './office-locations/office-locations.component';
-
 @NgModule({
   declarations: [EmployeeListComponent, shiftAssignment, attendanceReport, apprisalHistory, setAttendance, salarySlipHistory, loanHistory, employeeReview, EmployeeDetailsComponent, AttendanceListComponent, DashboardComponent, ShiftManagementComponent, shiftDetails, SalaryManagementComponent, leaveHistory, salaryDetails, SalaryProcessComponent, LoanRequestComponent, loanRequestDetails, LoanPaymentComponent, loanRecieptDetails, LeaveManagementComponent, leavesDetails, AttendanceReportComponent, DesignationManagerComponent, designantionDetails, OfficeLocationsComponent, locationDetais],
   imports: [

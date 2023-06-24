@@ -53,7 +53,7 @@ getEmployeesAttendanceMonthlyReport(selectedMonth)
     });
   } 
 
-
+  
   getStringToArray(str)
   {
     if(str != undefined && str != null)

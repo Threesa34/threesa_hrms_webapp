@@ -90,6 +90,10 @@ const MENUITEMS_siteadmin = [
           state: 'shift_management',
           name: 'Shift Management'
         },
+        {
+          state: 'office_location',
+          name: 'Office Loctions'
+        },
     {
           state: 'office_location',
           name: 'Office Loctions'
@@ -141,6 +145,10 @@ const MENUITEMS_siteadmin = [
         {
           state: 'enquiries',
           name: 'Website Enquiries',
+        },
+        {
+          state: 'advertisement_visitors',
+          name: 'Advertisement Visitors',
         },
         {
           state: 'news_letters_feedback',
