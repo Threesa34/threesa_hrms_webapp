@@ -35,6 +35,9 @@
                     <td class="text-right text-nowrap">{{_data.total_piad_amount | number:'0.2'}}</td>
                     <td class="text-nowrap" [ngClass]="{'text-success' : _data._status == 'Active'}">{{_data._status}}</td>
                 </tr>
+                <tr>
+                  <td colspan="8" class="text-right"><strong>Total Loan Amount: {{getTotalLoanAmount() | number:'0.2'}} | Total Paid Amount: {{getTotalPaidAmount() | number:'0.2'}}</strong></td>
+                </tr>
             </tbody>
         </table>
       </div>
