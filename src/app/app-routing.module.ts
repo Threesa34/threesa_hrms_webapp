@@ -81,8 +81,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'agents',
+    path: 'agent',
     component: AdvertisingPartnersComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/agent/agent.module').then(m => m.AgentModule)
+      },
+    ]
   },
 ];
 

@@ -127,10 +127,36 @@ export class AdvertisingPartnersComponent implements OnInit {
    this._MastersService.getAdvertisingPartnersList().subscribe((res:any)=>{
      if(!res.status)
    {
+    this.selectedRows = [];
      this.rowData = res;
      this.gridApi.setDomLayout("autoHeight");
    }
    });
+ }
+
+ resetAgentsPassword()
+ {
+  var agentIds = [];
+  this.selectedRows.forEach(function(_val){
+    agentIds.push(_val.id)
+  });
+  if(agentIds.length == this.selectedRows.length)
+  {
+  this._MastersService.resetAgentsPassword(agentIds).subscribe((res: any) => {
+    var resAlert ={
+      title: res.title,
+      text: res.message,
+      type: res.type,
+    }
+     Swal.fire(resAlert).then((result) => {
+      if (res.status === 1) {
+        this.getAdvertisingPartnersList();
+        this.selectedRows = [];
+      } else {
+      }
+    }); 
+  });
+  }
  }
 
  selectedPageSize = '10';

@@ -1,0 +1,37 @@
+
+<div class="container-fluid">
+    <div class="row">
+<div class="col-12 text-left"><button class="btn btn-link" [routerLink]="['/', 'agent', 'dashboard']"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></div>
+</div>
+
+<div class="row">
+
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-1 mt-1">
+
+        <div class="table-responsive">
+            <table class="table table-stripped">
+                   
+                <thead>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Redeem Points</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let _data of transactionsList; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{_data.createddate | date: 'dd MMM, yyyy'}}</td>
+                        <td>{{_data.redeem_points}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right"><strong>Total Redeem Points: {{getTotalRedeemPoints()}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+</div>

@@ -92,7 +92,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getAttendanceStatus();
-    console.log(navigator.onLine);
+  
   }
 
   toggleSubMenu(_obj)

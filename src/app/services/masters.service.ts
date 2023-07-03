@@ -808,6 +808,13 @@ public getMessages = () => {
   }));
   }
 
+  resetAgentsPassword(partnerDetails):Observable<any>
+  {
+    return this.httpClient.post(environment.endpoint_url+'/api/resetAgentsPassword/',partnerDetails).pipe(map(data => {
+      return data;
+  }));
+  }
+
    
   invokePartnersList = new EventEmitter();    
   subsPartnersList: Subscription;  
@@ -832,6 +839,41 @@ public getMessages = () => {
   getAdvertisingPartnersList():Observable<any>
   {
     return this.httpClient.get<any>(environment.endpoint_url+'/api/getAdvertisingPartnersList/').pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getAgentProfile():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getAgentProfile/').pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getAgentTotalConnectionsCount():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getAgentTotalConnectionsCount/').pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getRedeemTransactinsList():Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getRedeemTransactinsList/').pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getAgentsEnquiriesAndConnections(payload):Observable<any>
+  {
+    return this.httpClient.post<any>(environment.endpoint_url+'/api/getAgentsEnquiriesAndConnections/', payload).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getAgentsEnquiriesAndConnectionsYearly(payload):Observable<any>
+  {
+    return this.httpClient.post<any>(environment.endpoint_url+'/api/getAgentsEnquiriesAndConnectionsYearly/', payload).pipe(map(data => {
       return data;
     }));
   }

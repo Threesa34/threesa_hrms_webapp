@@ -388,6 +388,36 @@ const MENUITEMS_staff = [
 
 ];
 
+const MENUITEMS_agent = [
+  {
+    label: 'Navigation',
+    main: [
+      {
+        main_state: 'agent',
+        state: 'dashboard',
+        name: 'Dashboard',
+        type: 'link',
+        icon: 'dashboard',
+	  },
+	  {
+        main_state: 'agent',
+        state: 'profile',
+        name: 'My Profile',
+        type: 'link',
+        icon: 'account_circle',
+	  },
+	  {
+        main_state: 'agent',
+        state: 'transactions',
+        name: 'My Transactions',
+        type: 'link',
+        icon: 'payments',
+	  },
+    ],
+  },
+
+];
+
 
 
 const MENUITEMS_campaigns = [

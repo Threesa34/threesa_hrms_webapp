@@ -1,53 +1,105 @@
-<div class="container-fluid" *ngIf="showEnquiryList == true">
+<mat-toolbar color="primary" class="fixed-topnav">
+    
+    <mat-toolbar-row class="mat-elevation-z6">
+      <!-- <a mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </a>&nbsp; -->
+      <span>Threesa Infoway</span>
+      <span class="example-spacer"></span>
+      
+   <!--    <a mat-icon-button (click)="SetAttendance()" [ngClass]="{'text-success': attendanceStatus == 1, 'text-warning':attendanceStatus == 2}">
+        <mat-icon>fingerprint</mat-icon>
+      </a>
+  &nbsp; -->
+      <!-- <a mat-icon-button (click)="sidenav1.toggle()">
+        <mat-icon matBadge="15" matBadgeColor="accent">notifications</mat-icon>
+      </a> -->
+  &nbsp;
+      <a mat-icon-button (click)="SignOut()">
+        <mat-icon>power_settings_new</mat-icon>
+      </a>
+  &nbsp;
+      <!-- <a mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>account_circle</mat-icon>
+      </a> -->
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Profile</span>
+        </a>
+        <a mat-menu-item (click)="SignOut()">
+          <mat-icon>login</mat-icon>
+          <span>Signout</span>
+        </a>
+      </mat-menu>
+    </mat-toolbar-row>
+  
+  </mat-toolbar>
 
-    <div class="row mt-3">
-        <div class="col-12">
-            <span class="h5">Website Enquiries</span>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12 mt-2">
-            <div class="row">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <th class="text-center">Total Enquiries</th>
-                                <th class="text-center">Total Connection</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center"><b>{{enquiryList.length}}</b></td>
-                                    <td class="text-center"><b>{{getConnectionCount()}}</b></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-            </div>
-        </div>
-        <div class="col-12 mt-2">
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                   
-                    <thead>
-                        <th>#</th>
-                        <th>Customer</th>
-                        <th>Enquiry Date</th>
-                        <th>Connection Status</th>
-                        <th>Connection Date</th>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let _data of enquiryList; let i = index">
-                            <td>{{i+1}}</td>
-                            <td>{{_data.customername}}</td>
-                            <td>{{_data.enqdate | date: 'dd MMM, yyyy'}}</td>
-                            <td>{{_data.connection_status}}</td>
-                            <td>{{_data.connectiondate | date: 'dd MM, yyyy'}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+  <mat-sidenav-container class="example-container wrapper">
+    <mat-sidenav #snav mode="side" opened="false" mode="over" class="wrapper" >
+      <mat-nav-list *ngFor="let asideItems of menuList">
+        
+        <!-- <app-navigation-list *ngFor="let item of asideItems.main" [item]="item"></app-navigation-list> -->
 
-</div>
+          <perfect-scrollbar  [config]="config" id="scroll-style">
+            <mat-nav-list *ngFor="let item of asideItems.main">
+                <mat-list-item *ngIf="item.type=='link'" [routerLink]="['/', item.main_state, item.state]" (click)="snav.toggle()">
+                    <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+                 <div mat-line>{{item.name}}</div>
+                 </mat-list-item>  
+                <mat-list-item *ngIf="item.type=='sub'" role="listitem" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}" [routerLinkActive]="['active']" (click)="toggleSubMenu(item)">
+                    <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+                  <div mat-line>{{item.name}}</div>
+                  <span fxFlex *ngIf="item.children && item.children.length">
+                    <span fxFlex></span>
+                    <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+                      expand_more
+                    </mat-icon>
+                  </span>
+                </mat-list-item>
+                <mat-nav-list *ngIf="item.expanded">
+                     <mat-list-item *ngFor="let child of item.children" class="ml-4" [routerLink]="['/', item.state, child.state]" (click)="snav.toggle()">
+                      <div mat-line>{{child.name}}</div>
+                      </mat-list-item>  
+                  </mat-nav-list>
+              </mat-nav-list>
+            </perfect-scrollbar>
+    
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav #sidenav1 position="end" opened="false" mode="over" class="wrapper">
+      <div class="container-fluid mt-1">
+          <div class="row">
+            <table class="table table-borderless table-hover">
+              <tbody>
+             
+            </tbody>
+            </table>
+          </div>
+      </div>
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+
+
+      <div class="container-fluid">
+        <!-- <app-title></app-title> -->
+        <!-- <app-breadcrumbs></app-breadcrumbs> -->
+        <div class="mt-4 mb-4">
+          <router-outlet>
+            <app-spinner></app-spinner>
+          </router-outlet>
+      </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+<!-- <div class="mr-4 mb-4" style="position:fixed;right:0;bottom:0;z-index: 999;" *ngIf="!hideBtn">
+    <a mat-mini-fab color="primary" class="text-dark" (click)="hideBtn = !hideBtn; sidenavChatBot.toggle();"> <mat-icon>contact_support</mat-icon></a>
+  </div>
+  -->
+
+  
