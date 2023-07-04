@@ -369,6 +369,22 @@ export class loanHistory implements OnInit{
    });
  }
 
+ getTotalLoanAmount()
+ {
+     if(Array.isArray(this.loanList) && this.loanList.length > 0)
+     return this.loanList.reduce(function (total, obj) { return total + obj.approval_amt; }, 0);
+     else
+     return 0;
+ }
+
+ getTotalPaidAmount()
+ {
+     if(Array.isArray(this.loanList) && this.loanList.length > 0)
+     return this.loanList.reduce(function (total, obj) { return total + obj.total_piad_amount; }, 0);
+     else
+     return 0;
+ }
+
  formatFullName(text)
   {
     var formatedtext = '';
