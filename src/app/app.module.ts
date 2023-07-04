@@ -21,6 +21,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AdvertisingPartnersComponent, AgentAuthentication } from './layout/advertising-partners/advertising-partners.component';
+import { AttendanceReportComponent } from './hr/attendance-report/attendance-report.component';
 
 // const config: SocketIoConfig = { url: environment.endpoint_url, options: {} };
 
@@ -33,7 +34,8 @@ import { AdvertisingPartnersComponent, AgentAuthentication } from './layout/adve
     BreadcrumbsComponent,
     NavigationListComponent,
     AdvertisingPartnersComponent,
-    AgentAuthentication
+    AgentAuthentication,
+    AttendanceReportComponent
   ],
   imports: [
     BrowserModule,

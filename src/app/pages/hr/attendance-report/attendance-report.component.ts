@@ -24,7 +24,6 @@ export class AttendanceReportComponent implements OnInit {
     const d = new Date();
     this.selectedMonth = this.monthNames[d.getMonth()]+'-'+d.getFullYear();
 
-
     this._month = this.monthNames[d.getMonth()];
     this._year = d.getFullYear();
 

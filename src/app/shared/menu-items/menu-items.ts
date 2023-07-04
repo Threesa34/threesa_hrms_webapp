@@ -95,6 +95,10 @@ const MENUITEMS_siteadmin = [
           name: 'Office Loctions'
         },
     {
+          state: 'office_location',
+          name: 'Office Loctions'
+        },
+    {
           state: 'attendance',
           name: 'Employee Attendance'
         },
@@ -290,7 +294,6 @@ const MENUITEMS_manager = [
         type: 'link',
         icon: 'people_alt',
 	  },
-	  
 	  {
         main_state: 'manager',
         state: 'attendance',
@@ -328,13 +331,13 @@ const MENUITEMS_manager = [
 	  },
 	  
 	 
-	 /*  {
+	 {
         main_state: 'hr',
         state: 'attendance_report',
         name: 'Employee Attendance Report',
         type: 'link',
         icon: 'description',
-	  }, */
+	  }, 
     ],
   },
 
@@ -379,15 +382,37 @@ const MENUITEMS_staff = [
         type: 'link',
         icon: 'account_balance',
 	  },
-	  
-	 
-	 /*  {
-        main_state: 'hr',
-        state: 'attendance_report',
-        name: 'Employee Attendance Report',
+	
+    ],
+  },
+
+];
+
+const MENUITEMS_agent = [
+  {
+    label: 'Navigation',
+    main: [
+      {
+        main_state: 'agent',
+        state: 'dashboard',
+        name: 'Dashboard',
         type: 'link',
-        icon: 'description',
-	  }, */
+        icon: 'dashboard',
+	  },
+	  {
+        main_state: 'agent',
+        state: 'profile',
+        name: 'My Profile',
+        type: 'link',
+        icon: 'account_circle',
+	  },
+	  {
+        main_state: 'agent',
+        state: 'transactions',
+        name: 'My Transactions',
+        type: 'link',
+        icon: 'payments',
+	  },
     ],
   },
 

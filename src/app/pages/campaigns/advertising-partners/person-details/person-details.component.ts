@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MastersService } from '../../../../services/masters.service';
 import { environment } from '../../../../../environments/environment';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+// import { v4 } from 'uuid';
 import Swal from 'sweetalert2';
 
 
@@ -14,7 +15,7 @@ export class PersonDetailsComponent implements OnInit {
 
   personDetails:any = {};
 
-  constructor(private _MastersService: MastersService, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private _MastersService: MastersService, public dialogRef: MatDialogRef<PersonDetailsComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     if(this.data != undefined && this.data != null && this.data != '')
@@ -37,6 +38,7 @@ export class PersonDetailsComponent implements OnInit {
       }
        Swal.fire(resAlert).then((result) => {
         if (res.status === 1) {
+          this.dialogRef.close();
           this._MastersService.EmitPartnersList();
         } else {
         }

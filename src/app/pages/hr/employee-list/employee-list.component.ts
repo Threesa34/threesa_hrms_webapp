@@ -369,6 +369,10 @@ export class loanHistory implements OnInit{
    });
  }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 172bf02bee28bf810873bba3742365e99f3ac296
  getTotalLoanAmount()
  {
      if(Array.isArray(this.loanList) && this.loanList.length > 0)

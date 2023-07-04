@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    
+    <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-1 mt-1">
+        <mat-card class="mat-elevation-z6 p-4">
+            <div class="row" >
+                <div class="col-12"><span class="h4"><i class="fi fi-rr-user"></i> {{agentProfile[0].name}}</span></div>
+                <div class="col-12"><p><i class="fi fi-rr-marker"></i>  {{agentProfile[0].Address}}</p></div>
+                <div class="col-12"><strong><i class="fi fi-rr-mobile-notch"></i> {{agentProfile[0].mobile1}}</strong></div>
+                <div class="col-12"><strong><i class="fi fi-rr-envelope"></i> {{agentProfile[0].email}}</strong></div>
+            </div>
+
+            <div class="row" >
+                <div class="col-12"><hr></div>
+                <br>
+                <div class="col-12 text-right"><span class="h4"><i class="fi fi-rr-wallet"></i> {{(agentConnectionsCount[0].totalConnections - agentConnectionsCount[0].total_redeem_points) * agentProfile[0].creditpoints}}</span></div>
+                <div class="col-12 text-right"><button class="btn btn-link" [routerLink]="['/', 'agent', 'transactions']">Transactions <i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-1 mt-1">
+    <div class="row">    
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-1 mt-1">
+                <input type="month" class="form-control form-control-sm" [(ngModel)]="selectedMonth" (change)="getSelectedMonthsData(selectedMonth)"/>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-1 mt-1">
+            <select class="form-control form-control-sm" [(ngModel)]="selectedYear" (change)="getSelectedYearlyData(selectedYear)">
+                <option *ngFor="let _year of _yearsList" [value]="_year">{{_year}}</option>
+            </select>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mt-1 mb-1">
+            <mat-card class="mat-elevation-z6 p-4">
+                <div class="row">
+                    <div class="col-3 col-md-3 col-lg-3 col-sm-3 col-xl-3 col-xxl-3 text-center justify-content-center">
+                        <img src="./../../../../assets/imgs/support.png" class="img-fluid">
+                    </div>
+                    <div class="col-9 col-md-9 col-lg-9 col-sm-9 col-xl-9 col-xxl-9 text-nowrap">
+                        <span class="h5">Total Enquiries</span><br>
+                        <span class="h4">{{enquiryList.length}}</span>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mt-1 mb-1">
+            <mat-card class="mat-elevation-z6 p-4">
+                <div class="row">
+                    <div class="col-3 col-md-3 col-lg-3 col-sm-3 col-xl-3 col-xxl-3 text-center justify-content-center">
+                        <img src="./../../../../assets/imgs/wifi-router.png" class="img-fluid">
+                    </div>
+                    <div class="col-9 col-md-9 col-lg-9 col-sm-9 col-xl-9 col-xxl-9 text-nowrap">
+                        <span class="h5">Total Connections</span><br>
+                        <span class="h4">{{getConnectionCount()}}</span>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+    </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-1 mt-1">
+
+        <div class="table-responsive">
+            <table class="table table-stripped">
+                   
+                <thead>
+                    <th>#</th>
+                    <th>Customer</th>
+                    <th>Enquiry Date</th>
+                    <th>Connection Status</th>
+                    <th>Connection Date</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let _data of enquiryList; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{_data.customername}}</td>
+                        <td>{{_data.enqdate | date: 'dd MMM, yyyy'}}</td>
+                        <td>{{_data.connection_status}}</td>
+                        <td>{{_data.connectiondate | date: 'dd MM, yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    </div>
+
+</div>

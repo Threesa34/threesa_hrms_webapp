@@ -19,7 +19,6 @@ import { AttendanceReportComponent } from './attendance-report/attendance-report
 
 
 
-
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {NgxPrintModule} from 'ngx-print';
 import { DesignationManagerComponent, designantionDetails } from './designation-manager/designation-manager.component';

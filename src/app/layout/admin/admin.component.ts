@@ -9,6 +9,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MastersService } from '../../services/masters.service';
 import Swal from 'sweetalert2';
 
+
+
 declare var H: any;
 
 export interface Section {
@@ -90,6 +92,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getAttendanceStatus();
+  
   }
 
   toggleSubMenu(_obj)
