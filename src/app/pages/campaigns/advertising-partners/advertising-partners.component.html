@@ -3,7 +3,8 @@
         <button class="btn btn-sm mt-2 btn-primary" (click)="addPartnerDetails()">Add Partner</button> &nbsp;
         <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="getPartnerDetails()">Edit Partner</button> &nbsp;
         <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length >= 1" (click)="resetAgentsPassword()">Reset Password</button> &nbsp;
-        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="generateQRCode()">Generate QR Code</button> 
+        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="generateQRCode()">Generate QR Code</button> &nbsp;
+        <button class="btn btn-sm mt-2 btn-primary" *ngIf="selectedRows.length == 1" (click)="makePartnerPayment()">Make Payment</button> 
     </div>
 
     <div class="row mt-2">

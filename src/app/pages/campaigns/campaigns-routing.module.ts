@@ -8,6 +8,7 @@ import { EnquiriesComponent } from './enquiries/enquiries.component';
 import { QrCodesComponent } from './qr-codes/qr-codes.component';
 import { AdvertisingPartnersComponent } from './advertising-partners/advertising-partners.component';
 import { WebsiteVisitorsComponent } from './website-visitors/website-visitors.component';
+
 const routes: Routes = [
   {
     path: '',

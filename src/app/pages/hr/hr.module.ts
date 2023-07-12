@@ -20,7 +20,7 @@ import { AttendanceReportComponent } from './attendance-report/attendance-report
 
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import {NgxPrintModule} from 'ngx-print';
+// import {NgxPrintModule} from 'ngx-print';
 import { DesignationManagerComponent, designantionDetails } from './designation-manager/designation-manager.component';
 import { OfficeLocationsComponent, locationDetais } from './office-locations/office-locations.component';
 @NgModule({
@@ -29,7 +29,7 @@ import { OfficeLocationsComponent, locationDetais } from './office-locations/off
     CommonModule,
     HrRoutingModule,
     FileUploadModule,
-    NgxPrintModule,
+    // NgxPrintModule,
     AgGridModule.withComponents([]),
     MaterialModules,
     FormsModule,

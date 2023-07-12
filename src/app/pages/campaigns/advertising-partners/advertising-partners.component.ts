@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 import { PersonDetailsComponent } from './person-details/person-details.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
+import { PartnerPaymentComponent } from '../partner-payment/partner-payment.component';
 
 @Component({
   selector: 'app-advertising-partners',
@@ -193,6 +194,14 @@ export class AdvertisingPartnersComponent implements OnInit {
  getPartnerDetails()
  {
   var dialogRef = this.dialog.open(PersonDetailsComponent,{width: '50%',data:this.selectedRows});
+  dialogRef.afterClosed().subscribe(result => {
+    this._MastersService.EmitPartnersList();
+  });
+ }
+
+ makePartnerPayment()
+ {
+  var dialogRef = this.dialog.open(PartnerPaymentComponent,{width: '100%',data:this.selectedRows});
   dialogRef.afterClosed().subscribe(result => {
   });
  }
