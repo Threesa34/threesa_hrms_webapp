@@ -808,9 +808,9 @@ public getMessages = () => {
   }));
   }
 
-  resetAgentsPassword(partnerDetails):Observable<any>
+  resetAgentsPassword(partnerId):Observable<any>
   {
-    return this.httpClient.post(environment.endpoint_url+'/api/resetAgentsPassword/',partnerDetails).pipe(map(data => {
+    return this.httpClient.get(environment.endpoint_url+'/api/resetAgentsPassword/'+partnerId).pipe(map(data => {
       return data;
   }));
   }

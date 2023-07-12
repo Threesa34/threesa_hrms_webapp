@@ -1,48 +1,57 @@
 
 <div class="container-fluid">
- <div class="row">
-       
-    <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
-        <mat-label>Month</mat-label>
-        <mat-select [(ngModel)]="_month" (selectionChange)="getReportOnMonth(_month, _year)">
-            <mat-option *ngFor="let _obj of monthNames" [value]="_obj">{{_obj}}</mat-option>
-          </mat-select>
-    </mat-form-field>
-    <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
-        <mat-label>Year</mat-label>
-        <mat-select [(ngModel)]="_year" (selectionChange)="getReportOnMonth(_month, _year)">
-            <mat-option *ngFor="let _obj of yearsRange" [value]="_obj">{{_obj}}</mat-option>
-          </mat-select>
-    </mat-form-field>
-    </div>
-
     <div class="row">
-        <div class="col-12">
-            <button class="btn btn-primary btn-md" (click)="printReportPage()">Print Report</button>
-        </div>
-    </div>
+          
+       <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+           <mat-label>Month</mat-label>
+           <mat-select [(ngModel)]="_month" (selectionChange)="getReportOnMonth(_month, _year)">
+               <mat-option *ngFor="let _obj of monthNames" [value]="_obj">{{_obj}}</mat-option>
+             </mat-select>
+       </mat-form-field>
+       <mat-form-field class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+           <mat-label>Year</mat-label>
+           <mat-select [(ngModel)]="_year" (selectionChange)="getReportOnMonth(_month, _year)">
+               <mat-option *ngFor="let _obj of yearsRange" [value]="_obj">{{_obj}}</mat-option>
+             </mat-select>
+       </mat-form-field>
+       </div>
+   
+       <div class="row">
+           <div class="col-12">
+               <button class="btn btn-primary btn-md" (click)="printReportPage()">Print Report</button>
+           </div>
+       </div>
 
-    <div class="row" id="pritableDiv">
-        <div class="table-responsive my-2" *ngFor="let _data of attendanceReport; let i = index">
-            
-            <div><br></div>
-            <table class="table table-bordered table-stripped" style="border: 1px solid black;">
-                <thead>
-                    <th colspan="6" class="text-uppercase"><button class="btn btn-danger btn-sm deleteBtn" [ngStyle]="{'display': printPage == false ? 'inline-block' : 'none' }"  (click)="attendanceReport.splice(i, 1)">Remove</button> &nbsp;{{_data.name}}</th>
-                    
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="border: 1px solid black;"><small>DATE</small></td> <td *ngFor="let _dates of getStringToArray(_data.attendance_dates)" style="border: 1px solid black;">{{_dates}}</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid black;"><small>IN</small></td> <td *ngFor="let _intimes of getStringToArray(_data.attendance_intimes)" style="border: 1px solid black;">{{_intimes}}</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid black;"><small>OUT</small></td> <td *ngFor="let _outtimes of getStringToArray(_data.attendance_outtimes)" style="border: 1px solid black;">{{_outtimes}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+       <div *ngIf="loader" class="col-12 mx-auto my-auto text-center">
+        <!-- <div class="loadingio-spinner-spinner-u8tdku2817"><div class="ldio-rkbzv0aan39">
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            </div></div>
+            -->
+
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+       </div>
+   
+       <div *ngIf="!loader" class="row" id="pritableDiv">
+           <div class="table-responsive my-2" *ngFor="let _data of attendanceReport; let i = index">
+               
+               <div><br></div>
+               <table class="table table-bordered table-stripped" style="border: 1px solid black;">
+                   <thead>
+                       <th colspan="6" class="text-uppercase"><button class="btn btn-danger btn-sm deleteBtn" [ngStyle]="{'display': printPage == false ? 'inline-block' : 'none' }"  (click)="attendanceReport.splice(i, 1)">Remove</button> &nbsp;{{_data[0].name}}</th>
+                       
+                   </thead>
+                   <tbody>
+                       <tr>
+                           <td style="border: 1px solid black;"><small>DATE</small></td> <td *ngFor="let _dates of _data" style="border: 1px solid black;">{{_dates._date}}</td>
+                       </tr>
+                       <tr>
+                           <td style="border: 1px solid black;"><small>IN</small></td> <td *ngFor="let _intimes of _data" style="border: 1px solid black;">{{_intimes.attendance_intimes}}</td>
+                       </tr>
+                       <tr>
+                           <td style="border: 1px solid black;"><small>OUT</small></td> <td *ngFor="let _outtimes of _data" style="border: 1px solid black;">{{_outtimes.attendance_outtimes}}</td>
+                       </tr>
+                   </tbody>
+               </table>
+           </div>
+       </div>
+   </div>

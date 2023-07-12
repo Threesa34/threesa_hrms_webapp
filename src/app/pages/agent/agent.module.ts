@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { FileUploadModule } from 'ng2-file-upload';
-import { NgApexchartsModule } from "ng-apexcharts";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModules } from '../../shared/material-modules';
 import { AgentRoutingModule } from './agent-routing.module';
@@ -24,8 +23,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
     AgGridModule.withComponents([]),
     MaterialModules,
     FormsModule,
-    ReactiveFormsModule,
-    NgApexchartsModule
+    ReactiveFormsModule
   ]
 })
 export class AgentModule { }

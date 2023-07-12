@@ -369,10 +369,6 @@ export class loanHistory implements OnInit{
    });
  }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 172bf02bee28bf810873bba3742365e99f3ac296
  getTotalLoanAmount()
  {
      if(Array.isArray(this.loanList) && this.loanList.length > 0)
@@ -888,6 +884,38 @@ openemployeeReview(){
  }
  });
  
+ }
+
+ 
+ ExportEmployees()
+ {
+        var headers = 'Name, Mobile No(s), Email, Date of Birth \n';
+        var data = '';
+        for(var i = 0 ; i < this.rowData.length;i++){
+          data = data+""+this.rowData[i].name+", "+this.rowData[i].mobiles+", "+this.rowData[i].email+", "+this.rowData[i].birth_date+"\n"
+        };
+
+        var download = function(content, fileName, mimeType) {
+          var a = document.createElement('a');
+          mimeType = mimeType || 'application/octet-stream';
+        
+        if (URL && 'download' in a) { //html5 A[download]
+            a.href = URL.createObjectURL(new Blob([content], {
+              type: mimeType
+            }));
+            a.setAttribute('download', fileName);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          } else {
+            location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
+          }
+        }
+
+
+        var csvContent = headers+""+data;
+        download(csvContent, 'employee_details.csv', 'text/csv;encoding:utf-8');
+
  }
 
 }

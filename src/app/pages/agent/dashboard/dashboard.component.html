@@ -4,17 +4,17 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-1 mt-1">
         <mat-card class="mat-elevation-z6 p-4">
             <div class="row" >
-                <div class="col-12"><span class="h4"><i class="fi fi-rr-user"></i> {{agentProfile[0].name}}</span></div>
-                <div class="col-12"><p><i class="fi fi-rr-marker"></i>  {{agentProfile[0].Address}}</p></div>
-                <div class="col-12"><strong><i class="fi fi-rr-mobile-notch"></i> {{agentProfile[0].mobile1}}</strong></div>
-                <div class="col-12"><strong><i class="fi fi-rr-envelope"></i> {{agentProfile[0].email}}</strong></div>
+                <div class="col-12"><span class="h4"><i class="fi fi-rr-user"></i> {{agentProfile.name}}</span></div>
+                <div class="col-12"><p><i class="fi fi-rr-marker"></i>  {{agentProfile.Address}}</p></div>
+                <div class="col-12"><strong><i class="fi fi-rr-mobile-notch"></i> {{agentProfile.mobile1}}</strong></div>
+                <div class="col-12"><strong><i class="fi fi-rr-envelope"></i> {{agentProfile.email}}</strong></div>
             </div>
 
             <div class="row" >
                 <div class="col-12"><hr></div>
                 <br>
-                <div class="col-12 text-right"><span class="h4"><i class="fi fi-rr-wallet"></i> {{(agentConnectionsCount[0].totalConnections - agentConnectionsCount[0].total_redeem_points) * agentProfile[0].creditpoints}}</span></div>
-                <div class="col-12 text-right"><button class="btn btn-link" [routerLink]="['/', 'agent', 'transactions']">Transactions <i class="fa fa-arrow-right" aria-hidden="true"></i></button></div>
+                <div class="col-12 text-right"><span class="h4"><i class="fi fi-rr-wallet"></i> {{(agentConnectionsCount.totalConnections - agentConnectionsCount.total_redeem_points) * agentProfile.creditpoints}}</span></div>
+                <div class="col-12 text-right"><a class="btn btn-link" [routerLink]="['/', 'agent', 'transactions']">Transactions <i class="fa fa-arrow-right" aria-hidden="true"></i></a></div>
             </div>
         </mat-card>
     </div>

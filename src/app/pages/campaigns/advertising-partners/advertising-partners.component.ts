@@ -137,12 +137,14 @@ export class AdvertisingPartnersComponent implements OnInit {
  resetAgentsPassword()
  {
   var agentIds = [];
-  this.selectedRows.forEach(function(_val){
-    agentIds.push(_val.id)
-  });
-  if(agentIds.length == this.selectedRows.length)
+  // this.selectedRows.forEach(function(_val){
+  //   agentIds.push(_val.id)
+  // });
+
+  this.selectedRows[0].id;
+  // if(agentIds.length == this.selectedRows.length)
   {
-  this._MastersService.resetAgentsPassword(agentIds).subscribe((res: any) => {
+  this._MastersService.resetAgentsPassword(this.selectedRows[0].id).subscribe((res: any) => {
     var resAlert ={
       title: res.title,
       text: res.message,

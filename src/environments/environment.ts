@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   //endpoint_url:'https://threesainfoway.net:8896'
 
-  endpoint_url:'http://localhost:8895'
-  // endpoint_url:'https://threesainfoway.net:8896'
+  //endpoint_url:'http://localhost:8895'
+   endpoint_url:'https://threesainfoway.net:8896'
 };
 
 /*

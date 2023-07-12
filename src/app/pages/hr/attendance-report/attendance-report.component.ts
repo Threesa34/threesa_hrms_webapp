@@ -37,12 +37,26 @@ export class AttendanceReportComponent implements OnInit {
 const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
 this.yearsRange = range(currentYear, currentYear - 10, -1); 
 }
+
+loader: boolean = false;
 getEmployeesAttendanceMonthlyReport(selectedMonth)
   {
     var loadout = {date: selectedMonth};
-    
+    this.loader = true;
+    this.attendanceReport = [];
     this._MastersService.getEmployeesAttendanceMonthlyReport(loadout).subscribe((res: any) => {
-      this.attendanceReport = res;
+      if(res && res.length > 0)
+      {
+        this.attendanceReport = res.filter((_val: any)=>{
+            return ( typeof _val == 'object' && Array.isArray(_val) == true)
+        });
+        this.loader = false;
+
+        this.printPage = false;
+      }
+
+      // console.log(this.attendanceReport)
+
       // for(var i = 0 ; i < this.attendanceReport.length; i++)
       // {
       //   this.attendanceReport[i].att_dates = this.attendanceReport[i].attendance_dates.split(',');
@@ -57,7 +71,14 @@ getEmployeesAttendanceMonthlyReport(selectedMonth)
   getStringToArray(str)
   {
     if(str != undefined && str != null)
-    return str.split(',');
+    {
+    var obj = str.split(',');
+
+    return obj;
+    }
+    else{
+      return [];
+    }
   }
 
   getReportOnMonth(_month, _year)

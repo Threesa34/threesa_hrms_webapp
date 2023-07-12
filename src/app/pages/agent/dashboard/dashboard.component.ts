@@ -18,11 +18,13 @@ export class DashboardComponent implements OnInit {
   selectedYear: any | undefined;
   _yearsList = [];
 
-  constructor(private _router : Router, private _MastersService : MastersService, public dialog: MatDialog) { }
+  constructor(private _router : Router, private _MastersService : MastersService, public dialog: MatDialog) { 
+    for(var i = 10 ; i > 0;i--)
+    {
+      this._yearsList.push(this.currentDate.getFullYear() - i)
+    }
+    this._yearsList.push(this.currentDate.getFullYear());
 
-  ngOnInit(): void {
-    this.getAgentProfile();
-    this.getAgentTotalConnectionsCount();
     this.month = this.currentDate.getMonth();
     if(this.month < 10)
     {
@@ -30,35 +32,36 @@ export class DashboardComponent implements OnInit {
     }
     this.selectedMonth = this.currentDate.getFullYear()+"-"+this.month;
     this.selectedYear = this.currentDate.getFullYear();
+  }
 
-    for(var i = 10 ; i > 0;i--)
-    {
-      this._yearsList.push(this.currentDate.getFullYear() - i)
-    }
-    this._yearsList.push(this.currentDate.getFullYear())
+  ngOnInit(): void {
+   
+   
 
+    this.getAgentProfile();
+    this.getAgentTotalConnectionsCount();
     this.getAgentsEnquiriesAndConnections(this.selectedMonth);
   }
 
 
-agentProfile: any = [];
+agentProfile: any = {};
   getAgentProfile()
   {
     this._MastersService.getAgentProfile().subscribe((res:any)=>{
-      if(!res.status)
+      // if(!res.status)
     {
-      this.agentProfile = res;
+      this.agentProfile = res[0];
     }
     });
   }
 
-  agentConnectionsCount: any = [];
+  agentConnectionsCount: any = {};
   getAgentTotalConnectionsCount()
   {
     this._MastersService.getAgentTotalConnectionsCount().subscribe((res:any)=>{
-      if(!res.status)
+      // if(!res.status)
     {
-      this.agentConnectionsCount = res;
+      this.agentConnectionsCount = res[0];
     }
     });
   }
@@ -78,7 +81,7 @@ agentProfile: any = [];
   {
     
     this._MastersService.getAgentsEnquiriesAndConnections({selectedMonth: selectedMonth}).subscribe((res:any)=>{
-      if(!res.status)
+      // if(!res.status)
     {
       this.enquiryList = res;
     }
