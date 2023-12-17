@@ -1,5 +1,12 @@
-sudo ng serve --ssl=true --sslKey=../Threesa_website/threesainfoway.net-1/private.key --sslCert=../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.crt --port=4200 --host=threesainfoway.net --disable-host-check
+---------------------- new ------- sept2023
+Working-----
 
+sudo ng serve --ssl=true --sslKey=../../etc/letsencrypt/live/threesainfoway.net/privkey.pem --sslCert=../../etc/letsencrypt/live/threesainfoway.net/cert.pem --port=4200 --host=threesainfoway.net --disable-host-check
+
+
+   const cert = fs.readFileSync(path.resolve('../../etc/letsencrypt/live/threesainfoway.net/cert.pem'));
+const ca = fs.readFileSync(path.resolve('../../etc/letsencrypt/live/threesainfoway.net/chain.pem'));
+const key = fs.readFileSync(path.resolve('../../etc/letsencrypt/live/threesainfoway.net/privkey.pem')); 
 
 
 const ca = fs.readFileSync(path.resolve('../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.ca-bundle'));
@@ -7,3 +14,7 @@ const ca = fs.readFileSync(path.resolve('../Threesa_website/STAR.threesainfoway.
    const key = fs.readFileSync(path.resolve('../Threesa_website/threesainfoway.net-1/private.key'));
 
 github New token: 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
+
+
+sudo ng serve --ssl=true --sslKey=../Threesa_website/threesainfoway.net-1/private.key --sslCert=../Threesa_website/STAR.threesainfoway.net_cert-2/STAR.threesainfoway.net.crt --port=4200 --host=threesainfoway.net --disable-host-check
+

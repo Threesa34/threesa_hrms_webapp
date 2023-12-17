@@ -29,7 +29,7 @@ export class AttendanceReportComponent implements OnInit {
 
     this.getYearsRange();
 
-    this.getEmployeesAttendanceMonthlyReport(this.selectedMonth);
+    //this.getEmployeesAttendanceMonthlyReport(this.selectedMonth);
   }
 
   getYearsRange() {

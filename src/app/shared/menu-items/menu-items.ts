@@ -94,10 +94,7 @@ const MENUITEMS_siteadmin = [
           state: 'office_location',
           name: 'Office Loctions'
         },
-    {
-          state: 'office_location',
-          name: 'Office Loctions'
-        },
+   
     {
           state: 'attendance',
           name: 'Employee Attendance'

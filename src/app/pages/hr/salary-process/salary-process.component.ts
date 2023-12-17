@@ -195,25 +195,32 @@ existing_salary_id:number;
         {
           var value = this.loanReciepts[i];
 
-          if(this.deductions.length >= 0)
+
+          this.deductions.push({loan_id:value.loan_id,type:'Loan A/C: '+value.loan_id, amount: value.emi});
+        this.calculateDeduction();
+
+
+          /* if(this.deductions.length > 0)
           {
              var existingloanid =  this.deductions.filter(function(val)
              {
                 return val.loan_id && val.loan_id == value.loan_id
              });
              
-             if(existingloanid == undefined || existingloanid.length <= 0)
+              if(existingloanid == undefined || existingloanid.length <= 0)
              {
               var html = '<div class="row"><div class="col-12"><b>Loan A/C: '+value.loan_id+'</b></div><div class="col-12"><b>Amount: '+value.emi+'</b></div></div>'
               var confirmAction = {title: 'Do you have to add this entry?',html: html,type: 'warning',showCancelButton: true,confirmButtonText: 'Yes, proceed!',cancelButtonText: 'No, keep it'}
 
               Swal.fire(confirmAction).then((result) => {
                 if (result.value) 
+                {
                    this.deductions.push({loan_id:value.loan_id,type:'Loan A/C: '+value.loan_id, amount: value.emi});
+                }
                    this.calculateDeduction();
               });
              }
-          }
+          }*/
         };
        
       }

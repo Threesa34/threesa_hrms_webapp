@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
       if(res.id)
     {
       this.userDetails = res;      
-      this.profilepic = environment.endpoint_url+'/uploads/employee/'+this.userDetails.profile_pic;
+      this.profilepic = environment.endpoint_url+this.userDetails.profile_pic;
             
     }
     });

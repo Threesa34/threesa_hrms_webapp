@@ -225,7 +225,7 @@ this._MastersService.getUserProfile(localStorage.getItem('_id')).subscribe((res:
   if(res.id)
 {
   this.userDetails = res;      
-  this.profilepic = environment.endpoint_url+'/uploads/employee/'+this.userDetails.profile_pic;
+  this.profilepic = environment.endpoint_url+this.userDetails.profile_pic;
         
 }
 });
