@@ -878,4 +878,18 @@ public getMessages = () => {
     }));
   }
 
+  savePartnerPaymentDetails(payload):Observable<any>
+  {
+    return this.httpClient.post<any>(environment.endpoint_url+'/api/savePartnerPaymentDetails/', payload).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getAgentPaymentHistory(partnerId: any):Observable<any>
+  {
+    return this.httpClient.get<any>(environment.endpoint_url+'/api/getAgentPaymentHistory/'+ partnerId).pipe(map(data => {
+      return data;
+    }));
+  }
+
 }

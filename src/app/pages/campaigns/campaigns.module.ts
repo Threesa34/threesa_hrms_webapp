@@ -20,10 +20,11 @@ import { AdvertisingPartnersComponent } from './advertising-partners/advertising
 import { PersonDetailsComponent } from './advertising-partners/person-details/person-details.component';
 import { QrCodeComponent } from './advertising-partners/qr-code/qr-code.component';
 import { WebsiteVisitorsComponent } from './website-visitors/website-visitors.component';
+import { PartnerPaymentComponent } from './partner-payment/partner-payment.component';
 
 
 @NgModule({
-  declarations: [NewsLettersComponent, NewsLettersDetailsComponent, NewsLettersResponseComponent,customerFeedback,  NewsLettersCampaignComponent, shareOnEmail, shareOnmessage, EnquiriesComponent, DetailsComponent, DashboardComponent, QrCodesComponent, AdvertisingPartnersComponent, PersonDetailsComponent, QrCodeComponent, ConfirmConnectionComponent, WebsiteVisitorsComponent ],
+  declarations: [NewsLettersComponent, NewsLettersDetailsComponent, NewsLettersResponseComponent,customerFeedback,  NewsLettersCampaignComponent, shareOnEmail, shareOnmessage, EnquiriesComponent, DetailsComponent, DashboardComponent, QrCodesComponent, AdvertisingPartnersComponent, PersonDetailsComponent, QrCodeComponent, ConfirmConnectionComponent, WebsiteVisitorsComponent, PartnerPaymentComponent ],
   imports: [
     CommonModule,
     CampaignsRoutingModule,

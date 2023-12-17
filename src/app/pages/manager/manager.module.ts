@@ -5,7 +5,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModules } from '../../shared/material-modules';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import {NgxPrintModule} from 'ngx-print';
+// import {NgxPrintModule} from 'ngx-print';
 
 import { ManagerRoutingModule } from './manager-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -20,7 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommonModule,
     ManagerRoutingModule,
     FileUploadModule,
-    NgxPrintModule,
+    // NgxPrintModule,
     AgGridModule.withComponents([]),
     MaterialModules,
     FormsModule,
